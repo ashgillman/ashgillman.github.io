@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Uncategorized | The Red Wheel]]></title>
+  <link href="http://ashgillman.github.io/blog/categories/uncategorized/atom.xml" rel="self"/>
+  <link href="http://ashgillman.github.io/"/>
+  <updated>2014-12-02T21:32:57+10:00</updated>
+  <id>http://ashgillman.github.io/</id>
+  <author>
+    <name><![CDATA[Ashley Gillman]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Connecting With Arduino Nano Clone With CH340G (BAITE)]]></title>
+    <link href="http://ashgillman.github.io/connecting-with-arduino-nano-clone-with-ch340g-baite/"/>
+    <updated>2014-11-06T00:00:00+10:00</updated>
+    <id>http://ashgillman.github.io/connecting-with-arduino-nano-clone-with-ch340g-baite</id>
+    <content type="html"><![CDATA[<p>A while ago the robotics club bought a number of Arduino Nano clones for <a href="http://theredwheel.com/category/robo-club/project-mario/" title="Project Mario">Project Mario</a>. We often use clones in our projects because of the very limited budgets we have.<figure id="attachment_106" style="width: 300px;" class="wp-caption aligncenter"></p>
+
+<p><a href="http://theredwheel.com/wp-content/uploads/2014/11/2014-11-06-17.36.51.jpg" data-gallery><img class="wp-image-106 size-medium" src="http://theredwheel.com/wp-content/uploads/2014/11/2014-11-06-17.36.51-e1415260199327-300x139.jpg" alt="BAITE NANO3 BTE14-01 Arduino Nano Clone" width="300" height="139" /></a><figcaption class="wp-caption-text">BAITE NANO3 BTE14-01 Arduino Nano Clone</figcaption></figure>
+However, I was never able to connect on my Mac to them. I could, from a windows PC, connect and upload projects, but the Mac was unable to see any serial device. The same was true for all of the same devices.</p>
+
+<p>By going to Apple Logo > About this Mac > More Info&#8230; > System Report&#8230; > USB, with the device unplugged, plugging it in, then hitting reload (⌘R), I was able to verify that when the device was plugged in it was seen as USB2.0-Serial. After a closer inspection of the underside of the Nano clone, I noted that the board used a serial module I had not heard of, the CH340G.<figure id="attachment_107" style="width: 300px;" class="wp-caption aligncenter"></p>
+
+<p><a href="http://theredwheel.com/wp-content/uploads/2014/11/2014-11-06-17.37.31.jpg" data-gallery><img class="wp-image-107 size-medium" src="http://theredwheel.com/wp-content/uploads/2014/11/2014-11-06-17.37.31-e1415260289828-300x153.jpg" alt="Underside, the chip on the right is CH340G 202685306" width="300" height="153" /></a><figcaption class="wp-caption-text">Underside, the chip on the right isCH340G 202685306</figcaption></figure>
+This device did not work with the FTDI drivers, nor the PL2302 drivers.</p>
+
+<p>&lt;NOTE: Please read the edit below before using the Russian link.></p>
+
+<p>It took a bit of searching, but I found a <a title="CH340G" href="http://www.5v.ru/ch340g.htm" target="_blank">Russian website</a> with the required drivers. The website looks a little dodgy, but the drivers work so I&#8217;m happy. I just had to scroll down a little and click the link &#8220;USB CH341/CH340 MAC OS32, MAC OS64&#8243;, but there is also Windows and Linux should anyone need the drivers on these systems.</p>
+
+<p>EDIT:</p>
+
+<p>I since noticed that the driver above names the device something like <code>tty.wch ch341 USB=&gt;RS232 xxxx</code>, which makes it difficult or even unsuitable to be used in some programs since spaces and special characters like the equal and greater than signs need to be escaped. Further <a title="Stack Exchange" href="http://arduino.stackexchange.com/questions/3700/rename-device-name-ch340-usb-to-serial-mac-os" target="_blank">searching</a> found an <a title="CH340 Driver" href="http://www.wch.cn/downloads.php?name=pro&proid=178" target="_blank">updated driver</a> that fixed this issue. The name is now <code>tty.wchusbserial1410</code>.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Welcome]]></title>
+    <link href="http://ashgillman.github.io/welcome/"/>
+    <updated>2014-02-10T00:00:00+10:00</updated>
+    <id>http://ashgillman.github.io/welcome</id>
+    <content type="html"><![CDATA[<p><a href="http://theredwheel.com/wp-content/uploads/2014/06/genericCircuit.jpg" data-gallery><img class="aligncenter size-large wp-image-9" src="http://theredwheel.com/wp-content/uploads/2014/06/genericCircuit-1024x577.jpg" alt="Generic Circuit" width="1024" height="577" /></a></p>
+
+<p>Hello and welcome. This page is where I intend to keep a log of my projects and progress. The projects that will be covered here will involve the topics of programming, robotics and signal processing.</p>
+
+<p>This page is as much for myself to keep track as it is for others to gain inspiration or to learn from my mistakes. Feel free to ask any questions about the projects.</p>
+]]></content>
+  </entry>
+  
+</feed>
