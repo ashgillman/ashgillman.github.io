@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Oversized Rc Cars | The Red Wheel]]></title>
+  <link href="http://ashgillman.github.io/blog/categories/oversized-rc-cars/atom.xml" rel="self"/>
+  <link href="http://ashgillman.github.io/"/>
+  <updated>2014-12-02T21:55:28+10:00</updated>
+  <id>http://ashgillman.github.io/</id>
+  <author>
+    <name><![CDATA[Ashley Gillman]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Upgrading the Relay Output Board]]></title>
+    <link href="http://ashgillman.github.io/upgrading-the-relay-output-board/"/>
+    <updated>2014-06-12T00:00:00+10:00</updated>
+    <id>http://ashgillman.github.io/upgrading-the-relay-output-board</id>
+    <content type="html"><![CDATA[<p>Continuing work on the <a href="http://theredwheel.com/category/robo-club/oversized-rc-cars/">Oversized RC Car Project</a>, we last left off after the sprint day. Theoretically the code should be all working, except that we couldn&#8217;t get the MOSFET H-bridge working. We needed this working because the relay board used before this couldn&#8217;t handle the motor stall current.</p>
+
+<p><a href="http://theredwheel.com/wp-content/uploads/2014/06/relays.jpg" data-gallery><img class="alignnone wp-image-78 size-thumbnail" src="http://theredwheel.com/wp-content/uploads/2014/06/relays-150x150.jpg" alt="Relays" width="150" height="150" /> <img class="alignnone wp-image-79 size-thumbnail" src="http://theredwheel.com/wp-content/uploads/2014/06/relayBottom-150x150.jpg" alt="relayBottom" width="150" height="150" /></a></p>
+
+<p>Rather than keeping on with the MOSFET design (for now), I went out and ordered some higher current relays. Using the HRM-S-DC5V relays instead of the old M4-5H relays takes the current capacity from 0.5A to 5A, enough for the stall current of 5V. The issue with the newer relays however is a different footprint.</p>
+
+<p>I chose the new relays to have a similar footprint, indeed the NC and NO output pins are the same. The only difference is the relay coil pins are spaced further apart. I was able to deal with this by raising the relays using header strips, then use wires to connect the coil.<figure id="attachment_88" style="width: 150px;" class="wp-caption alignnone"></p>
+
+<p><a href="http://theredwheel.com/wp-content/uploads/2014/06/modHeader.jpg" data-gallery><img class="size-thumbnail wp-image-88" src="http://theredwheel.com/wp-content/uploads/2014/06/modHeader-150x150.jpg" alt="Removing pins to fit the header" width="150" height="150" /></a><figcaption class="wp-caption-text">Removing pins to fit the header</figcaption></figure> <figure id="attachment_85" style="width: 150px;" class="wp-caption alignnone"><a href="http://theredwheel.com/wp-content/uploads/2014/06/boardWithHeader1.jpg" data-gallery><img class="size-thumbnail wp-image-85" src="http://theredwheel.com/wp-content/uploads/2014/06/boardWithHeader1-150x150.jpg" alt="The board with new headers attached" width="150" height="150" /></a><figcaption class="wp-caption-text">The board with new headers attached</figcaption></figure> <figure id="attachment_89" style="width: 150px;" class="wp-caption alignnone"><a href="http://theredwheel.com/wp-content/uploads/2014/06/RelayWithWire1.jpg" data-gallery><img class="size-thumbnail wp-image-89" src="http://theredwheel.com/wp-content/uploads/2014/06/RelayWithWire1-150x150.jpg" alt="Adding wires" width="150" height="150" /></a><figcaption class="wp-caption-text">Adding wires</figcaption></figure>
+Now that this is working, hopefully we can test the code for the cars soon and have them running for the upcoming open day.<figure id="attachment_86" style="width: 1000px;" class="wp-caption aligncenter"></p>
+
+<p><a href="http://theredwheel.com/wp-content/uploads/2014/06/FinalSide.jpg" data-gallery><img class="wp-image-86 size-full" src="http://theredwheel.com/wp-content/uploads/2014/06/FinalSide.jpg" alt="Finished" width="1000" height="562" /></a><figcaption class="wp-caption-text">Finished</figcaption></figure>
+<a href="http://theredwheel.com/wp-content/uploads/2014/06/FinalTop1.jpg" data-gallery><img class="aligncenter wp-image-87 size-full" src="http://theredwheel.com/wp-content/uploads/2014/06/FinalTop1.jpg" alt="FinalTop" width="1000" height="562" /></a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Sprint Day &#8211; Oversized RC Cars]]></title>
+    <link href="http://ashgillman.github.io/sprint-day-oversized-rc-cars/"/>
+    <updated>2014-04-01T00:00:00+10:00</updated>
+    <id>http://ashgillman.github.io/sprint-day-oversized-rc-cars</id>
+    <content type="html"><![CDATA[<p>The club held its first sprint day on Saturday. The sprint was held for the oversized RC car project, but also to test out the sprint day format as a possible standard format for club projects.<figure id="attachment_60" style="width: 1000px;" class="wp-caption aligncenter"></p>
+
+<p><a href="http://theredwheel.com/wp-content/uploads/2014/06/SprintDay1.jpg" data-gallery><img class="size-full wp-image-60" src="http://theredwheel.com/wp-content/uploads/2014/06/SprintDay1.jpg" alt="Karl, Drew and Luke working on the Arduino code for the bluetooth comms" width="1000" height="563" /></a><figcaption class="wp-caption-text">Karl, Drew and Luke working on the Arduino code for the bluetooth comms</figcaption></figure>
+The aims of the day were to complete major aspects of the project: Android bluetooth communication code, Arduino bluetooth communication code, Arduino hardware interfacing, Relay replacement with MOSFETs, MOSFET H-bridge design</p>
+
+<ul>
+<li>Android bluetooth communication code</li>
+<li>Arduino bluetooth communication code</li>
+<li>Arduino hardware interfacing</li>
+<li>Relay replacement with MOSFETs</li>
+<li>MOSFET H-bridge design, including PCB design (ready for milling)<figure id="attachment_62" style="width: 1000px;" class="wp-caption aligncenter"></li>
+</ul>
+
+
+<p><a href="http://theredwheel.com/wp-content/uploads/2014/06/SprintDay3.jpg" data-gallery><img class="size-full wp-image-62" src="http://theredwheel.com/wp-content/uploads/2014/06/SprintDay3.jpg" alt="Working on the design for the MOSFET H-bridge" width="1000" height="563" /></a><figcaption class="wp-caption-text">Working on the design for the MOSFET H-bridge</figcaption></figure> <figure id="attachment_61" style="width: 1000px;" class="wp-caption aligncenter"><a href="http://theredwheel.com/wp-content/uploads/2014/06/SprintDay2.jpg" data-gallery><img class="size-full wp-image-61" src="http://theredwheel.com/wp-content/uploads/2014/06/SprintDay2.jpg" alt="Brendan and Jayden troubleshoot the h-bridge design." width="1000" height="563" /></a><figcaption class="wp-caption-text">Brendan and Jayden troubleshoot the h-bridge design.</figcaption></figure> <figure id="attachment_65" style="width: 1000px;" class="wp-caption aligncenter"><a href="http://theredwheel.com/wp-content/uploads/2014/04/SprintDayDesign.jpg" data-gallery><img class="size-full wp-image-65" src="http://theredwheel.com/wp-content/uploads/2014/04/SprintDayDesign.jpg" alt="H-bridge design: Inputs are F (forward on/off), R (reverse on/off), PWMF (forward duty), PWMR (reverse duty). Also implemented was a logic circuit for 2 pin input (direction select and duty)." width="1000" height="562" /></a><figcaption class="wp-caption-text">H-bridge design: Inputs are F (forward on/off), R (reverse on/off), PWMF (forward duty), PWMR (reverse duty). Also implemented was a logic circuit for 2 pin input (direction select and duty).</figcaption></figure>
+In addition to the H-bridge circuitry, logic was implemented to ensure shorting 12V to GND was impossible. This also was able to reduce the required input pins to 2.<figure id="attachment_66" style="width: 1000px;" class="wp-caption aligncenter"></p>
+
+<p><a href="http://theredwheel.com/wp-content/uploads/2014/04/SprintDayProto.jpg" data-gallery><img class="size-full wp-image-66" src="http://theredwheel.com/wp-content/uploads/2014/04/SprintDayProto.jpg" alt="H-bridge Prototype" width="1000" height="562" /></a><figcaption class="wp-caption-text">H-bridge Prototype</figcaption></figure>
+Due to the higher current, it was decided to prototype the H-bridge using a terminal block. However, this monster ended up taking a lot of time and was very messy. I would recommend a better solution for future reference. Unfortunately, the MOSFET H-bridge design was not complete by the end of the day. We ran out of time for the troubleshooting, though we still managed to find time for lunch and a few beers during the day.</p>
+
+<p><a href="http://theredwheel.com/wp-content/uploads/2014/06/SprintDay4.jpg" data-gallery><img class="aligncenter size-full wp-image-63" src="http://theredwheel.com/wp-content/uploads/2014/06/SprintDay4.jpg" alt="Sprint Day 4" width="1000" height="563" /></a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Introducing the Oversize RC Car Project]]></title>
+    <link href="http://ashgillman.github.io/introducing-the-oversize-rc-car-project/"/>
+    <updated>2014-03-03T00:00:00+10:00</updated>
+    <id>http://ashgillman.github.io/introducing-the-oversize-rc-car-project</id>
+    <content type="html"><![CDATA[<p><a href="http://theredwheel.com/wp-content/uploads/2014/06/ToddlerCars.jpg" data-gallery><img class="aligncenter size-full wp-image-52" src="http://theredwheel.com/wp-content/uploads/2014/06/ToddlerCars.jpg" alt="Toddler cars" width="1000" height="562" /></a>The JCU School of Engineering has two of these toddler cars, and are looking to kit them out into RC cars for use at show days, etc. These cars were used in CC3501 last year as the main project, however neither of the two teams in the class successfully got the cars going.</p>
+
+<p>The <a href="https://www.facebook.com/groups/JCUrobotics/">Robo Club</a> has agreed to take on this project this semester, and I will be leading the project. In fact I have already done some work on the project leading up to the beginning of the semester, having designed a relay board for use with an Arduino Pro Mini 5V.</p>
+
+<p><a href="http://theredwheel.com/wp-content/uploads/2014/06/5V-Relay-Outputs.png" data-gallery><img class="aligncenter size-full wp-image-55" src="http://theredwheel.com/wp-content/uploads/2014/06/5V-Relay-Outputs.png" alt="5V Relay Outputs" width="493" height="745" /></a></p>
+
+<p>&nbsp;</p>
+
+<p>I used NPN transistor buffers from the output of the Arduino to drive the transistor coils. I did this because I don&#8217;t like the idea of the board driving the coil directly (although it should be possible). I feel safer having the inductive coil somewhat isolated from the circuit by the transistor.<figure id="attachment_53" style="width: 1000px;" class="wp-caption aligncenter"></p>
+
+<p><a href="http://theredwheel.com/wp-content/uploads/2014/06/RelayBreadBoard1.jpg" data-gallery><img class="size-full wp-image-53" src="http://theredwheel.com/wp-content/uploads/2014/06/RelayBreadBoard1.jpg" alt="Bread Board Prototype for bluetooth relay outputs" width="1000" height="563" /></a><figcaption class="wp-caption-text">Bread Board Prototype for bluetooth relay outputs</figcaption></figure>
+&nbsp;<figure id="attachment_54" style="width: 1000px;" class="wp-caption aligncenter"></p>
+
+<p><a href="http://theredwheel.com/wp-content/uploads/2014/06/relayBoard.jpg" data-gallery><img class="size-full wp-image-54" src="http://theredwheel.com/wp-content/uploads/2014/06/relayBoard.jpg" alt="Milled Board" width="1000" height="562" /></a><figcaption class="wp-caption-text">Milled Board</figcaption></figure>
+The relays used here are M4-5H, which are only rated to 0.5A. However, the motors can pull up to 3A stall current. Therefore, the relays aren&#8217;t expected to last. They do the job, however: for now..</p>
+
+<p>This temporary solution is designed to allow the car to be shown off in order to raise interest from Robo Club members to participate in the project.</p>
+
+<p>&nbsp;</p>
+]]></content>
+  </entry>
+  
+</feed>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Data Logging | The Red Wheel]]></title>
+  <link href="http://ashgillman.github.io/blog/categories/data-logging/atom.xml" rel="self"/>
+  <link href="http://ashgillman.github.io/"/>
+  <updated>2014-12-02T21:55:28+10:00</updated>
+  <id>http://ashgillman.github.io/</id>
+  <author>
+    <name><![CDATA[Ashley Gillman]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Automated Cryogenic Test Facility]]></title>
+    <link href="http://ashgillman.github.io/automated-cryogenic-test-facility/"/>
+    <updated>2014-02-20T00:00:00+10:00</updated>
+    <id>http://ashgillman.github.io/automated-cryogenic-test-facility</id>
+    <content type="html"><![CDATA[<p><figure id="attachment_35" style="width: 3840px;" class="wp-caption aligncenter"><a href="http://theredwheel.com/wp-content/uploads/2014/06/2014-05-21-12.50.04.jpg" data-gallery><img class="size-full wp-image-35" src="http://theredwheel.com/wp-content/uploads/2014/06/2014-05-21-12.50.04.jpg" alt="Cryogenic Test Facility" width="3840" height="2160" /></a><figcaption class="wp-caption-text">Cryogenic Test Facility</figcaption></figure> <figure id="attachment_34" style="width: 1007px;" class="wp-caption aligncenter"><a href="http://theredwheel.com/wp-content/uploads/2014/06/Screenshot-2014-02-20-13.36.28.png" data-gallery><img class="size-full wp-image-34" src="http://theredwheel.com/wp-content/uploads/2014/06/Screenshot-2014-02-20-13.36.28.png" alt="Screenshot of the LabVIEW program to run the test" width="1007" height="827" /></a><figcaption class="wp-caption-text">Screenshot of the LabVIEW program to run the test</figcaption></figure>
+<span style="color: #222222;">Automation of a cryogenic test system, used in characterisation of super conductors and organic materials. This project required rapid learning of <a href="http://en.wikipedia.org/wiki/LabVIEW">LabVIEW G</a>, a graphical language. This was quite different project, at times frustrating. I am still unsure exactly as to LabVIEW&#8217;s advantages over regular textual languages.</span></p>
+
+<p><span style="color: #222222;">This is a project I worked on for James Cook University late 2012/early 2013. I am currently working on a remote monitoring system using Node.js, the code for which can be seen here: </span><a style="color: #888888;" href="https://github.com/gillwoman/cryoWeb"><a href="https://github.com/gillwoman/cryoWeb">https://github.com/gillwoman/cryoWeb</a></a>. More info is to come on the web monitoring system.</p>
+]]></content>
+  </entry>
+  
+</feed>

@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: 
+
+Sitemap: http://ashgillman.github.io/sitemap.xml 
