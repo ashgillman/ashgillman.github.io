@@ -1,2 +1,7 @@
+# temporary files
+*#*#
+*~
+
+# Jekyll-specific
 _site
 .sass-cache
