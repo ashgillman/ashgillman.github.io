@@ -22,10 +22,9 @@ I already had code that would control a Zumo over bluetooth using a computer key
 
 Here is the result:
 
-https://github.com/jcuroboclub/Project-Mario/blob/master/Pi/test/BTcontrol.py
-
-https://github.com/jcuroboclub/Project-Mario/blob/master/Zumo/BT\_basicCtrl/BT\_basicCtrl.ino
+[https://github.com/jcuroboclub/Project-Mario/blob/master/Pi/test/BTcontrol.py](https://github.com/jcuroboclub/Project-Mario/blob/master/Pi/test/BTcontrol.py)
 
 
+[https://github.com/jcuroboclub/Project-Mario/blob/master/Zumo/BT\_basicCtrl/BT\_basicCtrl.ino](https://github.com/jcuroboclub/Project-Mario/blob/master/Zumo/BT\_basicCtrl/BT\_basicCtrl.ino)
 
 &nbsp;
