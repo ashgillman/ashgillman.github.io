@@ -1,6 +1,11 @@
-#+TITLE:  Developing with STIR using Docker
-#+LAYOUT:  post
-#+TAGS:  STIR, docker
+#+BEGIN_HTML
+---
+title: Developing with STIR using Docker
+layout: post
+tags: STIR, docker
+---
+#+END_HTML
+#+OPTIONS: toc:nil
 
 * Developing with STIR using Docker
 One of the issues I have found with the many open source medical
@@ -70,8 +75,7 @@ docker run --rm -it -v /tmp/.X11-unix:/tmp/.X11-unix:ro \
 xhost -
 #+END_SRC
 Be sure to call =xhost -= afterwards, and not to use this method on an
-untrusted network (You can find more information on implementing this in a more
-secure manner [[http://stackoverflow.com/a/25334301/3903368][here]]).
+untrusted network [fn:1].
 
 ** Automatic documentation
 Using Docker forces you to have a disposable environment with
@@ -90,3 +94,6 @@ $ docker build -t stir ~/proj/stir-docker/
 $ alias drun="docker run --rm -v $(pwd | sed 's/ /\\ /g'):/data -w /data"
 $ drun stir OSMAPOSL testdata/PETLM_pointy.par
 #+END_SRC
+
+[fn:1]: You can find more information on implementing this in a more
+secure manner [[http://stackoverflow.com/a/25334301/3903368][here]].
