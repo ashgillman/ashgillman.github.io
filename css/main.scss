@@ -48,5 +48,24 @@ $on-laptop:        800px;
 @import
         "base",
         "layout",
-        "syntax-highlighting"
+        "syntax-highlighting",
+        "/assets/CM/Serif/cmun-serif.css",
+        "/assets/CM/Typewriter/cmun-typewriter.css"
 ;
+
+body {
+    font-family: "Computer Modern Serif";
+}
+.post-content {
+    text-align: justify;
+}
+pre, code, .site-title {
+    font-family: "Computer Modern Typewriter";
+}
+div pre {
+    width: 600px;
+    margin: 0 auto;
+    overflow: auto;
+}
+
+@import "svg-icons";

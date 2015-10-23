@@ -155,7 +155,10 @@
         width:         calc(100% - (#{$spacing-unit} / 2));
     }
 }
-
+footer {
+  padding: 20px 0;
+  text-align: center;
+}
 
 
 /**
