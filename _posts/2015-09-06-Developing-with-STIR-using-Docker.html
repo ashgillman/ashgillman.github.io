@@ -1,0 +1,149 @@
+---
+title: Developing with STIR using Docker
+author: Ashley
+layout: post
+tags: STIR, docker
+---
+
+<p>
+One of the issues I have found with the many open source medical
+imaging projects, is that you can very soon find yourself in
+dependency hell. It seems just about every project requires a
+different version of <a href="http://www.itk.org/">ITK</a> to work properly.
+</p>
+
+<p>
+I also recently heard about <a href="https://www.docker.com/">docker</a>. Docker basically gives you a
+development environment (or an anything environment) that runs
+completely within a virtual machine. However, it is efficient and
+lightweight enough that the <a href="http://domino.research.ibm.com/library/cyberdig.nsf/papers/0929052195DD819C85257D2300681E7B/$File/rc25482.pdf">performance</a> is not significantly
+affected. The end result means that you can automatically and
+repeatably set up a development environment in Linux, with all your
+required dependencies, but without having to actually install any of
+them on your own system. Also, I use OSX at home, and Ubuntu at work,
+so I don't have to worry about getting all the dependencies working on
+two entirely different systems.
+</p>
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1">STIR-Docker</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+So what does this mean for using <a href="http://stir.sourceforge.net/">STIR</a>? The STIR system set up in
+docker is available <a href="https://github.com/ashgillman/STIR-Docker">on my GitHub page</a>. Its usage is documented in the
+readme, but it couldn't be easier to get started:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-sh">$ docker build -t stir ~/proj/stir-docker/
+$ alias <span style="color: #FD971F;">drun</span>=<span style="color: #EEDC82;">"docker run --rm -v $(pwd | sed 's/ /\\ /g'):/data -w /data"</span>
+$ drun stir OSMAPOSL testdata/PETLM_pointy.par
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2">Developing with STIR using Docker</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+Here are some advantages of using docker.
+</p>
+</div>
+
+<div id="outline-container-sec-2-1" class="outline-3">
+<h3 id="sec-2-1">Isolated library dependencies</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+You can find and example <a href="https://github.com/ashgillman/STIR-Docker/blob/master/Dockerfile">here</a>, where I have set up a docker for
+running STIR. STIR requires ITK 3, and although it is possible to have
+multiple versions installed on your computer, it is much easier to
+have the two isolated where possible.
+</p>
+
+<p>
+Of course, the commands become a little longer to run. Here is the
+code to run STIR's OSMAPOSL reconstruction algorithm:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-bash">docker run --rm -it -v `pwd`:/data -w /data stir:base \
+  OSMAPOSL osmaposl_eg.par
+</pre>
+</div>
+
+<p>
+The <code>--rm</code> flag ensures that the container is deleted once the code
+has been run. The <code>-it</code> flags tell docker to run interactively and
+through a pseudo tty connection respectively, so that we have the
+command output echo back to us. The <code>-v</code> flag mounts a directory
+within the virtual machine. So we are mounting the current working
+directory from the host machine to the <code>/data</code> folder on the virtual
+machine, and the <code>-w</code> flag then tells docker to use the <code>/data</code>
+directory as the virtual machine's working directory. The name of the
+container being run is <code>stir:base</code>: you will have had to built the
+Dockerfile in the STIR-docker repository to be able to access the the
+image. And finally, <code>OSMAPOSL osmaposl_eg.par</code> is a command, using the
+STIR library, to perform a reconstruction.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-2-2" class="outline-3">
+<h3 id="sec-2-2">Easy installation of tools</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+Some tools are starting to release themselves in docker form. This is
+great for tools you might want to install quickly, unsure whether you
+want to commit to having them permanently installed on your
+system. Interestingly, this can even be used for GUI tools (at least
+on OSX and on Ubuntu, I am yet to try on Windows). One example of
+these is <a href="http://fiji.sc/Fiji">Fiji</a>, and release of ImageJ with a number of plugins. ImageJ
+is a image viewing tool, written in Java. However, I rarely use Java,
+and would prefer not to install it.
+</p>
+
+<p>
+<a href="https://hub.docker.com/r/fiji/fiji/">Fiji is available on docker hub</a>, so it is very easy to use. On Ubuntu,
+it can be called with:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">xhost +
+docker run --rm -it -v /tmp/.X11-unix:/tmp/.X11-unix:ro <span style="color: #EEDC82;">\</span>
+  -e <span style="color: #FD971F;">DISPLAY</span>=$<span style="color: #FD971F;">DISPLAY</span> -v <span style="color: #fa8072;">`pwd`</span>:/fiji/data fiji/fiji
+xhost -
+</pre>
+</div>
+<p>
+Be sure to call <code>xhost -</code> afterwards, and not to use this method on an
+untrusted network <sup><a id="fnr.1" name="fnr.1" class="footref" href="#fn.1">1</a></sup>.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-2-3" class="outline-3">
+<h3 id="sec-2-3">Automatic documentation</h3>
+<div class="outline-text-3" id="text-2-3">
+<p>
+Using Docker forces you to have a disposable environment with
+everything needed to run your program. As such, you end up with
+explicit documentation of everything you need to run the program. As
+an added bonus, if you do things write the Dockerfile should be
+relatively human-readable.
+</p>
+</div>
+</div>
+</div>
+<div id="footnotes">
+<h2 class="footnotes">Footnotes: </h2>
+<div id="text-footnotes">
+
+<div class="footdef"><sup><a id="fn.1" name="fn.1" class="footnum" href="#fnr.1">1</a></sup> <p>You can find more information on implementing
+this in a more secure manner <a href="http://stackoverflow.com/a/25334301/3903368">here</a>.</p></div>
+
+
+</div>
+</div>

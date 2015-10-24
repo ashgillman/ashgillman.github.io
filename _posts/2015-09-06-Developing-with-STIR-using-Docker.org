@@ -1,13 +1,13 @@
+#+OPTIONS: toc:nil num:nil
 #+BEGIN_HTML
 ---
 title: Developing with STIR using Docker
+author: Ashley
 layout: post
 tags: STIR, docker
 ---
 #+END_HTML
-#+OPTIONS: toc:nil
 
-* Developing with STIR using Docker
 One of the issues I have found with the many open source medical
 imaging projects, is that you can very soon find yourself in
 dependency hell. It seems just about every project requires a
@@ -24,11 +24,23 @@ them on your own system. Also, I use OSX at home, and Ubuntu at work,
 so I don't have to worry about getting all the dependencies working on
 two entirely different systems.
 
+* STIR-Docker
+So what does this mean for using [[http://stir.sourceforge.net/][STIR]]? The STIR system set up in
+docker is available [[https://github.com/ashgillman/STIR-Docker][on my GitHub page]]. Its usage is documented in the
+readme, but it couldn't be easier to get started:
+
+#+BEGIN_SRC sh :exports code
+$ docker build -t stir ~/proj/stir-docker/
+$ alias drun="docker run --rm -v $(pwd | sed 's/ /\\ /g'):/data -w /data"
+$ drun stir OSMAPOSL testdata/PETLM_pointy.par
+#+END_SRC
+
+* Developing with STIR using Docker
 Here are some advantages of using docker.
 
 ** Isolated library dependencies
 You can find and example [[https://github.com/ashgillman/STIR-Docker/blob/master/Dockerfile][here]], where I have set up a docker for
-running [[http://stir.sourceforge.net/][STIR]]. STIR requires ITK 3, and although it is possible to have
+running STIR. STIR requires ITK 3, and although it is possible to have
 multiple versions installed on your computer, it is much easier to
 have the two isolated where possible.
 
@@ -75,7 +87,8 @@ docker run --rm -it -v /tmp/.X11-unix:/tmp/.X11-unix:ro \
 xhost -
 #+END_SRC
 Be sure to call =xhost -= afterwards, and not to use this method on an
-untrusted network [fn:1].
+untrusted network [fn::You can find more information on implementing
+this in a more secure manner [[http://stackoverflow.com/a/25334301/3903368][here]].].
 
 ** Automatic documentation
 Using Docker forces you to have a disposable environment with
@@ -83,17 +96,3 @@ everything needed to run your program. As such, you end up with
 explicit documentation of everything you need to run the program. As
 an added bonus, if you do things write the Dockerfile should be
 relatively human-readable.
-
-* STIR-Docker
-So what does this mean for using STIR? The STIR system set up in
-docker is available [[https://github.com/ashgillman/STIR-Docker][on my GitHub page]]. Its usage is documented in the
-readme, but it couldn't be easier to get started:
-
-#+BEGIN_SRC sh :exports code
-$ docker build -t stir ~/proj/stir-docker/
-$ alias drun="docker run --rm -v $(pwd | sed 's/ /\\ /g'):/data -w /data"
-$ drun stir OSMAPOSL testdata/PETLM_pointy.par
-#+END_SRC
-
-[fn:1]: You can find more information on implementing this in a more
-secure manner [[http://stackoverflow.com/a/25334301/3903368][here]].
