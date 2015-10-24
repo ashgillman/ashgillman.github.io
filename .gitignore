@@ -5,3 +5,4 @@
 # Jekyll-specific
 _site
 .sass-cache
+*.DS_Store
