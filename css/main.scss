@@ -66,12 +66,35 @@ pre, code, .site-title {
     font-family: "Computer Modern Typewriter";
 }
 
-// Code blocks narrower and more whitespace
-div pre {
-    width: 600px;
-    margin: 30px auto;
-    overflow: auto;
+.post-content {
+    // More whitespace for non-text elements
+    .figure, table, .src {
+        margin: 30px auto;
+    }
+
+    // Caption text
+    .figure p, table caption {
+        font-size: 14px;
+    }
+
+    // Images narrower
+    .figure {
+        img {
+            max-width: 90%;
+        }
+    }
+
+    div pre {
+        width: 600px; // Code blocks narrower
+        overflow: auto; // scrollbar only if req'd
+    }
+
+    // Inner lists alpha
+    ol ol {
+        list-style-type: lower-alpha;
+    }
 }
+
 
 // Make footnote mote subtle and separated from text
 .post-content .footnotes {

@@ -1,0 +1,313 @@
+# -*- org-list-allow-alphabetical: t; org-export-babel-evaluate: nil -*-
+#+OPTIONS: toc:nil num:nil ^:{}
+#+BEGIN_HTML
+---
+title: >
+  Finite Difference Method for a Numerical Solution to the Laplace
+  Equation
+author: Ashley
+layout: post
+tags: Physics, Uni Prac
+---
+#+END_HTML
+
+* Aim
+To develop a numerical solution using to the the voltage and
+electrical field in a two-dimensional cross section of a coaxial cable
+of a given shape.
+
+* Theory
+A numerical solution to a problem works by solving the problem over a
+series of discrete points rather than solving over the entire
+continuous domain. For a two-dimensional problem, this generally means
+solving over a grid. The grid must contain within it the entire
+problem domain, in this practical this means that the coaxial cable
+cross-section must be fully contained within the grid.
+
+Additionally, the numerical solution is calculated iteratively. This
+means that a new estimate is made for each point based on the current
+estimates, and this is continuously updated. If the estimation method
+is accurate, the points will eventually converge towards the correct
+solution.
+
+Voltage can be related to electric field, $\textbf{E}$, in two
+dimensions by the following formulae:
+
+#+NAME: eq:V_E
+\begin{align}
+  \mathbf{E} &= -\nabla V \label{eq:V_E} \\
+  \mathbf{E} &= -\frac{\partial^2}{\partial x^2}V\mathbf{\hat{x}} - \frac{\partial^2}{\partial y^2}V\mathbf{\hat{y}} \label{eq:V_E_cart}
+\end{align}
+
+Combining \eqref{eq:V_E} with the property of the electric field that its
+divergence is 0, $\nabla\cdot\mathbf{E}=0$
+\cite{griffiths1999introduction}, yields Laplace's equation:
+
+$$\nabla^2V=0$$
+
+where $\nabla^2$ is the Laplacian operator \cite{weisstein}. Laplace's
+equation is a partial differential equation, and can also be given for
+two dimensions in Cartesian form as:
+\begin{equation}
+\frac{\partial^2 V}{\partial x^2}+\frac{\partial^2 V}{\partial y^2}=0
+            \label{eq:Laplace}
+\end{equation}
+
+Finding a solution to Laplace's equation required knowledge of the
+boundary conditions, and as such it is referred to as a boundary value
+problem (BVP). BVPs can be solved numerically using a method known as
+the finide difference (FD) method \cite{hoffman2001numerical,kosov}.
+
+** Finite Difference Method
+In the FD method, differential equations are replace by their FD
+approximation. This approximation can be derived using the Taylor's
+theorem \cite{hoffman2001numerical}, given by:
+\begin{equation}
+f(z)=\sum_{k=0}^{\infty}\frac{f^{(k)}(z_0)}{k!}(z-z_0)^k
+        \label{eq:TS}
+\end{equation}
+where $f$ is a function we are trying to solve
+for at point $z$, given a known value $f(z_0)$, and $f^{(k)}$ is the
+$k^{\text{th}}$ derivative of $f$ \cite{zill2011advanced}. A
+suitable grid for calculation of a coaxial cable cross-section is given
+in figure [[fig:numerical_scheme]] /Left}/, and in figure [[fig:numerical_scheme]]
+/Right}/ is a close-up of the computational grid, used for approximation
+of $\frac{\partial^n V}{\partial x^n}$ and
+$\frac{\partial^n V}{\partial y^n}$.
+
+#+NAME: fig:numerical_scheme
+#+CAPTION: /Left)/ A computational grid set up for a cross-section of a coaxial cable, in this case with a square shield and core. /Right)/ A close up of the current point, $V(i,j)$ and its neighbours. Here, $i$, and $j$ represent the $x$ and $y$ coordinated of the currently considered point respectively \cite{kosov}.
+[[file:{{ site.url }}/assets/FDprac/grid.png]]
+
+We will first consider a FD method for approximating the first
+derivative, followed by a method for the second
+derivative. Approximation by Taylor series (TS), as given in
+\eqref{eq:TS}, can be achieved by truncating the infinite
+sum. Truncating to three terms gives:
+\begin{align}
+        f(z) &= f(z_0) + f'(z_0)(z-z_0) + \frac{f''(z_0)}{2}(z-z_0)^2 + O((z-z_0)^3) \notag\\
+        f(z) &\approx f(z_0) + f'(z_0)(z-z_0) + \frac{f''(z_0)}{2}(z-z_0)^2         \label{eq:TS_approx}
+\end{align}
+
+If we consider $z_0$ in \eqref{eq:TS_approx} to be a point on a
+one-dimensional computational grid, $z_i$, and $z$ to be the point to
+the left of $z_i$, $z_{i-1}=z_i-d_x$, this becomes:
+\begin{equation}
+f(z_{i-1}) \approx f(z_i) - f'(z_i)(d_x) + \frac{f''(z_i)}{2}d_x^2
+        \label{eq:TS_approx_l}
+\end{equation}
+Similarly, if $z_0=z_i$, and $z$ is the
+point to the right of $z_i$, $z_{i+1}=z_i+d_x$, this becomes:
+\begin{equation}
+f(z_{i+1}) \approx f(z_i) + f'(z_i)(d_x) + \frac{f''(z_i)}{2}d_x^2
+        \label{eq:TS_approx_r}
+\end{equation}
+
+Subtracting, \eqref{eq:TS_approx_r} $-$ \eqref{eq:TS_approx_l} gives:
+$$f'(z_i) \approx \frac{f(z_{i+1}) - f(z_{i-1})}{2d_x}$$ which is known
+as the central difference approximation to the derivative
+\cite{hoffman2001numerical}. Equations \eqref{eq:TS_approx_r} and
+\eqref{eq:TS_approx_l} can also be used to generate a second order
+derivative approximation. Summing, \eqref{eq:TS_approx_l} $+$
+\eqref{eq:TS_approx_r} gives \cite{hoffman2001numerical}:
+$$f''(z_i) \approx \frac{f(z_{i-1}) - 2f(z_i) + f(z_{i+1})}{d_x^2}$$
+Finally, a trivial extension into two dimensions yields:
+\begin{align}
+  \frac{\partial f}{\partial x}     &\approx
+    \frac{f(z_{i+1,j}) - f(z_{i-1,j})}{2d_x} \label{eq:1stO_FD_x} \\
+  \frac{\partial f}{\partial y}     &\approx
+    \frac{f(z_{i,j+1}) - f(z_{i,j-1})}{2d_y} \label{eq:1stO_FD_y} \\
+  \frac{\partial^2 f}{\partial x^2} &\approx
+    \frac{f(z_{i-1,j}) - 2f(z_{i,j}) + f(z_{i+1,j})}{d_x^2} \label{eq:2ndO_FD_x} \\
+  \frac{\partial^2 f}{\partial y^2} &\approx
+    \frac{f(z_{i,j-1}) - 2f(z_{i,j}) + f(z_{i,j+1})}{d_y^2} \label{eq:2ndO_FD_y}
+\end{align}
+
+The error associated with
+\eqref{eq:1stO_FD_x}, \eqref{eq:1stO_FD_y}, \eqref{eq:2ndO_FD_x}, and
+\eqref{eq:2ndO_FD_y} is $O(\frac{d^3}{d})=O(d^2)$.
+
+** Solving Laplace's Equation for Voltage and Electric Field
+Substituting \eqref{eq:2ndO_FD_x} and \eqref{eq:2ndO_FD_y} into
+\eqref{eq:Laplace} gives the discretised from of Laplace's equation:
+
+$$\frac{V(z_{i-1,j}) - 2V(z_{i,j}) + V(z_{i+1,j})}{d_x^2} + \frac{V(z_{i,j-1}) - 2V(z_{i,j}) + V(z_{i,j+1})}{d_y^2} \approx 0 \notag\\$$
+
+\begin{equation}
+V(z_{i,j}) \approx \frac{d_x^2(V(z_{i,j-1}) + V(z_{i,j+1})) + d_y^2 (V(z_{i-1,j}) + V(z_{i+1,j}))}{2(d_x^2 + d_y^2)}
+        \label{eq:laplace_FD}
+\end{equation}
+
+If $d_x=d_y$, this becomes \cite{kosov}:
+$$V(z_{i,j}) \approx \frac{V(z_{i,j+1}) + V(z_{i-1,j}) + V(z_{i+1,j}) + V(z_{i,j-1})}{4}$$
+which satisfies the condition of a solution to Laplace's equation that a
+point at the centre of an n-sphere should be the mean of its edges
+\cite{weisstein}. However, the form given in \eqref{eq:laplace_FD} will be
+used in this simulation to allow for independent $x$ and $y$ grid
+spacings.
+
+Finite differences can also be used to calculate the electric field from
+the voltage. Substituting \eqref{eq:1stO_FD_x} and \eqref{eq:1stO_FD_y} into
+\eqref{eq:V_E_cart} gives:
+\begin{equation}
+\mathbf{E} \approx -\frac{V(z_{i+1,j}) - V(z_{i-1,j})}{2d_x}\mathbf{\hat{x}} - \frac{V(z_{i,j+1}) - V(z_{i,j-1})}{2d_y}\mathbf{\hat{y}}
+        \label{eq:E_V_FD}
+\end{equation}
+
+* Methodology
+
+1. Using equations \eqref{eq:laplace_FD} and \eqref{eq:E_V_FD}, the
+   MATLAB code give in the appendix was developed. The following
+   describes each code block:
+
+   a) =% Input Parameters=
+      - =shieldxs [...]=: Shield polygon x coordinates.
+      - =shieldys [...]=: Shield polygon y coordinates.
+      - =shieldv=: Shield voltage.
+      - =corexs [...]=: Core polygon x coordinates.
+      - =coreys [...]=: Core polygon y coordinates.
+      - =corev=: Core voltage.
+      - =gridsize [x,y]=: No. x and y grid points.
+      - =maxits=: Maximum no. of iterations to perform.
+      - =err=: Maximum allowable error before convergence.
+
+   b) =% Field (real units)=
+
+      The field is initialised to cover the coaxial cable cross section.
+
+   c) =% Grid (pixels)=
+
+      A computational grid is defined over the field.
+
+   d) =% Set grid initial value=
+
+      Initialise outer shield voltages to shieldv, inner core voltages
+      to corev, and space voltages to
+      $\frac{1}{2}(\texttt{shieldv}+\texttt{corev})$
+
+   e) =% iterations=
+
+      Iterate [eq:laplace_{F}D] for all points except edge points, reset
+      core and shield voltages to initial values, and check for
+      convergence.
+
+   f) =% Calculate E=
+
+      Using \eqref{eq:E_V_FD}, calculate the electric field. Also,
+      ensure that the field inside the conductors is 0, preventing
+      slight errors creeping in at the edges.
+
+   g) =% Plot V and E=
+
+      Plot the resultant voltage and electric fields.
+
+2. The above simulation was run for a number of different cases. In
+   each, the outer shield was an equilateral triangle with sides of 10
+   cm, and the core was a square with sides of 2 cm, gridsize was
+   $129\times129$, maxits was 10,000 and err was 0.01. Other test
+   parameters used are given in table [[tbl:test_params]].
+
+   #+NAME: tbl:test_params
+   #+CAPTION: Test Parameters
+   | Test no.   | shieldv   | corev   |
+   |------------+-----------+---------|
+   | 1          | 0 V       | 20 V    |
+   | 2          | 20 V      | 0 V     |
+   | 3          | -10 V     | 10 V    |
+   | 4          | 10 V      | -10 V   |
+
+3. In addition, the simulation was run using test conditions from test
+   no. 1 for a range of grid sizes, $[2^n+1, 2^n+1]$ for
+   $n=3, 4, ..., 10$. Increasing the grid size allowed for smaller $d_x$
+   and $d_y$ values to be investigated, and their associated error.
+
+* Results
+
+Results to the four experiments outlined in [[tbl:test_params]] are
+given in tables [[fig:res_1]], [[fig:res_2]], [[fig:res_3]], and [[fig:res_4]].
+
+#+NAME: fig:res_1
+#+CAPTION: Test no. 1 results /left)/ $V$ field, /right)/ $\textbf{E}$ field.
+| [[file:{{ site.url }}/assets/FDprac/0_20_V.png]] | [[file:{{ site.url }}/assets/FDprac/0_20_E.png]] |
+
+#+NAME: fig:res_2
+#+CAPTION: Test no. 2 results /left)/ $V$ field, /right)/ $\textbf{E}$ field.
+| [[file:{{ site.url }}/assets/FDprac/20_0_V.png]] | [[file:{{ site.url }}/assets/FDprac/20_0_E.png]] |
+
+#+NAME: fig:res_3
+#+CAPTION: Test no. 3 results /left)/ $V$ field, /right)/ $\textbf{E}$ field.
+| [[file:{{ site.url }}/assets/FDprac/n10_10_V.png]] | [[file:{{ site.url }}/assets/FDprac/n10_10_E.png]] |
+
+#+NAME: fig:res_4
+#+CAPTION: Test no. 4 results /left)/ $V$ field, /right)/ $\textbf{E}$ field.
+| [[file:{{ site.url }}/assets/FDprac/10_-10_V.png]] | [[file:{{ site.url }}/assets/FDprac/10_-10_E.png]] |
+
+#+NAME: fig:convergence
+#+CAPTION: Volatge at the point $x=5$ cm, $y=6.495$ cm, for various values of $d_x$.
+| [[file:{{ site.url }}/assets/FDprac/Vacc.png]] |
+
+* Discussion
+
+The simulations appeared to be accurate and results were logical and
+consistent with known properties of the voltage and electric field.
+
+Voltage was constant within the conductors, both the shield and core, in
+tables [[fig:res_1]], [[fig:res_2]], [[fig:res_3]], and [[fig:res_4]] /left)/ (although this
+was expected, as it was strictly enforced within the code).
+Additionally, there were no voltage minima or maxima within the space
+between, the minima and maxima occurred only at the conductors. These
+are both qualitatively verifiable properties of a voltage field that
+were expected \cite{griffiths1999introduction} and observed, supporting
+the accuracy of the simulation.
+
+The electric field in tables [[fig:res_1]], [[fig:res_2]], [[fig:res_3]], and [[fig:res_4]]
+/right)/ similarly demonstrated the expected properties. The field
+formed a smooth vector field, with no noticeable curl. The electric
+field also pointed from positive voltage to negative voltage, as
+expected. Finally, vectors intersected conductor surfaces at
+approximately 90. These properties were again expected
+\cite{griffiths1999introduction}, and supported confidence in the
+accuracy of the simulation.
+
+Interestingly noted was that tables [[fig:res_1]] and [[fig:res_3]] were identical,
+with the exception of the colour scales in tables [[fig:res_1]] and [[fig:res_3]]
+/left)/, as were tables [[fig:res_2]] and [[fig:res_4]]. This phenomena is due to the
+voltage field being described by linear differential equations. Thus
+linearly translated boundary conditions yield correspondingly linearly
+scaled solutions. The electric field, however, is related by the
+derivative of the voltage field. Therefore, constant translations have
+no effect on the electric field, as demonstrated in tables
+[[fig:res_1]] and [[fig:res_3]] /right)/, and tables [[fig:res_2]] and [[fig:res_4]]
+/right)/. For the same reasons, the voltage fields in tables
+[[fig:res_1]] and [[fig:res_3]] /left)/ were opposite to those in tables
+[[fig:res_2]] and [[fig:res_4]] /left)/, and the electric fields in tables
+[[fig:res_1]] and [[fig:res_3]] /right)/ were equal in magnitude (see the
+contour lines) and opposite in direction to those in tables
+[[fig:res_2]] and [[fig:res_4]] /right)/. The boundary conditions between
+these two pairs were simply reversed.
+
+Finally, table [[fig:v_convergence]] shows the calculated voltage for a given
+$d_x$. Here it was noted that the variation between Voltage estimates
+was considerably lower for low values of $d_x$ and increased with $d_x$.
+This result was consistent with the theory outlined in equations
+\eqref{eq:1stO_FD_x}, \eqref{eq:1stO_FD_y}, \eqref{eq:2ndO_FD_x}, and
+\eqref{eq:2ndO_FD_y}, stating the associated error was in the order of
+the square of $d_x$.
+
+* Conclusion
+
+A numerical solution to the voltage and electrical field in a
+two-dimensional cross section of a coaxial cable, where the outer shield
+was an equilateral triangle with sides of 10 cm, and the core was a
+square with sides of 2 cm, was developed using methods. The accuracy of
+this method was verified using empirical means, based on qualitative
+observations of the resultant fields. These results indicated confidence
+in the accuracy of the method. Additional properties of the linearity of
+the electrical and voltage fields were noted, specifically the
+invariance of the electric field under boundary voltage translation,
+given the difference was the same.
+
+* Appendix: MATLAB Code
+{% gist 58c6273628d4e73301af %}
+
+#+BIBLIOGRAPHY: 2015-04-12-Finite plain option:-nobibsource
