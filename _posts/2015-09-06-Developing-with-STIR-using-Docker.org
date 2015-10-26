@@ -2,7 +2,7 @@
 #+BEGIN_HTML
 ---
 title: Developing with STIR using Docker
-author: Ashley
+author: Ashley Gillman
 layout: post
 tags: STIR, docker
 ---

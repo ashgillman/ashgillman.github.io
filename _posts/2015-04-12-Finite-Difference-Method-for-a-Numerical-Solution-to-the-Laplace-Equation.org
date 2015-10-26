@@ -1,11 +1,11 @@
 # -*- org-list-allow-alphabetical: t; org-export-babel-evaluate: nil -*-
-#+OPTIONS: toc:nil num:nil ^:{}
+#+OPTIONS: toc:nil ^:{}
 #+BEGIN_HTML
 ---
 title: >
   Finite Difference Method for a Numerical Solution to the Laplace
   Equation
-author: Ashley
+author: Ashley Gillman
 layout: post
 tags: Physics, Uni Prac
 ---
