@@ -310,4 +310,4 @@ given the difference was the same.
 * Appendix: MATLAB Code
 {% gist 58c6273628d4e73301af %}
 
-#+BIBLIOGRAPHY: 2015-04-12-Finite plain option:-nobibsource
+#+BIBLIOGRAPHY: 2015-04-12-Finite ieeetr option:-nobibsource

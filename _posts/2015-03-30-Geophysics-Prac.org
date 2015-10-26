@@ -362,4 +362,4 @@ measurements of group 1's results, which propagated to show
 inconsistencies along the entire southern region. These errors were
 attributed to a change in supplied current halfway through the test.
 
-#+BIBLIOGRAPHY: 2015-03-30-Geophysics-Prac plain option:-nobibsource
+#+BIBLIOGRAPHY: 2015-03-30-Geophysics-Prac ieeetr option:-nobibsource limit:t

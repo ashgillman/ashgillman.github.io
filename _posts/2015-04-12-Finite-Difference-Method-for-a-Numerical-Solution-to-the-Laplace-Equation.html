@@ -2,7 +2,7 @@
 title: >
   Finite Difference Method for a Numerical Solution to the Laplace
   Equation
-author: Ashley
+author: Ashley Gillman
 layout: post
 tags: Physics, Uni Prac
 ---
@@ -51,7 +51,7 @@ dimensions by the following formulae:
 <p>
 Combining \eqref{eq:V_E} with the property of the electric field that its
 divergence is 0, \(\nabla\cdot\mathbf{E}=0\)
-[<a href="#griffiths1999introduction">1</a>], yields Laplace's equation:
+[<a href="#griffiths1999introduction">5</a>], yields Laplace's equation:
 </p>
 
 <p>
@@ -59,7 +59,7 @@ $$\nabla^2V=0$$
 </p>
 
 <p>
-where \(\nabla^2\) is the Laplacian operator [<a href="#weisstein">4</a>]. Laplace's
+where \(\nabla^2\) is the Laplacian operator [<a href="#weisstein">1</a>]. Laplace's
 equation is a partial differential equation, and can also be given for
 two dimensions in Cartesian form as:
 </p>
@@ -91,7 +91,7 @@ f(z)=\sum_{k=0}^{\infty}\frac{f^{(k)}(z_0)}{k!}(z-z_0)^k
 <p>
 where \(f\) is a function we are trying to solve
 for at point \(z\), given a known value \(f(z_0)\), and \(f^{(k)}\) is the
-\(k^{\text{th}}\) derivative of \(f\) [<a href="#zill2011advanced">5</a>]. A
+\(k^{\text{th}}\) derivative of \(f\) [<a href="#zill2011advanced">4</a>]. A
 suitable grid for calculation of a coaxial cable cross-section is given
 in figure <a href="#fig:numerical_scheme">1</a> <i>Left}</i>, and in figure <a href="#fig:numerical_scheme">1</a>
 <i>Right}</i> is a close-up of the computational grid, used for approximation
@@ -188,7 +188,7 @@ If \(d_x=d_y\), this becomes [<a href="#kosov">3</a>]:
 $$V(z_{i,j}) \approx \frac{V(z_{i,j+1}) + V(z_{i-1,j}) + V(z_{i+1,j}) + V(z_{i,j-1})}{4}$$
 which satisfies the condition of a solution to Laplace's equation that a
 point at the centre of an n-sphere should be the mean of its edges
-[<a href="#weisstein">4</a>]. However, the form given in \eqref{eq:laplace_FD} will be
+[<a href="#weisstein">1</a>]. However, the form given in \eqref{eq:laplace_FD} will be
 used in this simulation to allow for independent \(x\) and \(y\) grid
 spacings.
 </p>
@@ -450,7 +450,7 @@ was expected, as it was strictly enforced within the code).
 Additionally, there were no voltage minima or maxima within the space
 between, the minima and maxima occurred only at the conductors. These
 are both qualitatively verifiable properties of a voltage field that
-were expected [<a href="#griffiths1999introduction">1</a>] and observed, supporting
+were expected [<a href="#griffiths1999introduction">5</a>] and observed, supporting
 the accuracy of the simulation.
 </p>
 
@@ -461,7 +461,7 @@ formed a smooth vector field, with no noticeable curl. The electric
 field also pointed from positive voltage to negative voltage, as
 expected. Finally, vectors intersected conductor surfaces at
 approximately 90. These properties were again expected
-[<a href="#griffiths1999introduction">1</a>], and supported confidence in the
+[<a href="#griffiths1999introduction">5</a>], and supported confidence in the
 accuracy of the simulation.
 </p>
 
@@ -529,12 +529,12 @@ given the difference was the same.
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="griffiths1999introduction">1</a>]
+[<a name="weisstein">1</a>]
 </td>
 <td class="bibtexitem">
-David&nbsp;Jeffrey Griffiths and Reed College.
- <em>Introduction to electrodynamics</em>, volume&nbsp;3.
- Prentice Hall Upper Saddle River, NJ, 1999.
+E.&nbsp;W. Weisstein, &ldquo;Laplace's equation. From MathWorld---A Wolfram Web
+  Resource.&rdquo; <a href="http://mathworld.wolfram.com/LaplacesEquation.html">http://mathworld.wolfram.com/LaplacesEquation.html</a>.
+ Accessed: 11/4/2015.
 
 </td>
 </tr>
@@ -545,8 +545,8 @@ David&nbsp;Jeffrey Griffiths and Reed College.
 [<a name="hoffman2001numerical">2</a>]
 </td>
 <td class="bibtexitem">
-Joe&nbsp;D Hoffman and Steven Frankel.
- <em>Numerical methods for engineers and scientists</em>.
+J.&nbsp;D. Hoffman and S.&nbsp;Frankel, <em>Numerical methods for engineers and
+  scientists</em>.
  CRC press, 2001.
 
 </td>
@@ -558,9 +558,8 @@ Joe&nbsp;D Hoffman and Steven Frankel.
 [<a name="kosov">3</a>]
 </td>
 <td class="bibtexitem">
-D.&nbsp;Kosov.
- EE4710 prac 2 description--Finite difference method for numerical
-  solution to Laplace equation, 2015.
+D.&nbsp;Kosov, &ldquo;EE4710 prac 2 description--Finite difference method for
+  numerical solution to Laplace equation,&rdquo; 2015.
 
 </td>
 </tr>
@@ -568,26 +567,24 @@ D.&nbsp;Kosov.
 
 <tr valign="top">
 <td align="right" class="bibtexnumber">
-[<a name="weisstein">4</a>]
+[<a name="zill2011advanced">4</a>]
 </td>
 <td class="bibtexitem">
-Eric&nbsp;W. Weisstein.
- Laplace's equation. From MathWorld---A Wolfram Web Resource.
- <a href="http://mathworld.wolfram.com/LaplacesEquation.html">http://mathworld.wolfram.com/LaplacesEquation.html</a>.
- Accessed: 11/4/2015.
-
-</td>
-</tr>
-
-
-<tr valign="top">
-<td align="right" class="bibtexnumber">
-[<a name="zill2011advanced">5</a>]
-</td>
-<td class="bibtexitem">
-Dennis Zill, Warren&nbsp;S Wright, and Michael&nbsp;R Cullen.
- <em>Advanced engineering mathematics</em>.
+D.&nbsp;Zill, W.&nbsp;S. Wright, and M.&nbsp;R. Cullen, <em>Advanced engineering
+  mathematics</em>.
  Jones &amp; Bartlett Learning, 2011.
+
+</td>
+</tr>
+
+
+<tr valign="top">
+<td align="right" class="bibtexnumber">
+[<a name="griffiths1999introduction">5</a>]
+</td>
+<td class="bibtexitem">
+D.&nbsp;J. Griffiths and R.&nbsp;College, <em>Introduction to electrodynamics</em>, vol.&nbsp;3.
+ Prentice Hall Upper Saddle River, NJ, 1999.
 
 </td>
 </tr>
