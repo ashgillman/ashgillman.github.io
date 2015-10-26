@@ -66,6 +66,14 @@ pre, code, .site-title {
     font-family: "Computer Modern Typewriter";
 }
 
+.post-header {
+    text-align: center;
+
+    .post-title {
+        margin: 40px;
+    }
+}
+
 .post-content {
     // More whitespace for non-text elements
     .figure, table, .src {
@@ -79,14 +87,29 @@ pre, code, .site-title {
 
     // Images narrower
     .figure {
+        display: table;
+        max-width: 90%;
         img {
-            max-width: 90%;
+            margin: 0 auto;
+            display: block;
+        }
+        p:nth-child(2) {
+            display: table-caption;
+            caption-side: bottom;
         }
     }
 
     div pre {
         width: 600px; // Code blocks narrower
         overflow: auto; // scrollbar only if req'd
+    }
+
+    table.side-by-side-figure {
+        table-layout: fixed;
+        width: 100%;
+        td {
+            padding: 0 10px;
+        }
     }
 
     // Inner lists alpha
