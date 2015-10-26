@@ -1,0 +1,634 @@
+---
+title: >
+  Analysing a Two-dimensional Pore Water Section using Dipole-Dipole
+  Resistivity Methods
+author: Ashley Gillman
+layout: post
+tags: Physics, Uni Prac
+---
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> Aim</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+To analyse a two-dimensional vertical section of Earth and analyse the
+pore water content using dipole-dipole resistivity measurements.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> Theory</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+Consider an infinite and homogeneous Earth of resistivity \(\rho\). Let
+the voltage at infinity be \(U_\infty=0\), and let us apply a voltage at
+the origin as in figure <a href="#fig:equipotential_1">1</a>. Ohm's law states \(V=IR\),
+where \(V\) is the potential drop through the soil. In terms of the
+resistivity, this means: $$V=I\frac{\rho l}{A}$$ where \(l\) is the
+distance from the voltage applied, and \(A\) is the surface area current
+travels through at distance \(l\). Note that here \(l=r\), the radial
+distance from the origin. This equation shows that the drop in voltage
+depends on the distance travelled through the Earth, i.e. equipotential
+surfaces will all be equidistant from the origin. Noting that \(A\) forms
+a hemisphere gives \(A=\frac{1}{2}4\pi r^2\), so:
+</p>
+\begin{equation}
+V(\mathbf{r})=I\frac{\rho}{2\pi r} \label{eq:V_from_node}
+\end{equation}
+
+<table class="side-by-side-figure">
+  <tr>
+    <td>
+
+<div id="fig:equipotential_1" class="figure">
+<p><img src="{{ site.url }}/assets/GeoPrac/homo_single_source.png" alt="homo_single_source.png" />
+</p>
+<p><span class="figure-number">Figure 1:</span> Applied voltage on homogeneous Earth [<a href="#herman2001introduction">1</a>]. Arrows indicate conventional current flow, and lines indicate equipotential surfaces.</p>
+</div>
+</td>
+<td>
+
+<div id="fig:equipotential_2" class="figure">
+<p><img src="{{ site.url }}/assets/GeoPrac/homo_dual_source.png" alt="homo_dual_source.png" />
+</p>
+<p><span class="figure-number">Figure 2:</span> Two applied voltages on homogeneous Earth [<a href="#herman2001introduction">1</a>].</p>
+</div>
+    </td>
+  </tr>
+</table>
+
+<p>
+Extending this idea to incorporate two applied voltages can be
+accomplished through superposition. Figure <a href="#fig:equipotential_2">2</a> shows the equipotential
+surfaces and currents caused by two equal and opposite applied voltages.
+The corresponding extension to \eqref{eq:V_from_node} for two
+sources is:
+</p>
+\begin{align}
+V(\mathbf{r})&=I\frac{\rho}{2\pi\left|\mathbf{r}-\mathbf{r_a}\right|}-I\frac{\rho}{2\pi\left|\mathbf{r}-\mathbf{r_b}\right|} \notag\\
+V(\mathbf{r})&=I\frac{\rho}{2\pi}\left[\frac{1}{\left|\mathbf{r}-\mathbf{r_a}\right|}-\frac{1}{\left|\mathbf{r}-\mathbf{r_b}\right|}\right] \label{eq:V_from_dipole}
+\end{align}
+
+
+<div id="fig:wenner" class="figure">
+<p><img src="{{ site.url }}/assets/GeoPrac/wenner_eg.png" alt="wenner_eg.png" width="350px" />
+</p>
+<p><span class="figure-number">Figure 3:</span> Applied current, and two voltage test points [<a href="#wightman2004application">4</a>].</p>
+</div>
+
+<p>
+However, since \(V_\infty\) cannot be measured in a practical test, two
+separate voltage measurements must be made and the difference used in
+order to gain meaningful results. Such a measurement can be made with
+the experimental setup shown in figure <a href="#fig:wenner">3</a>. Using
+\eqref{eq:V_from_dipole} and assuming that current is injected from node
+\(A\) to node \(B\), the voltage between nodes \(M\) and \(N\) is given by:
+</p>
+\begin{align}
+V_{MN}=V(M)-V(N)&=I\frac{\rho}{2\pi}\left[\frac{1}{\left|\mathbf{r_m}-\mathbf{r_a}\right|}-\frac{1}{\left|\mathbf{r_m}-\mathbf{r_b}\right|}-\frac{1}{\left|\mathbf{r_n}-\mathbf{r_a}\right|}+\frac{1}{\left|\mathbf{r_n}-\mathbf{r_b}\right|}\right] \label{eq:geom_K}\\
+&=I\frac{\rho}{2\pi}\frac{1}{K} \label{eq:V_homo}
+\end{align}
+<p>
+where \(K\) is known as the geometric factor, dependent on the electrode
+setup.
+</p>
+
+<p>
+Where the Earth in no longer homogeneous, \(\rho\) may be constantly
+varying, thus a given electrode setup can only measure a weighted
+indication of the local resistivity. Therefore, once a heterogeneous
+Earth is considered, we refer to the measured resistivity as the
+apparent resistivity, \(\rho_a\) [<a href="#wightman2004application">4</a>].
+Rearranging \eqref{eq:V_homo}
+</p>
+\begin{equation}
+\rho_a=2\pi K \frac{V}{I} \label{eq:apparent_resistivity}
+\end{equation}
+</div>
+
+<div id="outline-container-sec-2-1" class="outline-3">
+<h3 id="sec-2-1"><span class="section-number-3">2.1</span> Dipole-dipole array</h3>
+<div class="outline-text-3" id="text-2-1">
+<table class="side-by-side-figure">
+  <tr>
+    <td>
+
+<div id="fig:dipole_1" class="figure">
+<p><img src="{{ site.url }}/assets/GeoPrac/dipole-dipole.png" alt="dipole-dipole.png" width="250px" />
+</p>
+<p><span class="figure-number">Figure 4:</span> Dipole-dipole setup [<a href="#wightman2004application">4</a>].</p>
+</div>
+</td>
+<td>
+
+<div id="fig:dipole_2" class="figure">
+<p><img src="{{ site.url }}/assets/GeoPrac/dipole-dipole_label.png" alt="dipole-dipole_label.png" width="250px" />
+</p>
+<p><span class="figure-number">Figure 5:</span> Electrode labelling.</p>
+</div>
+    </td>
+  </tr>
+</table>
+
+<p>
+A dipole-dipole array uses separated dipoles for each pair, the
+current injectors and the voltage measuring. This setup is depicted in
+figures <a href="#fig:dipole_1">4</a> and <a href="#fig:dipole_2">5</a>. Let the left and right current
+nodes be nodes \(b\) and \(a\) respectively, and the left and right
+voltage nodes be \(m\) and \(n\) respectively. It can be seen that:
+</p>
+
+\begin{align}
+\left|\mathbf{r_m}-\mathbf{r_b}\right|&=(n+1)\alpha, & \left|\mathbf{r_n}-\mathbf{r_b}\right|&=(n+2)\alpha, \\ \left|\mathbf{r_m}-\mathbf{r_a}\right|&=n\alpha, & \left|\mathbf{r_n}-\mathbf{r_a}\right|&=(n+1)\alpha
+\end{align}
+
+<p>
+Using the geometric factor definition from \eqref{eq:geom_K}, the geometric
+factor is given by:
+</p>
+\begin{align}
+\frac{1}{K}&=\left[\frac{1}{n\alpha}-\frac{1}{(n+1)\alpha}-\frac{1}{(n+1)\alpha}+\frac{1}{(n+2)\alpha}\right] \notag\\
+\frac{1}{K}&=\left[\frac{1}{n\alpha}-\frac{2}{(n+1)\alpha}+\frac{1}{(n+2)\alpha}\right] \notag\\
+\frac{1}{K}&=\frac{(n+1)(n+2)\alpha^2 - 2n(n+2)\alpha^2 + n(n+1)\alpha^2}{n(n+1)(n+2)\alpha^3} \notag\\
+\frac{1}{K}&=\frac{1}{\alpha}\frac{2}{n(n+1)(n+2)} \notag\\
+K&=\frac{1}{2}\alpha n(n+1)(n+2) \label{eq:K}
+\end{align}
+<p>
+Combining \eqref{eq:apparent_resistivity} and \eqref{eq:K} gives the
+following [<a href="#wightman2004application">4</a>]:
+</p>
+\begin{equation}
+\rho_a=\pi\alpha
+n(n+1)(n+2)\frac{V}{I} \label{eq:dipole}
+\end{equation}
+
+
+<div id="fig:dipole_depth" class="figure">
+<p><img src="{{ site.url }}/assets/GeoPrac/dipole_depth.jpg" alt="dipole_depth.jpg" />
+</p>
+<p><span class="figure-number">Figure 6:</span> Varying \(n\) with a dipole-dipole array allows different depths to be explored [<a href="#wightman2004application">4</a>].</p>
+</div>
+
+<p>
+Figure <a href="#fig:dipole_depth">6</a> demonstrates how using \eqref{eq:dipole}, and
+varying \(n\) allows a two-dimensional depth-resistivity profile to be
+produced. Since most soils have a relatively high resistivity, with
+the exception of metal ore deposits, most of the resistivity actually
+measured is due to the pore water content of the soil
+[<a href="#wightman2004application">4</a>].
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3"><span class="section-number-2">3</span> Materials</h2>
+<div class="outline-text-2" id="text-3">
+<ul class="org-ul">
+<li>the MiniSting<sup>TM</sup> earth resistivity meter
+</li>
+<li>the Swift<sup>TM</sup> automatic electrode system
+</li>
+<li>associated cabling
+</li>
+<li>a 12 V DC battery
+</li>
+<li>two 12 node electrode cables
+</li>
+<li>28 electrode stakes
+</li>
+<li>28 alligator clips
+</li>
+<li>approximately 50 L of salted water
+</li>
+<li>a sledge hammer
+</li>
+<li>a laptop PC
+</li>
+<li>a GPS device (mobile phone)
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-4" class="outline-2">
+<h2 id="sec-4"><span class="section-number-2">4</span> Methodology</h2>
+<div class="outline-text-2" id="text-4">
+<ol class="org-ol">
+<li>The electrode stakes were spaced at 2.5 m intervals along a
+straight line, the intended measurement region, and were driven
+each 10 to 20 cm deep. Salt water was poured over each stake to
+ensure a good electrical connection with the earth.
+</li>
+
+<li>The two electrode cables were laid out end-to-end, alongside the
+electrodes. Each electrode stake was connected to the cable
+electrode using the alligator clips.
+</li>
+
+<li>A GPS device was used to measure the coordinates at the start,
+join, and end of the two electrode cables.
+</li>
+
+<li>The MiniSting, Swift, switch box, battery and electrode cabling
+were connected as depicted in <a href="#fig:setup">7</a>.
+
+
+<div id="fig:setup" class="figure">
+<p><img src="{{ site.url }}/assets/GeoPrac/setup.png" alt="setup.png" width="400px" />
+</p>
+<p><span class="figure-number">Figure 7:</span> Hardware setup [<a href="#advancedgeosciences2003">3</a>].</p>
+</div>
+</li>
+
+<li>The MiniSting<sup>TM</sup> was configured with the parameters outlined in
+<a href="#tbl:ministing_params">1</a>.
+
+<table id="tbl:ministing_params" border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<caption class="t-above"><span class="table-number">Table 1:</span> MiniSting<sup>TM</sup> Parameters</caption>
+
+<colgroup>
+<col  class="left" />
+
+<col  class="left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="left">Parameter</th>
+<th scope="col" class="left">Setting</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="left">Current</td>
+<td class="left">100 mA</td>
+</tr>
+
+<tr>
+<td class="left">Max. Cycles</td>
+<td class="left">2</td>
+</tr>
+
+<tr>
+<td class="left">Accuracy</td>
+<td class="left">5%</td>
+</tr>
+
+<tr>
+<td class="left">Measurement Time</td>
+<td class="left">1.2 s</td>
+</tr>
+
+<tr>
+<td class="left">Voltage</td>
+<td class="left">200 V</td>
+</tr>
+</tbody>
+</table>
+</li>
+
+<li>A contact resistance test was run to ensure that an adequately low
+contact resistance was achieved.
+</li>
+
+<li>The MiniSting<sup>TM</sup> automatic dipole-dipole profile test was
+initiated.
+</li>
+
+<li>After measurement number 217, the current was increased to 150 mA
+as some measurements were failing and being recalculated, slowing
+the measurement process.
+</li>
+
+<li>After completion of the test, the results were uploaded to the PC
+and analysed with the AGI EarthImager 2D Inversion software
+[<a href="#earthimager">2</a>].
+</li>
+
+<li>A second group also repeated a similar process, with a 3 m spacing.
+These results, labelled group 2, were also included for analysis.
+</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-sec-5" class="outline-2">
+<h2 id="sec-5"><span class="section-number-2">5</span> Results</h2>
+<div class="outline-text-2" id="text-5">
+</div><div id="outline-container-sec-5-1" class="outline-3">
+<h3 id="sec-5-1"><span class="section-number-3">5.1</span> Group 1</h3>
+<div class="outline-text-3" id="text-5-1">
+<p>
+Following are the results from group 1. Table <a href="#tbl:gps">2</a> shows the GPS
+location measured along the cable. Figure <a href="#fig:sketch">8</a> shows an approximate sketch of the
+setup also. Finally, the measured results are shown in figure
+<a href="#fig:1-res">9</a>.
+</p>
+
+<table id="tbl:gps" border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<caption class="t-above"><span class="table-number">Table 2:</span> Group 1 GPS Coordinates</caption>
+
+<colgroup>
+<col  class="left" />
+
+<col  class="left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="left">S 19 19' 46.4982”</td>
+<td class="left">E 146 45' 23.4786”</td>
+</tr>
+
+<tr>
+<td class="left">S 19 19' 46.5024”</td>
+<td class="left">E 146 45' 23.4786”</td>
+</tr>
+
+<tr>
+<td class="left">S 19 19' 46.5060”</td>
+<td class="left">E 146 45' 23.4900”</td>
+</tr>
+</tbody>
+</table>
+
+
+<div id="fig:sketch" class="figure">
+<p><img src="{{ site.url }}/assets/GeoPrac/GPS_sketch.jpg" alt="GPS_sketch.jpg" width="400px" />
+</p>
+<p><span class="figure-number">Figure 8:</span> Sketch of approximate location. 'X's indicate trees.</p>
+</div>
+
+
+<div id="fig:1-res" class="figure">
+<p><img src="{{ site.url }}/assets/GeoPrac/Results-Group1.jpg" alt="Results-Group1.jpg" />
+</p>
+<p><span class="figure-number">Figure 9:</span> Group 1 <i>Top)</i> measured apparent resistivity, <i>Bottom)</i> calculated resistivity.</p>
+</div>
+</div>
+
+<div id="outline-container-sec-5-1-1" class="outline-4">
+<h4 id="sec-5-1-1"><span class="section-number-4">5.1.1</span> Observations</h4>
+<div class="outline-text-4" id="text-5-1-1">
+<ul class="org-ul">
+<li>Whilst inserting the electrodes that the more southern electrodes
+were more difficult to insert due to dryer and rockier ground.
+</li>
+<li>Measurements were made in May, as Townsville is coming out of the
+wet season. Last rainfall was in the order of weeks before.
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-5-2" class="outline-3">
+<h3 id="sec-5-2"><span class="section-number-3">5.2</span> Group 2</h3>
+<div class="outline-text-3" id="text-5-2">
+<p>
+Following are the results from group 2, taken separately and for
+comparison. Table <i>tbl:gps_2</i> shows the GPS location measured along the
+cable. The measured results are shown in <a href="#fig:2-res">10</a>.
+</p>
+
+<table id="tlb:gps_2" border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<caption class="t-above"><span class="table-number">Table 3:</span> Group 2 GPS Coordinates</caption>
+
+<colgroup>
+<col  class="left" />
+
+<col  class="left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="left">S 19 19' 57.38”</td>
+<td class="left">E 146 45' 25.70”</td>
+</tr>
+
+<tr>
+<td class="left">S 19 19' 56.50”</td>
+<td class="left">E 146 45' 25.91”</td>
+</tr>
+
+<tr>
+<td class="left">S 19 19' 55.83”</td>
+<td class="left">E 146 45' 26.17”</td>
+</tr>
+
+<tr>
+<td class="left">S 19 19' 55.02”</td>
+<td class="left">E 146 45' 26.52”</td>
+</tr>
+</tbody>
+</table>
+
+
+<div id="fig:2-res" class="figure">
+<p><img src="{{ site.url }}/assets/GeoPrac/Results-Group2.jpg" alt="Results-Group2.jpg" />
+</p>
+<p><span class="figure-number">Figure 10:</span> Group 2 <i>Top)</i> measured apparent resistivity, <i>Bottom)</i> calculated resistivity.</p>
+</div>
+
+<p>
+It was also noted by a supervisor of both groups that both groups laid
+node 1 as the south-most node, and that group 1's node 28 and group
+2's node 24 were located at approximately the same location.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-6" class="outline-2">
+<h2 id="sec-6"><span class="section-number-2">6</span> Analysis</h2>
+<div class="outline-text-2" id="text-6">
+<p>
+Each group's GPS coordinates were plotted in order to compare the
+physical locations measured in each session. The results are shown in
+figure <a href="#fig:GPS">11</a>. However, the locations for group 1 were seen to be
+inaccurate, showing a location approximately 1 km north of the actual
+location. Therefore, sketched information from figure <a href="#fig:sketch">8</a> was
+used for the group 1 location. An updated map is given in figure
+<a href="#fig:GPS_est">12</a>.
+</p>
+
+
+<div id="fig:GPS" class="figure">
+<p><img src="{{ site.url }}/assets/GeoPrac/GPS.jpg" alt="GPS.jpg" />
+</p>
+<p><span class="figure-number">Figure 11:</span> Measured GPS locations</p>
+</div>
+
+
+<div id="fig:GPS_est" class="figure">
+<p><img src="{{ site.url }}/assets/GeoPrac/GPS_est.jpg" alt="GPS_est.jpg" />
+</p>
+<p><span class="figure-number">Figure 12:</span> Estimated GPS locations, blue indicates group 1 and red indicates group 2.</p>
+</div>
+
+<p>
+The information in figures <a href="#fig:1-res">9</a> and <a href="#fig:2-res">10</a> both agreed with
+one-another and agreed with observations made at the site. It should
+be noted that the left side of the plots corresponded to the
+southern-most measurements. Both plots indicated a high surface
+resistance on the southern end of the line. Additionally, results in
+figure <a href="#fig:1-res">9</a> <i>Bottom)</i> displayed a longer section of high surface
+resistance compared with those in figure <a href="#fig:1-res">9</a> <i>Bottom)</i>. This was
+consistent with the fact that group 1's cable ran further south. This
+was also consistent with observations that the more southern stakes
+were harder to insert. Harder and rockier soil is generally drier and
+less conductive, as it holds less pore water.
+</p>
+
+<p>
+Both figures <a href="#fig:1-res">9</a> and <a href="#fig:2-res">10</a> showed two areas of lower
+resistivity at a depth of approximately 8&#x2013;10 m. These sections also
+appeared to line up between the two results. This is better
+demonstrated in figure <a href="#fig:res_aligned">13</a>, where the results were scaled
+such that the group 1 size to group 2 size ratio was
+2.5:3. Additionally, the two have been positioned such that group 1
+node 28 aligns with group 2 node 24, as noted by the practical
+supervisor.
+</p>
+
+
+<div id="fig:res_aligned" class="figure">
+<p><img src="{{ site.url }}/assets/GeoPrac/Res_Aligned.png" alt="Res_Aligned.png" />
+</p>
+<p><span class="figure-number">Figure 13:</span> <i>Top)</i> Group 1 calculated resistivity scaled and positioned. <i>Middle)</i> Group 2 calculated resistivity scaled and positioned. <i>Bottom)</i> Group 1 and 2 calculated resistivity scaled and positioned.</p>
+</div>
+
+<p>
+Results in figure <a href="#fig:res_aligned">13</a> supported one another, indicating
+accuracy in the measurements. Many of the common features physically
+aligned between the two images in figure <a href="#fig:res_aligned">13</a>, including:
+</p>
+<ul class="org-ul">
+<li>three regions of lower resistivity at approximately 8&#x2013;10 m depth,
+although the south-most region was more apparent in group 1's
+results;
+</li>
+<li>a region of higher resistivity between the first two lower
+resistivity regions, which was again more apparent in group 1's
+results; and
+</li>
+<li>A shallow, high resistivity region along the southern surface.
+</li>
+</ul>
+
+<p>
+Examination of figures <a href="#fig:res_aligned">13</a> and <a href="#fig:GPS_est">12</a> indicated that
+the latter mentioned region of high surface resistivity corresponded
+to an area with little tree coverage. Areas with fauna coverage
+however indicated a relatively high surface resistance. This was
+likely no coincidence, instead indicating that the lack of tree
+coverage had allowed the Sun to dry the surface in this area.
+</p>
+
+<p>
+Figures <a href="#fig:res_aligned">13</a> and <a href="#fig:GPS_est">12</a> also showed that the two
+dominant regions of lower resistivity lied near the mound to the west
+of the measurements. It is possible that pore water in the mound
+remaining from the wet season had seeped down, leaving the measured
+region wetter than it would have otherwise been.  This was also the
+region with the most tree coverage, which likely aided in pore water
+retention.
+</p>
+
+<p>
+Continued examination of <a href="#fig:res_aligned">13</a> showed the southern surface
+region of group 1's results displayed an odd pattern not seen in group
+2's results, where underneath node 2 there was a low resistivity
+region.  It is possible that this was indicative of a bad
+measurement. This may have also affected deeper regions, since an
+iterative estimation is used to correct for heterogeneities in the
+soil. This was supported by the two exaggerated regions of very high
+and very low resistivity measured deeper below this area in group 1
+results. Therefore it is likely that the southern measurements of
+group 2 were more accurate than the southern measurements of group 1,
+and that these regions were not in actuality so exaggerated. It is
+possible these inconsistencies in group 1's measurements were due to
+the change in current from 100 mA to 150 mA halfway through the test.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-7" class="outline-2">
+<h2 id="sec-7"><span class="section-number-2">7</span> Conclusion</h2>
+<div class="outline-text-2" id="text-7">
+<p>
+The aim of the practical, to analyse a two-dimensional vertical
+section of Earth and analyse the pore water content using
+dipole-dipole resistivity measurements, was achieved. The results
+indicated a high surface resistivity over exposed areas of earth, and
+a relatively lower surface resistivity over regions shaded by
+trees. The analysis also showed evidence of pore water at a depth of
+approximately 8&#x2013;10 m to the east of a nearby mound. It was determined
+to be likely this pore water seeped from the mound from the wet
+season, and was preserved by the shade of surrounding fauna.
+</p>
+
+<p>
+An interesting additional conclusion was errors in the southern
+measurements of group 1's results, which propagated to show
+inconsistencies along the entire southern region. These errors were
+attributed to a change in supplied current halfway through the test.
+</p>
+
+<div id="bibliography">
+<h2>References</h2>
+
+</div>
+<table>
+
+<tr valign="top">
+<td align="right" class="bibtexnumber">
+[<a name="herman2001introduction">1</a>]
+</td>
+<td class="bibtexitem">
+Rhett Herman.
+ An introduction to electrical resistivity in geophysics.
+ <em>American Journal of Physics</em>, 69(9):943--952, 2001.
+
+</td>
+</tr>
+
+
+<tr valign="top">
+<td align="right" class="bibtexnumber">
+[<a name="earthimager">2</a>]
+</td>
+<td class="bibtexitem">
+Advanced&nbsp;Geosciences Inc.
+ EarthImager 2D.
+ <a href="https://www.agiusa.com/agi2dimg.shtml">https://www.agiusa.com/agi2dimg.shtml</a>, 1999--2011.
+
+</td>
+</tr>
+
+
+<tr valign="top">
+<td align="right" class="bibtexnumber">
+[<a name="advancedgeosciences2003">3</a>]
+</td>
+<td class="bibtexitem">
+Advanced&nbsp;Geosciences Inc.
+ Instruction manual for the MiniSting(TM) and the Swift(TM)latex
+  tm, 2004.
+
+</td>
+</tr>
+
+
+<tr valign="top">
+<td align="right" class="bibtexnumber">
+[<a name="wightman2004application">4</a>]
+</td>
+<td class="bibtexitem">
+W&nbsp;Wightman, Frank Jalinoos, Philip Sirles, and Kanaan Hanna.
+ Application of geophysical methods to highway related problems, 2004.
+
+</td>
+</tr>
+</table>
+</div>
+</div>
