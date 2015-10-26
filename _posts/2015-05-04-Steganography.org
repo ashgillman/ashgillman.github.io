@@ -1,0 +1,212 @@
+#+OPTIONS: toc:nil num:nil ^:{}
+#+STARTUP: entitiespretty
+#+BEGIN_HTML
+---
+title: Steganography
+author: Ashley Gillman
+layout: post
+tags: Cryptography, Uni Prac
+---
+#+END_HTML
+
+* Steganography: a Brief Overview
+Steganography refers to the practice of embedding or hiding
+information into an inconspicuous medium in such a way that it is
+difficult or impossible to be seen without knowing the correct
+extraction technique \cite{johnson1998exploring}. /Steganography/
+comes from the Greek $\sigma\tau\epsilon\gamma\alpha\nu\omega$, and literally means "covered writing"
+\cite{kahn1996history}. Unlike cryptography where the aim is to make a
+message unreadable, the aim in steganography is to make a message
+undetectable \cite{anderson1998limits}. Steganography is therefore
+often more useful than cryptography, or especially useful if used in
+conjunction, as it allows for discrete messages to be sent in plain
+sight: whereas a cryptographically encoded message may attract
+attention. Although steganography is often associated with embedding
+messages or hidden images within a cover image, there is no
+requirement for a visual medium in steganography, merely a hidden
+message.
+
+An ancient form of steganography existed in Greece, where one would
+engrave a message on a timber tablet, then cover the surface with wax.
+The resulting tablet would appear blank, but if the wax were scraped
+off the message would be revealed \cite{johnson1998exploring}. Other
+popular methods through history were various schemes involving
+invisible ink \cite{kahn1996history}. The field has come a long way
+since then, especially since the development of the digital age.
+
+In modern steganography, there are three separate types, each with a
+separate purpose: information hiding, watermarking and fingerprinting
+\cite{hamid2012image}. Information hiding is the classical application
+for steganography described above, where a hidden message is to be
+passed to a recipient \cite{kahn1996history}. Watermarking it commonly
+used by publishers and broadcasters to encrypt copyright marks into
+digital media, including images, film, recordings and books
+\cite{anderson1998limits}. Finally, in fingerprinting a specific
+identity is associated with a copy of a given media. Fingerprinting
+steganography can be used when distributing sensitive information,
+such as intellectual property, to later determine which copy was
+leaked, and therefore identify the sharer. From herein, the
+information hiding type of steganography is considered.
+
+There are three different criteria by which the performance of
+steganography can be measured \cite{li2011survey}: *security*, also
+known as robustness \cite{hamid2012image}, describes the ability for
+the message to survive a deliberate attempt to corrupt any hidden
+information within the message; *capacity* describes the ratio of the
+amount of information that can be contained against the required size
+of the hiding medium; and *imperceptibility*, also known as
+undetectability \cite{hamid2012image}, is the property that the
+encoded message appears to be a regular message. Often a trade-off is
+required, whereby increasing the performance in one of these three
+criteria reduces the performance in the other two
+\cite{hamid2012image}.
+
+The most common method for steganographically embedding a message is
+to do so within an image \cite{li2011survey}. One such method is
+called least-significant bit (LSB) based steganography. In this
+method, data is embedded in the LSB of given pixels. Doing so has a
+minimal effect on the image, and allows a message to be embedded. This
+method allows for a relatively high capacity, and can give a good
+level of imperceptibility for appropriate cover images, but has a low
+security, and is susceptible to attacks.
+
+An alternative method for steganographically embedding a message
+within an image is the transform domain technique
+\cite{hamid2012image}. In this method, the data is stored in an
+alternative domain, which may be the Laplace domain, the discrete
+cosine transform domain, the wavelet transform domain, or others
+\cite{li2011survey}. As opposed to LSB techniques, transform domain
+techniques are far more secure and robust, and able to survive some
+lossy compression or other distortions, although at the expense of
+having a far lower capacity \cite{hamid2012image}.
+
+An alternate form of steganography, known as linguistic steganography,
+seeks to conceal a message as innocuous text
+\cite{chapman1997hiding,atallah2003natural}. Although linguistic
+steganography is one of the oldest forms of steganography
+\cite{bennett2004linguistic}, it is still a studied field in the
+modern, digital age \cite{bergmair2007comprehensive}. Linguistic
+steganography therefore includes both old methods, such as null
+ciphers, and modern techniques for large-scale automated linguistic
+steganography \cite{chapman2001practical}.
+
+* Natural Language Watermarking and Tamperproofing
+
+In /Natural language watermarking and tamperproofing/, Atallah /et
+al./ \cite{atallah2003natural} propose a method for steganographically
+embedding watermarks or fingerprints into plain text. Modern natural
+language steganography methods attempt to apply steganographic methods
+to text, without relying on modifying specific formatting parameters,
+such as LaTeX or HTML. In this work, authors continue from previous
+work \cite{atallah2001natural}, and use a similar base concept. The
+concept depends on fundamental redundancies in language structure and
+semantics.  These two separate areas of redundancy are exploited
+within this text to embed the hidden message.
+
+Firstly, a sentence can be restructured, and maintain the exact same
+meaning \cite{bennett2004linguistic}. For example, "Ashley submitted a
+perfect assignment" and "A perfect assignment was submitted by
+Ashley."  In these sentenced, the order of the subject and object have
+been reversed, however the meaning has not been changed. Thus if the
+meaning of a sentence can be extracted, and can be reconstructed in a
+number of different, but mathematically defined ways, the specific
+reconstruction method can be used to encode extra information. This is
+known at the syntactic marking scheme.
+
+Secondly, the semantics of parts of a sentence, or sentences within a
+paragraph can be changed, but result in the same overall meaning
+\cite{atallah2003natural}. For example, information can be /grafted/
+from one sentence to another. Grafting "The perfect assignment
+received an HD grade" into "Ashley submitted a perfect assignment"
+might form "Ashley submitted a perfect assignment, which received an
+HD grade."  Another option is to /prune/ redundant data, that might be
+shared and repeated between nearby sentences; or to /substitute/ data
+with equivalent data.
+
+Unlike other linguistic steganography methods, these methods allow a
+hidden message, such as a fingerprint or watermark, to be embedded
+within a text, without modifying the overall meaning of the text. In
+addition, the use of the two methods in conjunction allows the
+document to become self-error-checking, thereby any tampering becomes
+evident.
+
+The algorithm would first step through and modify the semantic meaning
+using grafting, pruning and substitution, encoding the hidden message
+within. The message was encoded using the sentence text-meaning
+representation (TMR) tree \cite{nirenburg2004ontological}. TMR
+provides a method by which a sentence can be encoded and represented
+by its pure meaning, as opposed to its syntactic structure. A typical
+sentence can encode up to a byte in the TMR, however in this text only
+four bits are encoded per sentence, allowing for the modified
+sentences to be /marked/.
+
+After this first pass, the syntactic pass was also made in order to
+allow for tampering detection. The syntax encoding method used was the
+syntax tree. By modifying the syntax of a sentence without modifying
+the TMR, both the sentence meaning and the watermark encoding are
+maintained.  The syntax tree was modified in such a way to encode the
+a signature of the document itself. In this way, tampering becomes
+immediately evident based on a syntactic change in the document.
+
+* Steganographic example
+
+An example stego-image is seen in figure [[fig:stego2]]. This was produced
+using the [[manytools.org]] steganography tool \cite{manytoolsSteg}. The
+raw LaTeX code used do generate \sect[[Natural Language Watermarking and
+Tamperproofing]] was entered into the /Hide message/ field, and the
+image in figure [[fig:stego1]] was uploaded to the /Host-image/ area.
+
+#+BEGIN_HTML
+<table class="side-by-side-figure">
+  <tr>
+    <td>
+#+END_HTML
+#+NAME: fig:stego1
+#+CAPTION: Original image
+[[file:{{ site.url }}/assets/steganography/roboA4small.png]]
+#+BEGIN_HTML
+    </td>
+    <td>
+#+END_HTML
+#+NAME: fig:stego2
+#+CAPTION: Stego-image
+[[file:{{ site.url }}/assets/steganography/roboA4small_enc.png]]
+#+BEGIN_HTML
+    </td>
+  </tr>
+</table>
+#+END_HTML
+
+#+BEGIN_HTML
+<table class="side-by-side-figure" style="width:100%;">
+  <tr>
+    <td>
+#+END_HTML
+#+NAME: fig:stego3
+#+CAPTION: Original image shoulder zoom
+#+ATTR_HTML: :width 500px
+[[file:{{ site.url }}/assets/steganography/roboA4small_inset.png]]
+#+BEGIN_HTML
+    </td>
+    <td>
+#+END_HTML
+#+NAME: fig:stego4
+#+CAPTION: Stego-image shoulder zoom
+#+ATTR_HTML: :width 500px
+[[file:{{ site.url }}/assets/steganography/roboA4small_enc_inset.png]]
+#+BEGIN_HTML
+    </td>
+  </tr>
+</table>
+#+END_HTML
+
+A number of distortions to the host image are noted in the stego-image
+in figure [[fig:stego2]]. Most obviously is that the transparent background has
+been destroyed and is in fact black in the stego-image. The shoulder
+close ups in figure [[fig:stego4]] also reveal more subtle distortions, directly
+due to the data encoding. The data revealed upon decoding by uploading
+the image to the same tool is given below.
+
+{% gist a96138017e2936bc2c2c %}
+
+#+BIBLIOGRAPHY: 2015-05-04-Steganography ieeetr option:-nobibsource limit:t
