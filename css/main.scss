@@ -60,6 +60,10 @@ body {
 
 .post-content {
     text-align: justify;
+
+    h1, h2, h3, h4, h5, h6 {
+        text-align: left;
+    }
 }
 
 pre, code, .site-title {
@@ -116,25 +120,25 @@ pre, code, .site-title {
     ol ol {
         list-style-type: lower-alpha;
     }
-}
 
+    // Make footnote mote subtle and separated from text
+    .footnotes {
+        font-style: italic;
+        font-size: 26px;
+        border-top: 1px solid darkgrey;
+        margin-top: 30px;
+        padding-top: 10px;
+    }
 
-// Make footnote mote subtle and separated from text
-.post-content .footnotes {
-    font-style: italic;
-    font-size: 26px;
-    border-top: 1px solid darkgrey;
-    margin-top: 30px;
-    padding-top: 10px;
-}
+    // experimental: footnotes and tags together on each line.
+    .footdef {
+        white-space: nowrap;
 
-// experimental: footnotes and tags together on each line.
-.footdef {
-    white-space: nowrap;
-
-    sup, p {
-        display: inline-block;
+        sup, p {
+            display: inline-block;
+        }
     }
 }
+
 
 @import "svg-icons";
