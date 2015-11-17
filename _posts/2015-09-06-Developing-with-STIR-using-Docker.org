@@ -4,7 +4,7 @@
 title: Developing with STIR using Docker
 author: Ashley Gillman
 layout: post
-tags: STIR, docker
+tags: STIR, Docker
 ---
 #+END_HTML
 

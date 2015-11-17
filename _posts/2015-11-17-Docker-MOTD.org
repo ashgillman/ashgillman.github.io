@@ -1,0 +1,31 @@
+#+OPTIONS: toc:nil num:nil
+#+BEGIN_HTML
+---
+title: Message of the Day (MotD) or Welcome Message for Docker
+author: Ashley Gillman
+layout: post
+tags: Docker
+---
+#+END_HTML
+
+I often use Docker containers as sandboxes, or as environments
+containing code that I have worked on and want to use, but don't want
+to add to my path. As such, I find myself jumping in and out of
+containers quite often. I have found it quite useful to set up a
+message that pops up when you run a container interactively, much like
+you would get when you run python, octave, ghci, or any other
+interactive environment. Doing so is very easy, just configure bash to
+print the welcome message as a part of its initialisation.
+
+{% gist a6aa7a5afc9e146a65fb %}
+
+All we have done in this example is add
+#+BEGIN_SRC sh
+[ ! -z "$TERM" -a -r /etc/motd ] && cat /etc/issue && cat /etc/motd
+#+END_SRC
+to =/etc/bash.bashrc=, which tells bash to print the contents of
+=/etc/issue= and =/etc/motd= to the screen if an appropriate terminal
+is attached. This will print the Linux distribution information and
+your defined message. If your message is any more complex, you will
+probably prefer to store it in a separate file and add it to the
+Docker image using =COPY=.
