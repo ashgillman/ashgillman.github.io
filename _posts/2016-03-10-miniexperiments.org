@@ -1,0 +1,257 @@
+# -*- org-export-babel-evaluate: nil -*-
+#+OPTIONS: toc:nil num:nil ^:{}
+#+BEGIN_HTML
+---
+title: Documented and repeatable "mini-experiments"
+author: Ashley Gillman
+layout: post
+tags: Org mode, emacs, docker
+---
+#+END_HTML
+
+#+BEGIN_SRC emacs-lisp :results none :exports none
+;; use html body-only export: C-c C-e C-b h h
+;;(require 'ox-md)
+(require 'ox-bibtex)
+#+END_SRC
+
+@@html:<i>@@
+In this post I outline my workflow on how I conduct my
+"mini-experiments", code and notes that may otherwise be
+"throw-away". You can see and example of what this looks like [[http://ashgillman.github.io/experiments/][here]].
+@@html:</i>@@
+
+#+TOC: headlines 3
+
+When learning, using and creating algorithms and computational tools,
+an important part of the process is playing around. This involves
+getting to know the tools, specific commands, trying out ideas,
+etc. Typically, for me, this might involve creating a bunch of python
+files with half-meaningful names in a folder with some input data and
+result files. Unfortunately, this does not leave my findings in a very
+usable format. If I months later decide I want to look over a similar
+idea or pass my findings to someone else I have to trawl back through
+these files, or redo the experiments.
+
+What is needed is a way to organise these ideas together, embedding
+the test code and results within a document. An easy way to do this is
+to simply copy-paste any code and results into a text or Word document
+with some comments. Presented in this post is an alternative workflow,
+which I find far more satisfactory. In this workflow, thanks to Org
+Mode, the code is embedded within the document, along with the
+results.
+
+At our workplace we have a DNS server, that means it is very easy to
+remotely connect to a computer without remembering an IP address. We
+also use a VPN. This means that if I use my computer to host my notes
+over HTTP, I can easily get access to my notes anywhere in the world,
+by simply connecting over the VPN, and typing my computer's name into
+a browser.
+
+* Org Mode
+[[http://orgmode.org/][Org Mode]] is an Emacs major mode. Emacs operates in "modes", which are
+context-dependant (i.e., change depending on what type of file is
+open). Org Mode works with =.org= files, which are basically just
+documents.
+
+# ** Org Mode: the official definition
+Org mode is designed to keeping notes, TODO lists and plans
+\cite{dominik2010org}. Hence, it is named Org Mode, designed to be an
+environment for organisation. As such, it has a strong focus on being
+able to create and manipulate lists quickly, and to track dates using
+a calendar.
+
+# ** Org Mode: to me
+Whilst Org Mode as an organisational tool is very effective, this is
+not the primary reason I use it. To me, Org Mode is a simple markup
+language. [[http://stackoverflow.com/a/10039915/3903368][Some]] would argue that Org Mode markup syntax is not as
+"nice" as markdown's, I would agree with them. However, the two
+syntaxes are indisputably similar in concept. What Org Mode has over
+competing markup languages like markdown and ReStructured Text is the
+host of features that come with it. Importantly to me include:
+
+- the ability to export (accurately and consistently) to a wide range
+  of formats, including PDF (for papers), HTML (read on), and markdown
+  (for this blog); and
+- the ability to embed and run code within the document using
+  [[http://orgmode.org/worg/org-contrib/babel/][babel]]. In fact, you can even embed code in one language, and pass
+  the evaluated results to another embedded code snippet in an
+  entirely different language.
+
+** Org Mode for computational experimentation
+Babel is specifically designed with literate programming and
+reproducible research in mind \cite{schulte2011active}. It has
+also been recommended in a number of other workflows for reproducible
+research \cite{delescluse2012making,stanisic2015effective}. This
+article outlines my workflow for my own personal notes, but uses ideas
+from work presented in these papers.
+
+* Nix
+[[https://github.com/NixOS/nix][Nix]] is a package manager, much like [[http://manpages.debian.org/cgi-bin/man.cgi?query=apt&sektion=8][=apt-get=]]/[[https://wiki.debian.org/Teams/Dpkg][=dpkg=]] or [[http://brew.sh/][Homebrew]]. The
+main feature of Nix I find useful is its ability to:
+
+- support multiple versions of an installed package; and
+- provide a shell with specific packages installed and nothing extra,
+  using =nix-shell --pure=.
+
+Nix is able to achieve this functionality through its unique
+implementation: Nix is a purely functional package manager
+\cite{dolstra2007purely}. This means it is able to consistently depend
+on specific versions of software, and ensure reproducible
+environments. In actuality, Nix builds often download source from the
+internet, which may, of course, become unavailable. So rather than
+guaranteeing reproducible builds, it actually guarantees that if an
+environment builds, it is identical, and otherwise will not
+build. Nonetheless, it is a useful tool as a package manager providing
+multiple environments.
+
+* Setting up an experimental environment
+I keep all my experiments in my home directory, =~/experiments=. This
+directory looks like:
+
+#+BEGIN_SRC sh :exports results :results output
+echo \$ tree "~/experiments"
+echo ""
+tree ~/experiments | grep "-"
+#+END_SRC
+
+#+RESULTS:
+: $ tree ~/experiments
+: 
+: |-- 2016-03-13-random-exploration
+: |   `-- index.org
+: `-- template.org
+
+The first important file here is =template.org=. Using this file, I
+can quickly start a new experiment using:
+
+#+BEGIN_SRC sh :exports code :dir ~/experiments
+mkdir 2016-03-13-random-exploration
+cp template.org 2016-03-13-random-exploration/index.org
+#+END_SRC
+
+#+RESULTS:
+
+Lets have a look at its contents.
+
+#+HEADERS: :exports code
+#+INCLUDE: "~/experiments/template.org" src org
+
+The first block of code is some standard templating, setting myself as
+the author, and my email address. Options keywords can be found
+[[http://orgmode.org/manual/Export-settings.html][here]]. The next section, under the =Setup= heading is interesting. The
+=:noexport:= tag means that this section will not appear in the
+exported document. However, it does contain a source block with a Nix
+expression. I have this set up to, by default, set up a basic Python 3
+environment. Doing so ensures that we know exactly what libraries our
+experiments are using, and ensures that even years later we will be
+able to repeat our experiments.
+
+The Directory Listing section simply contains a python script that
+will provide a link to each file and folder in the directory. This is
+just for convenience when later exploring the results. The Aim,
+Methodology and Results headings are empty, just providing
+placemarkers for later. Finally, the Local Variables sets up Emacs
+file-local variables. Here I instruct org-mode to evaluate all results
+when the file is exported (this may need to be changed at some point
+if the code takes a long time to run), disable confirmation messages
+(be careful if you didn't write the code), allow links to =.org=
+files, and set the HTML footer. Lastly, and importantly, I change the
+python command to run via =nix-shell --pure", which uses the
+environment defined in the Setup section.
+
+I have hosted an example with some toy experiments at
+[[http://ashgillman.github.io/experiments/]]. The source code for one such
+experiment can be seen [[https://raw.githubusercontent.com/ashgillman/experiments/master/2016-03-13-random-exploration/index.org][here]], and its rendered output, [[http://ashgillman.github.io/experiments/2016-03-13-random-exploration/][here]]. Great!
+
+The index file at [[http://ashgillman.github.io/experiments/]] is
+generated using =gen_index.py=. Let's have a look at its source:
+
+#+HEADERS: :exports code
+#+INCLUDE: "~/experiments/gen_index.py" src python
+
+This is just a very simple script to make a very simple index. You
+mightn't even want to use it, opting instead for something like
+Apache's [[https://wiki.apache.org/httpd/DirectoryListings][default]] indexing.
+
+** Citations
+Using [[http://orgmode.org/w/?p=org-mode.git;a=blob_plain;f=contrib/lisp/ox-bibtex.el;hb=HEAD][=ox-bibtex.el=]], it is also possible to include citations when
+exporting to HTML just as you would when exporting to PDF, using TeX
+markup. =ox-bibtex= is already imported for us in through
+=template.org= under the Local Variables. The bibliography is included
+by simply using:
+
+#+BEGIN_SRC org :exports code
+,#+BIBLIOGRAPHY: bibfilename stylename
+#+END_SRC
+
+and citations are inserted using =\cite{}=. See the source code for
+[[https://github.com/ashgillman/ashgillman.github.io/tree/master/_posts][this blog]] for examples.
+
+* Hosting with Docker
+Docker is a virtualisation tool, allowing you to run a service as if
+it were running on a virtual machine, without the overhead of an
+actual virtual machine. But also, importantly, Docker has access to
+the [[https://hub.docker.com/][Docker Hub]], which allows you to very quickly fire up containers to
+run common services. I have found the simplest way to launch the
+server is using Docker. Once Docker has been installed, the
+Apache HTTP daemon can be launched (and configured to relaunch on
+restart) using one command:
+
+#+BEGIN_SRC sh
+docker run --name private-server \
+  -v /home/ash/experiments:/usr/local/apache2/htdocs -p 80:80 \
+  --restart=always -d httpd
+#+END_SRC
+
+This starts up a container named =private-server=, running an Apache
+HTTP server serving from the experiments folder, and serving on port
+80, the default HTTP port. The container will also try and restart
+itself if it errors, or if you restart your computer, etc.
+
+* Adding an IPython Jupyter Notebook
+I sometimes find it more convenient to work from an IPython Notebook
+than from within Org Mode, I find it a bit easier to debug and tune
+Matplotlib plots for example. You can also very easily host one of
+these using Docker.
+
+#+BEGIN_SRC sh
+docker run --name ipython-server -d -p 8888:8888 \
+  -v /home/ash:/home/ash -v /home/ash/notebooks:/notebooks \
+  --restart=always -d ipython/scipyserver
+#+END_SRC
+
+This install includes the [[http://www.scipy.org/stackspec.html][SciPy stack]], which includes SciPy, NumPy,
+etc. I actually use a slightly [[https://github.com/ashgillman/miPython][different]] version, with a few extra
+packages installed.
+
+#+BEGIN_SRC sh
+docker run --name ipython-server -d -p 8888:8888 \
+  -v /home/ash:/home/ash -v /home/ash/notebooks:/notebooks \
+  --restart=always -d gil2a4/mipython
+#+END_SRC
+
+You may also have noted that =gen_index.py= includes a hard-coded
+inclusion to add a link to port 8888. This makes it a little easier to
+access the server. The Jupyter notebook will only be accessible
+through HTTPS, and you will have to click through a warning that the
+certificate is invalid. Otherwise, it works perfectly.
+
+* Conclusion
+Included here is a rough outline of how I have my environment set up
+to be able to document and record my experiments, and provide some
+formality in their structure. Although still not perfect, I find this
+approach to have a nice balance between structure and flexibility,
+providing scaffolding to test things quickly.
+
+If you require more information, you may be able to find it by
+checking through some of the org source code I have available. Useful
+links include:
+- The example version of this approach:
+  [[https://github.com/ashgillman/experiments]]
+- This blog's source:
+  [[https://github.com/ashgillman/ashgillman.github.io/tree/master/_posts]]
+- My =~/.emacs.d= folder:
+  [[https://github.com/ashgillman/dotfiles/tree/master/emacs.d]]
+
+#+BIBLIOGRAPHY: 2016-03-10-miniexperiments ieeetr option:-nobibsource

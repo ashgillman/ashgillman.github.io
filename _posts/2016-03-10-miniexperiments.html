@@ -1,0 +1,519 @@
+---
+title: Documented and repeatable "mini-experiments"
+author: Ashley Gillman
+layout: post
+tags: Org mode, emacs, docker
+---
+
+<p>
+<i>
+In this post I outline my workflow on how I conduct my
+"mini-experiments", code and notes that may otherwise be
+"throw-away". You can see and example of what this looks like <a href="http://ashgillman.github.io/experiments/">here</a>.
+</i>
+</p>
+
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">Org Mode</a>
+<ul>
+<li><a href="#sec-1-1">Org Mode for computational experimentation</a></li>
+</ul>
+</li>
+<li><a href="#sec-2">Nix</a></li>
+<li><a href="#sec-3">Setting up an experimental environment</a>
+<ul>
+<li><a href="#sec-3-1">Citations</a></li>
+</ul>
+</li>
+<li><a href="#sec-4">Hosting with Docker</a></li>
+<li><a href="#sec-5">Adding an IPython Jupyter Notebook</a></li>
+<li><a href="#sec-6">Conclusion</a></li>
+</ul>
+</div>
+</div>
+
+<p>
+When learning, using and creating algorithms and computational tools,
+an important part of the process is playing around. This involves
+getting to know the tools, specific commands, trying out ideas,
+etc. Typically, for me, this might involve creating a bunch of python
+files with half-meaningful names in a folder with some input data and
+result files. Unfortunately, this does not leave my findings in a very
+usable format. If I months later decide I want to look over a similar
+idea or pass my findings to someone else I have to trawl back through
+these files, or redo the experiments.
+</p>
+
+<p>
+What is needed is a way to organise these ideas together, embedding
+the test code and results within a document. An easy way to do this is
+to simply copy-paste any code and results into a text or Word document
+with some comments. Presented in this post is an alternative workflow,
+which I find far more satisfactory. In this workflow, thanks to Org
+Mode, the code is embedded within the document, along with the
+results.
+</p>
+
+<p>
+At our workplace we have a DNS server, that means it is very easy to
+remotely connect to a computer without remembering an IP address. We
+also use a VPN. This means that if I use my computer to host my notes
+over HTTP, I can easily get access to my notes anywhere in the world,
+by simply connecting over the VPN, and typing my computer's name into
+a browser.
+</p>
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1">Org Mode</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+<a href="http://orgmode.org/">Org Mode</a> is an Emacs major mode. Emacs operates in "modes", which are
+context-dependant (i.e., change depending on what type of file is
+open). Org Mode works with <code>.org</code> files, which are basically just
+documents.
+</p>
+
+<p>
+Org mode is designed to keeping notes, TODO lists and plans
+[<a href="#dominik2010org">1</a>]. Hence, it is named Org Mode, designed to be an
+environment for organisation. As such, it has a strong focus on being
+able to create and manipulate lists quickly, and to track dates using
+a calendar.
+</p>
+
+<p>
+Whilst Org Mode as an organisational tool is very effective, this is
+not the primary reason I use it. To me, Org Mode is a simple markup
+language. <a href="http://stackoverflow.com/a/10039915/3903368">Some</a> would argue that Org Mode markup syntax is not as
+"nice" as markdown's, I would agree with them. However, the two
+syntaxes are indisputably similar in concept. What Org Mode has over
+competing markup languages like markdown and ReStructured Text is the
+host of features that come with it. Importantly to me include:
+</p>
+
+<ul class="org-ul">
+<li>the ability to export (accurately and consistently) to a wide range
+of formats, including PDF (for papers), HTML (read on), and markdown
+(for this blog); and
+</li>
+<li>the ability to embed and run code within the document using
+<a href="http://orgmode.org/worg/org-contrib/babel/">babel</a>. In fact, you can even embed code in one language, and pass
+the evaluated results to another embedded code snippet in an
+entirely different language.
+</li>
+</ul>
+</div>
+
+<div id="outline-container-sec-1-1" class="outline-3">
+<h3 id="sec-1-1">Org Mode for computational experimentation</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+Babel is specifically designed with literate programming and
+reproducible research in mind [<a href="#schulte2011active">2</a>]. It has
+also been recommended in a number of other workflows for reproducible
+research [<a href="#delescluse2012making">3</a>][<a href="#stanisic2015effective">4</a>]. This
+article outlines my workflow for my own personal notes, but uses ideas
+from work presented in these papers.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2">Nix</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+<a href="https://github.com/NixOS/nix">Nix</a> is a package manager, much like <a href="http://manpages.debian.org/cgi-bin/man.cgi?query=apt&sektion=8"><code>apt-get</code></a>/<a href="https://wiki.debian.org/Teams/Dpkg"><code>dpkg</code></a> or <a href="http://brew.sh/">Homebrew</a>. The
+main feature of Nix I find useful is its ability to:
+</p>
+
+<ul class="org-ul">
+<li>support multiple versions of an installed package; and
+</li>
+<li>provide a shell with specific packages installed and nothing extra,
+using <code>nix-shell --pure</code>.
+</li>
+</ul>
+
+<p>
+Nix is able to achieve this functionality through its unique
+implementation: Nix is a purely functional package manager
+[<a href="#dolstra2007purely">5</a>]. This means it is able to consistently depend
+on specific versions of software, and ensure reproducible
+environments. In actuality, Nix builds often download source from the
+internet, which may, of course, become unavailable. So rather than
+guaranteeing reproducible builds, it actually guarantees that if an
+environment builds, it is identical, and otherwise will not
+build. Nonetheless, it is a useful tool as a package manager providing
+multiple environments.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3">Setting up an experimental environment</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+I keep all my experiments in my home directory, <code>~/experiments</code>. This
+directory looks like:
+</p>
+
+<pre class="example">
+$ tree ~/experiments
+
+|-- 2016-03-13-random-exploration
+|   `-- index.org
+`-- template.org
+</pre>
+
+<p>
+The first important file here is <code>template.org</code>. Using this file, I
+can quickly start a new experiment using:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-sh">mkdir 2016-03-13-random-exploration
+cp template.org 2016-03-13-random-exploration/index.org
+</pre>
+</div>
+
+<p>
+Lets have a look at its contents.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-org"><span style="color: #b3b3b3;">#+TITLE:</span>
+<span style="color: #b3b3b3;">#+AUTHOR:</span> <span style="color: #afeeee;">Ashley Gillman</span>
+<span style="color: #b3b3b3;">#+EMAIL:</span> <span style="color: #afeeee;">ashley.gillman@csiro.au</span>
+<span style="color: #8C8C8C;">#+OPTIONS: ^:{}</span>
+<span style="color: #8C8C8C;">#+HTML_LINK_HOME: /</span>
+<span style="color: #8C8C8C;">#+HTML_LINK_UP: ..</span>
+<span style="color: #8C8C8C;">#+HTML_HEAD: &lt;link rel="stylesheet" type="text/css" href="/style.css"&gt;</span>
+<span style="color: #8C8C8C;">#+HTML_HEAD: &lt;link rel="stylesheet" type="text/css" href="<a href="https://cdn.rawgit.com/dreampulse/computer-modern-web-font/master/fonts.css">https://cdn.rawgit.com/dreampulse/computer-modern-web-font/master/fonts.css</a>"&gt;</span>
+
+<span style="color: #A6E22E;">* Setup                                                            </span><span style="color: #A6E22E; font-weight: bold;">:noexport:</span>
+<span style="color: #8C8C8C;">#+BEGIN_SRC nix :tangle default.nix</span>
+  let
+    pkgs = import /home/ash/repo/nixpkgs {};
+  in
+  { stdenv ? pkgs.stdenv, pythonPackages ? pkgs.python34Packages }:
+
+  stdenv.mkDerivation {
+    name = "python-nix";
+    buildInputs = [ pythonPackages.python
+                    pythonPackages.scipy
+                    pythonPackages.numpy
+                    pythonPackages.matplotlib ];
+  }
+<span style="color: #8C8C8C;">#+END_SRC</span>
+
+<span style="color: #A6E22E;">* Directory listing</span>
+<span style="color: #8C8C8C;">#+BEGIN_SRC python :results output raw replace :exports results</span>
+  <span style="color: #F92672;">from</span> pathlib <span style="color: #F92672;">import</span> Path
+  <span style="color: #FD971F;">link_format</span> = <span style="color: #EEDC82;">'- <a href="file:{0}">[[file:{0}][</a><a href="file:{0}">={0}=</a><a href="file:{0}">]]</a><a href="file:{0}][={0}=]]'.format">'</a></span><a href="file:{0}][={0}=]]'.format">.</a><span style="color: #FF80F4;"><a href="file:{0}][={0}=]]'.format">format</a></span>
+  <span style="color: #F92672;">print</span>(*(link_format(p.name + (<span style="color: #EEDC82;">'/'</span> <span style="color: #F92672;">if</span> p.is_dir() <span style="color: #F92672;">else</span> <span style="color: #EEDC82;">''</span>))
+          <span style="color: #F92672;">for</span> p <span style="color: #F92672;">in</span> <span style="color: #FF80F4;">sorted</span>(Path(<span style="color: #EEDC82;">'.'</span>).iterdir())
+          <span style="color: #F92672;">if</span> <span style="color: #F92672;">not</span> p.name.startswith((<span style="color: #EEDC82;">'.'</span>, <span style="color: #EEDC82;">'#'</span>))),
+        sep=<span style="color: #EEDC82;">'\n'</span>)
+<span style="color: #8C8C8C;">#+END_SRC</span>
+
+<span style="color: #A6E22E;">* Aim</span>
+<span style="color: #A6E22E;">* Methodology</span>
+
+<span style="color: #A6E22E;">* Local Variables                                                 </span><span style="color: #A6E22E; font-weight: bold;">:noexport:</span>
+Local Variables&#58;
+org-export-babel-evaluate       : nil
+org-confirm-babel-evaluate      : nil
+org-html-link-org-files-as-html : nil
+org-html-postamble-format       : '( \
+  ("en" " &lt;p class=\"author\"  &gt;Author: %a (%e)&lt;/p&gt;\n \
+          &lt;p class=\"date\"    &gt;Date: %T&lt;/p&gt;\n \
+          &lt;p class=\"creator\" &gt;%c&lt;/p&gt;\n \
+          &lt;p                   &gt;&lt;a href=\"/\"&gt;Home&lt;/a&gt;&lt;/p&gt;"))
+org-babel-python-command        : "\
+  <span style="font-style: italic;">/home/ash/</span>.nix-profile/bin/nix-shell \
+    --pure \
+    --command python3"
+eval: (require 'ox-bibtex)
+End:
+</pre>
+</div>
+
+<p>
+The first block of code is some standard templating, setting myself as
+the author, and my email address. Options keywords can be found
+<a href="http://orgmode.org/manual/Export-settings.html">here</a>. The next section, under the <code>Setup</code> heading is interesting. The
+<code>:noexport:</code> tag means that this section will not appear in the
+exported document. However, it does contain a source block with a Nix
+expression. I have this set up to, by default, set up a basic Python 3
+environment. Doing so ensures that we know exactly what libraries our
+experiments are using, and ensures that even years later we will be
+able to repeat our experiments.
+</p>
+
+<p>
+The Directory Listing section simply contains a python script that
+will provide a link to each file and folder in the directory. This is
+just for convenience when later exploring the results. The Aim,
+Methodology and Results headings are empty, just providing
+placemarkers for later. Finally, the Local Variables sets up Emacs
+file-local variables. Here I instruct org-mode to evaluate all results
+when the file is exported (this may need to be changed at some point
+if the code takes a long time to run), disable confirmation messages
+(be careful if you didn't write the code), allow links to <code>.org</code>
+files, and set the HTML footer. Lastly, and importantly, I change the
+python command to run via =nix-shell &#x2013;pure", which uses the
+environment defined in the Setup section.
+</p>
+
+<p>
+I have hosted an example with some toy experiments at
+<a href="http://ashgillman.github.io/experiments/">http://ashgillman.github.io/experiments/</a>. The source code for one such
+experiment can be seen <a href="https://raw.githubusercontent.com/ashgillman/experiments/master/2016-03-13-random-exploration/index.org">here</a>, and its rendered output, <a href="http://ashgillman.github.io/experiments/2016-03-13-random-exploration/">here</a>. Great!
+</p>
+
+<p>
+The index file at <a href="http://ashgillman.github.io/experiments/">http://ashgillman.github.io/experiments/</a> is
+generated using <code>gen_index.py</code>. Let's have a look at its source:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #8C8C8C;">#</span><span style="color: #8C8C8C;">!/usr/bin/env python3</span>
+
+<span style="color: #F92672;">from</span> pathlib <span style="color: #F92672;">import</span> Path
+<span style="color: #F92672;">from</span> datetime <span style="color: #F92672;">import</span> datetime
+
+<span style="color: #FD971F;">html_format</span> = <span style="color: #EEDC82;">"""&lt;body&gt;</span>
+<span style="color: #EEDC82;">&lt;h1&gt;Private Repository of Ashley Gillman&lt;/h1&gt;</span>
+<span style="color: #EEDC82;">{}</span>
+<span style="color: #EEDC82;">&lt;p&gt;&lt;i&gt;Generated {}&lt;/i&gt;&lt;/p&gt;</span>
+<span style="color: #EEDC82;">&lt;/body&gt;</span>
+<span style="color: #EEDC82;">"""</span>.<span style="color: #FF80F4;">format</span>
+<span style="color: #FD971F;">site</span> = <span style="color: #EEDC82;">'.'</span>
+<span style="color: #FD971F;">doc_links</span> = [<span style="color: #EEDC82;">'*.pdf'</span>]
+<span style="color: #FD971F;">link_format</span> = <span style="color: #EEDC82;">'&lt;p&gt;&lt;a href="./{0}"&gt;{0}&lt;/a&gt;&lt;/p&gt;'</span>.<span style="color: #FF80F4;">format</span>
+
+<span style="color: #FD971F;">hard_links</span> = <span style="color: #EEDC82;">'&lt;p&gt;&lt;a href="/" onclick="javascript:event.target.port=8888;event.target.protocol=\'https:\'"&gt;iPython Notebook&lt;/a&gt;&lt;/p&gt;'</span>
+<span style="color: #FD971F;">subdir_links</span> = <span style="color: #EEDC82;">'\n'</span>.join(<span style="color: #FF80F4;">sorted</span>([link_format(d.name)
+                                 <span style="color: #F92672;">for</span> d <span style="color: #F92672;">in</span> Path(site).iterdir()
+                                 <span style="color: #F92672;">if</span> d.is_dir()]))
+<span style="color: #FD971F;">file_links</span> = <span style="color: #EEDC82;">'\n'</span>.join(<span style="color: #FF80F4;">sorted</span>([link_format(f.name)
+                               <span style="color: #F92672;">for</span> pattern <span style="color: #F92672;">in</span> doc_links
+                               <span style="color: #F92672;">for</span> f <span style="color: #F92672;">in</span> Path(site).glob(pattern)]))
+
+<span style="color: #FD971F;">html</span> = html_format( <span style="color: #EEDC82;">'\n'</span>.join([hard_links, subdir_links, file_links]),
+                   datetime.now().strftime(<span style="color: #EEDC82;">'%d %b, %Y'</span>))
+
+<span style="color: #F92672;">with</span> <span style="color: #FF80F4;">open</span>(<span style="color: #FF80F4;">str</span>(Path(site, <span style="color: #EEDC82;">'index.html'</span>)), <span style="color: #EEDC82;">'w+'</span>) <span style="color: #F92672;">as</span> f:
+    f.write(html)
+</pre>
+</div>
+
+<p>
+This is just a very simple script to make a very simple index. You
+mightn't even want to use it, opting instead for something like
+Apache's <a href="https://wiki.apache.org/httpd/DirectoryListings">default</a> indexing.
+</p>
+</div>
+
+<div id="outline-container-sec-3-1" class="outline-3">
+<h3 id="sec-3-1">Citations</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+Using <a href="http://orgmode.org/w/?p=org-mode.git;a=blob_plain;f=contrib/lisp/ox-bibtex.el;hb=HEAD"><code>ox-bibtex.el</code></a>, it is also possible to include citations when
+exporting to HTML just as you would when exporting to PDF, using TeX
+markup. <code>ox-bibtex</code> is already imported for us in through
+<code>template.org</code> under the Local Variables. The bibliography is included
+by simply using:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-org"><span style="color: #8C8C8C;">#+BIBLIOGRAPHY: bibfilename stylename</span>
+</pre>
+</div>
+
+<p>
+and citations are inserted using <code>\cite{}</code>. See the source code for
+<a href="https://github.com/ashgillman/ashgillman.github.io/tree/master/_posts">this blog</a> for examples.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-4" class="outline-2">
+<h2 id="sec-4">Hosting with Docker</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+Docker is a virtualisation tool, allowing you to run a service as if
+it were running on a virtual machine, without the overhead of an
+actual virtual machine. But also, importantly, Docker has access to
+the <a href="https://hub.docker.com/">Docker Hub</a>, which allows you to very quickly fire up containers to
+run common services. I have found the simplest way to launch the
+server is using Docker. Once Docker has been installed, the
+Apache HTTP daemon can be launched (and configured to relaunch on
+restart) using one command:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-sh">docker run --name private-server <span style="color: #EEDC82;">\</span>
+  -v /home/ash/experiments:/usr/local/apache2/htdocs -p 80:80 <span style="color: #EEDC82;">\</span>
+  --restart=always -d httpd
+</pre>
+</div>
+
+<p>
+This starts up a container named <code>private-server</code>, running an Apache
+HTTP server serving from the experiments folder, and serving on port
+80, the default HTTP port. The container will also try and restart
+itself if it errors, or if you restart your computer, etc.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-5" class="outline-2">
+<h2 id="sec-5">Adding an IPython Jupyter Notebook</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+I sometimes find it more convenient to work from an IPython Notebook
+than from within Org Mode, I find it a bit easier to debug and tune
+Matplotlib plots for example. You can also very easily host one of
+these using Docker.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-sh">docker run --name ipython-server -d -p 8888:8888 <span style="color: #EEDC82;">\</span>
+  -v /home/ash:/home/ash -v /home/ash/notebooks:/notebooks <span style="color: #EEDC82;">\</span>
+  --restart=always -d ipython/scipyserver
+</pre>
+</div>
+
+<p>
+This install includes the <a href="http://www.scipy.org/stackspec.html">SciPy stack</a>, which includes SciPy, NumPy,
+etc. I actually use a slightly <a href="https://github.com/ashgillman/miPython">different</a> version, with a few extra
+packages installed.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-sh">docker run --name ipython-server -d -p 8888:8888 <span style="color: #EEDC82;">\</span>
+  -v /home/ash:/home/ash -v /home/ash/notebooks:/notebooks <span style="color: #EEDC82;">\</span>
+  --restart=always -d gil2a4/mipython
+</pre>
+</div>
+
+<p>
+You may also have noted that <code>gen_index.py</code> includes a hard-coded
+inclusion to add a link to port 8888. This makes it a little easier to
+access the server. The Jupyter notebook will only be accessible
+through HTTPS, and you will have to click through a warning that the
+certificate is invalid. Otherwise, it works perfectly.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-6" class="outline-2">
+<h2 id="sec-6">Conclusion</h2>
+<div class="outline-text-2" id="text-6">
+<p>
+Included here is a rough outline of how I have my environment set up
+to be able to document and record my experiments, and provide some
+formality in their structure. Although still not perfect, I find this
+approach to have a nice balance between structure and flexibility,
+providing scaffolding to test things quickly.
+</p>
+
+<p>
+If you require more information, you may be able to find it by
+checking through some of the org source code I have available. Useful
+links include:
+</p>
+<ul class="org-ul">
+<li>The example version of this approach:
+<a href="https://github.com/ashgillman/experiments">https://github.com/ashgillman/experiments</a>
+</li>
+<li>This blog's source:
+<a href="https://github.com/ashgillman/ashgillman.github.io/tree/master/_posts">https://github.com/ashgillman/ashgillman.github.io/tree/master/_posts</a>
+</li>
+<li>My <code>~/.emacs.d</code> folder:
+<a href="https://github.com/ashgillman/dotfiles/tree/master/emacs.d">https://github.com/ashgillman/dotfiles/tree/master/emacs.d</a>
+</li>
+</ul>
+
+<div id="bibliography">
+<h2>References</h2>
+
+</div>
+<table>
+
+<tr valign="top">
+<td align="right" class="bibtexnumber">
+[<a name="dominik2010org">1</a>]
+</td>
+<td class="bibtexitem">
+C.&nbsp;Dominik, <em>The Org Manual</em>.
+ Network Theory Ltd., 8.3.4&nbsp;ed., 2016.
+
+</td>
+</tr>
+
+
+<tr valign="top">
+<td align="right" class="bibtexnumber">
+[<a name="schulte2011active">2</a>]
+</td>
+<td class="bibtexitem">
+E.&nbsp;Schulte and D.&nbsp;Davison, &ldquo;Active documents with org-mode,&rdquo; <em>Computing
+  in Science &amp; Engineering</em>, vol.&nbsp;13, no.&nbsp;3, pp.&nbsp;66--73, 2011.
+
+</td>
+</tr>
+
+
+<tr valign="top">
+<td align="right" class="bibtexnumber">
+[<a name="delescluse2012making">3</a>]
+</td>
+<td class="bibtexitem">
+M.&nbsp;Delescluse, R.&nbsp;Franconville, S.&nbsp;Joucla, T.&nbsp;Lieury, and C.&nbsp;Pouzat, &ldquo;Making
+  neurophysiological data analysis reproducible: Why and how?,&rdquo; <em>Journal
+  of Physiology-Paris</em>, vol.&nbsp;106, no.&nbsp;3, pp.&nbsp;159--170, 2012.
+
+</td>
+</tr>
+
+
+<tr valign="top">
+<td align="right" class="bibtexnumber">
+[<a name="stanisic2015effective">4</a>]
+</td>
+<td class="bibtexitem">
+L.&nbsp;Stanisic, A.&nbsp;Legrand, and V.&nbsp;Danjean, &ldquo;An effective git and org-mode based
+  workflow for reproducible research,&rdquo; <em>ACM SIGOPS Operating Systems
+  Review</em>, vol.&nbsp;49, no.&nbsp;1, pp.&nbsp;61--70, 2015.
+
+</td>
+</tr>
+
+
+<tr valign="top">
+<td align="right" class="bibtexnumber">
+[<a name="dolstra2007purely">5</a>]
+</td>
+<td class="bibtexitem">
+E.&nbsp;Dolstra and A.&nbsp;Hemel, &ldquo;Purely functional system configuration
+  management.,&rdquo; in <em>HotOS</em>, 2007.
+
+</td>
+</tr>
+</table>
+</div>
+</div>
