@@ -58,14 +58,6 @@ body {
     font-family: "Computer Modern Serif";
 }
 
-.post-content {
-    text-align: justify;
-
-    h1, h2, h3, h4, h5, h6 {
-        text-align: left;
-    }
-}
-
 pre, code, .site-title {
     font-family: "Computer Modern Typewriter";
 }
@@ -79,6 +71,12 @@ pre, code, .site-title {
 }
 
 .post-content {
+    text-align: justify;
+
+    h1, h2, h3, h4, h5, h6 {
+        text-align: left;
+    }
+
     // More whitespace for non-text elements
     .figure, table, .src {
         margin: 30px auto;
@@ -103,9 +101,29 @@ pre, code, .site-title {
         }
     }
 
-    div pre {
-        width: 600px; // Code blocks narrower
+    div#table-of-contents {
+        margin: 1.2em 50px;
+    }
+
+    code {
+        background-color: white;
+    }
+
+    pre.example {
+        margin: 1.2em calc((100%  - 600px) / 2);
+    }
+    div.org-src-container {
+        margin: 0 auto;
+        width: 600px;
         overflow: auto; // scrollbar only if req'd
+    }
+    div.org-src-container pre.src {
+        margin: 1.2em 0;
+    }
+    div.org-src-container pre.src, pre.example {
+        //background-color: #333;
+        background-color: #1C2228;
+        color: white;
     }
 
     table.side-by-side-figure {
