@@ -22,3 +22,8 @@ sass:
 exclude:
   - "*.org"
   - "*.bib"
+
+gems: [github-pages]
+
+dev: 0
+
