@@ -1,5 +1,5 @@
 ---
-title: >
+title: >-
   Journal Club: Understanding deep learning requires rethinking generalization
 author: Ashley Gillman
 layout: post
