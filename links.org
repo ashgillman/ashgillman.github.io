@@ -1,9 +1,0 @@
-#+BEGIN_HTML
----
-layout: page
-title: Links
-permalink: /about/
----
-#+END_HTML
-
-- [[http://ashgillmanprivate.herokuapp.com/][Private page]] (Password required)
