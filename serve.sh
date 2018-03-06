@@ -1,1 +1,3 @@
-bundle exec jekyll serve --config _config.yml,_config-dev.yml
+#!/usr/bin/env bash
+
+nix-shell --run watch
