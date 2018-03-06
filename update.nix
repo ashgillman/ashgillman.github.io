@@ -5,6 +5,7 @@ let
     #!${stdenv.shell}
     rm Gemfile.lock
     bundix --magic
+    rm -rf .bundle vendor
   '';
 
 in stdenv.mkDerivation rec {

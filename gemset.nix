@@ -492,6 +492,15 @@
     };
     version = "1.5.1";
   };
+  jekyll_github_sample = {
+    dependencies = ["activesupport" "jekyll"];
+    source = {
+      remotes = ["https://rubygems.org"];
+      sha256 = "0a44ngvz9mz2b9cmsjshljzjjfgbnmsqr2gwcwm9h9wjpr5h2vm9";
+      type = "gem";
+    };
+    version = "0.3.1";
+  };
   jemoji = {
     dependencies = ["activesupport" "gemoji" "html-pipeline" "jekyll"];
     source = {

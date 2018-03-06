@@ -23,7 +23,8 @@ exclude:
   - "*.org"
   - "*.bib"
 
-plugins: [github-pages]
+plugins:
+  - github-pages
+  - jekyll_github_sample
 
 dev: 0
-
