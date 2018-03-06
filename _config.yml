@@ -23,7 +23,7 @@ exclude:
   - "*.org"
   - "*.bib"
 
-gems: [github-pages]
+plugins: [github-pages]
 
 dev: 0
 
