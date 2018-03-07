@@ -345,8 +345,9 @@ the first literal presented of each proof clause. First we find $$D$$, which is
 the subset of $$F$$ which contains the pivot, in this case $$D=\{(a \lor b \lor
 \bar{c}), (a \lor \bar{b} \lor \bar{d}), (a \lor c \lor d)\}$$. For each $$D$$
 we should assert that $$F \land \neg(C \cup (D_i \backslash \{\bar{x}\}))
-\vdash_1 \perp$$. We will only manually check for $$D_i = (a \lor b \lor
-\bar{c})$$.
+\vdash_1 \perp$$. Note that the confusing little part in the brackets just means
+that we swap the signs of the literals except for the pivot, and swap the ORs to
+ANDs. We will only manually check for $$D_i = (a \lor b \lor \bar{c})$$.
 
 $$
 \begin{align*}
@@ -402,16 +403,30 @@ used to accelerate solving.
 #### _Encoding_
 
 The framework for solving is divided into five steps. In the first, the problem
-must be encoded into DIMACS CNF format. Marijn provides the C code used for this
-step:
+must be encoded into DIMACS CNF format. But first: how can we encode the
+problem? We want each of our two subsets of $$\{1, ..., n\}$$ to not contain any
+entire Pythagorean triple. But another way of thinking of this is that at least
+one number in every Pythagorean triple should belong to each subset. If we
+say one subset is values that we assign to True, and one subset is values that
+we assign to False, then we can use the following encoding for the triple $$(3,
+4, 5)$$:
+
+$$
+(x_3 \lor x_4 \lor x_5) \land (\bar{x_3} \lor \bar{x_4} \lor \bar{x_5})
+$$
+
+Which says _"At least one of 3, 4, or 5 must belong to the True subset, and at
+least on of 3, 4, or 5 must belong to the False subset."_ Marijn provides the C
+code used for this step:
 
 {% gist 7858462290bab7e1faec8dc29f249268 %}
 
 I also [implemented an
 encoder](https://github.com/ashgillman/bst/blob/74b30c5b265ca5d9535ec1ff2074976da01d5fc2/main.py#L73)
-for a much simpler problem (Boolean sum problem) that colours triplets of the
-form $$(a, b, c)$$ of the form $$a + b = c$$ as opposed to $$a\cdot{}a +
-b\cdot{}b = c\cdot{}c$$.
+for a much simpler problem ([Schur's Theorem for
+$$r=2$$](https://proofwiki.org/wiki/Schur%27s_Theorem_%28Ramsey_Theory%29)) that
+colours triplets of the form $$(a, b, c)$$ of the form $$a + b = c$$ as opposed
+to $$a\cdot{}a + b\cdot{}b = c\cdot{}c$$.
 
 <!--
 ```python
