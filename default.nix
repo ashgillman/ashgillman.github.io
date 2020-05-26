@@ -2,7 +2,6 @@ with import <nixpkgs> { };
 
 let jekyll_env = bundlerEnv rec {
     name = "ashGillmanGithubIoEnv";
-    ruby = ruby_2_2;
     gemdir = ./.;
   };
 
@@ -20,5 +19,9 @@ let jekyll_env = bundlerEnv rec {
 in stdenv.mkDerivation rec {
   name = "jekyll_env";
   buildInputs = [ jekyll_env nodejs bundix zlib watch update ];
-  # shellHook = "watch";
+  shellHook = ''
+    export LC_ALL="C.UTF-8"
+    export LANG="en_US.UTF-8"
+    export LANGUAGE="en_US.UTF-8"
+  '';
 }

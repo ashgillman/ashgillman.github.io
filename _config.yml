@@ -28,3 +28,5 @@ plugins:
   - jekyll_github_sample
 
 dev: 0
+
+encoding: utf-8
