@@ -1,6 +1,6 @@
 ---
 title: >-
-  Simples Kracanup - Saison/Pils split
+  Simples Kracanup - Saison/Pils split [#36]
 meta: >-
   Brew day
 author: Ashley Gillman
