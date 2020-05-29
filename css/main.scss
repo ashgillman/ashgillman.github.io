@@ -156,6 +156,19 @@ pre, code, .site-title {
             display: inline-block;
         }
     }
+
+    .invisi-table {
+        margin-left: 0px;
+        td {
+            padding: 0px 5px;
+        }
+        td:first-child {
+            padding-left: 0px;
+        }
+        td:last-child {
+            padding-right: 0px;
+        }
+    }
 }
 
 
