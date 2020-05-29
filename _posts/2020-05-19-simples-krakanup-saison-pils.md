@@ -8,6 +8,11 @@ layout: post
 tags: beer, brewday, saison, pils, hopback
 ---
 
+|[Brewed](#brew-day):      | 09/05/2020 |
+|Pitched:                  | 10/05/2020 |
+|Keg conditioned:          | 24/05/2020 |
+{: .invisi-table }
+
 I’m hoping with this recipe to develop a simple beer to conduct experiments on, using different hops, yeasts base malts. I ended up settling on something somewhere between a Saison and a Pilsner. This way, I can brew up a double batch, and split it out to get two completely different beers.
 
 The first will be to test out some hop flowers given to me by RBT’s Simon, that were in turn given to him by ex-RBT’s Will. I’m yet to use hop flowers, so this will be a bit of a learning curve. Just to make things a little bit harder, I will be devising myself a hopback, and recirculate the wort through some of the flowers while I chill.
