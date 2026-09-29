@@ -24,8 +24,8 @@ The labels on the connecting arrows matter: a document can /inform/ a local prac
 
 #+NAME: fig:document-network
 #+CAPTION: The document network with the local RSPP selected; its key takeaways appear beside the map.
-#+ATTR_HTML: :alt "Interactive document network showing relationships between the THHS RSPP and Queensland, Australian and international documents, with the RSPP summary selected."
-[[file:/assets/teap-topic-2.1/document-network.png]]
+#+ATTR_HTML: :alt Interactive document network showing relationships between the THHS RSPP and Queensland, Australian and international documents, with the RSPP summary selected.
+[[file:{{ '/assets/teap-topic-2.1/document-network.png' | relative_url }}]]
 
 The network is a quick way explore the documents.
 Open a node, read its summary, and dive into the AI summary.
@@ -41,8 +41,8 @@ You can open the relevant summary section or source from a card.
 
 #+NAME: fig:concept-explorer
 #+CAPTION: The concept explorer comparing a pregnancy-related concept across four document layers.
-#+ATTR_HTML: :alt "Concept explorer showing embryo/fetus dose assessment mapped across local, Queensland, Australian and international source documents."
-[[file:/assets/teap-topic-2.1/concept-explorer.png]]
+#+ATTR_HTML: :alt Concept explorer showing embryo/fetus dose assessment mapped across local, Queensland, Australian and international source documents.
+[[file:{{ '/assets/teap-topic-2.1/concept-explorer.png' | relative_url }}]]
 
 * Disclaimer
 
