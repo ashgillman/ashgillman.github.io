@@ -1,0 +1,41 @@
+#+title: Studying TEAP Topic 2.1 with source maps
+#+options: toc:nil num:nil
+#+begin_export html
+---
+title: Studying TEAP Topic 2.1 with source maps
+author: Ashley Gillman
+layout: post
+tags: TEAP, Radiation Safety, Medical Physics
+---
+#+end_export
+
+TEAP Topic 2.1 asks us to explain radiation-protection principles, apply them to people and practices, and understand how local arrangements meet legal requirements.
+It helps to see where each idea came from, what authority a document has, and how the idea turns into a local control.
+I put together a [[https://ashgillman.github.io/TEAP-Topic-2.1/resources.html][resources page]] with two interactive views and three diagrams for that purpose.
+These resources are developed from AI-based summaries of the documents.
+
+The companion [[https://ashgillman.github.io/TEAP-Topic-2.1/study.html][Topic 2.1 study guide]] sets out learning outcomes 2.1.1–2.1.4 and practice questions.
+
+* The relationship between the RSPP and other legal and guiding documents
+
+The [[https://ashgillman.github.io/TEAP-Topic-2.1/interactive-network/][interactive document network]] places the local radiation safety and protection plan (RSPP) alongside Queensland, Australian and international documents.
+Select a document to see its key takeaways, then open the full summary if you need more detail.
+The labels on the connecting arrows matter: a document can /inform/ a local practice without being a law that directly binds the service.
+
+The network is a quick way explore the documents.
+Open a node, read its summary, and dive into the AI summary.
+
+The [[https://ashgillman.github.io/TEAP-Topic-2.1/resources.html][resources page]] includes additional figures to map between the documents.
+
+* Start with a question: the concept explorer
+
+The [[https://ashgillman.github.io/TEAP-Topic-2.1/concept-explorer/][interactive concept explorer]] works on individual elements of the RSPP.
+Search for a concept from the local RSPP, such as personal monitoring, ALARA or pregnancy.
+It shows mapped passages in the local, Queensland, Australian and international layers, with a source locator and an authority label for each document.
+You can open the relevant summary section or source from a card.
+
+* Disclaimer
+
+These are study aids, including AI-generated summaries and mappings.
+For a clinical or legal decision, check the current primary source and the controlled local documents.
+A line on a map or a matching term across documents is a prompt to investigate, not proof of legal adoption.
