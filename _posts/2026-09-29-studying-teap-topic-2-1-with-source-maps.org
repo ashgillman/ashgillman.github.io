@@ -22,6 +22,11 @@ The [[https://ashgillman.github.io/TEAP-Topic-2.1/interactive-network/][interact
 Select a document to see its key takeaways, then open the full summary if you need more detail.
 The labels on the connecting arrows matter: a document can /inform/ a local practice without being a law that directly binds the service.
 
+#+NAME: fig:document-network
+#+CAPTION: The document network with the local RSPP selected; its key takeaways appear beside the map.
+#+ATTR_HTML: :alt "Interactive document network showing relationships between the THHS RSPP and Queensland, Australian and international documents, with the RSPP summary selected."
+[[file:/assets/teap-topic-2.1/document-network.png]]
+
 The network is a quick way explore the documents.
 Open a node, read its summary, and dive into the AI summary.
 
@@ -33,6 +38,11 @@ The [[https://ashgillman.github.io/TEAP-Topic-2.1/concept-explorer/][interactive
 Search for a concept from the local RSPP, such as personal monitoring, ALARA or pregnancy.
 It shows mapped passages in the local, Queensland, Australian and international layers, with a source locator and an authority label for each document.
 You can open the relevant summary section or source from a card.
+
+#+NAME: fig:concept-explorer
+#+CAPTION: The concept explorer comparing a pregnancy-related concept across four document layers.
+#+ATTR_HTML: :alt "Concept explorer showing embryo/fetus dose assessment mapped across local, Queensland, Australian and international source documents."
+[[file:/assets/teap-topic-2.1/concept-explorer.png]]
 
 * Disclaimer
 
