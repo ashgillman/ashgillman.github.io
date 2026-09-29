@@ -1,3 +1,4 @@
 #!/usr/bin/env bash
+set -euo pipefail
 
-nix-shell update.nix --run update
+exec nix develop .#default -c bundix --magic

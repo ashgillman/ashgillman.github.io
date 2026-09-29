@@ -3,7 +3,7 @@ title: AshGillman.github.io
 email: gillmanash@gmail.com
 description: >
   Tidbits I've learned and shared.
-url: http://ashgillman.github.io
+url: https://ashgillman.github.io
 twitter_username: AshleyGillman
 github_username:  ashgillman
 
@@ -22,10 +22,10 @@ sass:
 exclude:
   - "*.org"
   - "*.bib"
+  - DEVELOPMENT.md
 
 plugins:
   - github-pages
-  - jekyll_github_sample
 
 dev: 0
 

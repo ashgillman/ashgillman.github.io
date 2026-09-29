@@ -1,3 +1,4 @@
 #!/usr/bin/env bash
+set -euo pipefail
 
-nix-shell --run watch
+exec nix develop .#default -c bin/serve-site

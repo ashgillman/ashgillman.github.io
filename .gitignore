@@ -4,5 +4,8 @@
 
 # Jekyll-specific
 _site
+.site-build.*
+.bundle/
+vendor/
 .sass-cache
 *.DS_Store

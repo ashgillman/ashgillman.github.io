@@ -1,0 +1,42 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+project_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+build_root="${1:-}"
+
+if [ -z "$build_root" ]; then
+  build_root="$(mktemp -d "$project_root/.site-build.XXXXXX")"
+elif [ ! -d "$build_root" ]; then
+  mkdir "$build_root"
+elif [ -n "$(find "$build_root" -mindepth 1 -maxdepth 1 -print -quit)" ]; then
+  echo "Refusing to reuse non-empty build directory: $build_root" >&2
+  exit 1
+fi
+
+build_source="$build_root/source"
+site_destination="$build_root/_site"
+mkdir "$build_source"
+
+rsync -a \
+  --exclude '.git/' \
+  --exclude '.bundle/' \
+  --exclude 'vendor/' \
+  --exclude '.site-build.*/' \
+  --exclude '*.org' \
+  --exclude '*.bib' \
+  "$project_root/" "$build_source/"
+
+emacs --batch --quick \
+  --load "$project_root/scripts/export-org.el" \
+  --eval "(ashgillman-export-org \"$project_root\" \"$build_source\")"
+
+for generator in "$project_root"/scripts/site-generators/*.sh; do
+  [ -e "$generator" ] || continue
+  "$generator" "$project_root" "$build_source"
+done
+
+jekyll build \
+  --source "$build_source" \
+  --destination "$site_destination"
+
+printf 'Built site: %s\n' "$site_destination"

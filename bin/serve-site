@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+project_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+build_root="$(mktemp -d "$project_root/.site-build.XXXXXX")"
+
+"$project_root/bin/build-site" "$build_root"
+jekyll serve \
+  --source "$build_root/source" \
+  --destination "$build_root/_site" \
+  --config "$project_root/_config.yml,$project_root/_config-dev.yml" \
+  --livereload
