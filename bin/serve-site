@@ -9,4 +9,4 @@ jekyll serve \
   --source "$build_root/source" \
   --destination "$build_root/_site" \
   --config "$project_root/_config.yml,$project_root/_config-dev.yml" \
-  --livereload
+  --livereload "$@"

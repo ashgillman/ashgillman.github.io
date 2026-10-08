@@ -1,0 +1,41 @@
+<div class="trn-scroll" role="region" aria-label="{{ include.recipe.name | escape }} recipe table" tabindex="0">
+  {% assign minimum_table_width = include.layout.columns | times: 9 %}
+  <table class="trn-table" style="min-width: {{ minimum_table_width }}rem">
+    <caption class="visually-hidden">Cooking for Engineers style ingredient and operation table for {{ include.recipe.name | escape }}</caption>
+    <tbody>
+      {% assign row_count = include.layout.rows %}
+      {% assign column_count = include.layout.columns %}
+      {% for row_index in (0..row_count) %}
+        {% if row_index < row_count %}
+      <tr>
+        {% for column_index in (0..column_count) %}
+          {% if column_index < column_count %}
+          {% assign found = false %}
+          {% assign covered = false %}
+          {% for cell in include.layout.cells %}
+            {% assign cell_row_span = cell.rowSpan | default: 1 %}
+            {% assign cell_column_span = cell.columnSpan | default: 1 %}
+            {% assign cell_row_end = cell.row | plus: cell_row_span %}
+            {% assign cell_column_end = cell.column | plus: cell_column_span %}
+            {% if cell.row == row_index and cell.column == column_index %}
+              {% assign found = true %}
+              {% if cell.ingredient != nil %}
+                {% assign ingredient_index = cell.ingredient %}
+                <td class="trn-ingredient" rowspan="{{ cell.rowSpan | default: 1 }}" colspan="{{ cell.columnSpan | default: 1 }}">{{ include.recipe.recipeIngredient[ingredient_index] | escape }}</td>
+              {% elsif cell.instruction != nil %}
+                {% assign instruction_index = cell.instruction %}
+                <td class="trn-operation" rowspan="{{ cell.rowSpan | default: 1 }}" colspan="{{ cell.columnSpan | default: 1 }}">{{ include.recipe.recipeInstructions[instruction_index].name | escape }}<span class="trn-detail"> — {{ include.recipe.recipeInstructions[instruction_index].text | escape }}</span></td>
+              {% endif %}
+            {% elsif row_index >= cell.row and row_index < cell_row_end and column_index >= cell.column and column_index < cell_column_end %}
+              {% assign covered = true %}
+            {% endif %}
+          {% endfor %}
+          {% unless found %}{% unless covered %}<td class="trn-empty" aria-hidden="true"></td>{% endunless %}{% endunless %}
+          {% endif %}
+        {% endfor %}
+      </tr>
+        {% endif %}
+      {% endfor %}
+    </tbody>
+  </table>
+</div>

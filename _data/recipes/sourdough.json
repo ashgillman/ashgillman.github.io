@@ -1,0 +1,20 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Recipe",
+  "name": "Sourdough",
+  "recipeIngredient": [
+    "450 g regular flour",
+    "50 g wholemeal flour",
+    "350 g water",
+    "100 g sourdough starter",
+    "20 g salt"
+  ],
+  "recipeInstructions": [
+    { "@type": "HowToStep", "name": "Mix and rest", "text": "Mix the regular flour, wholemeal flour, water, and sourdough starter. Leave for 20 minutes." },
+    { "@type": "HowToStep", "name": "Add salt", "text": "Add the salt." },
+    { "@type": "HowToStep", "name": "Stretch and fold", "text": "Stretch and fold every 30 minutes during the first 2 hours." },
+    { "@type": "HowToStep", "name": "Shape", "text": "Shape the dough." },
+    { "@type": "HowToStep", "name": "Refrigerate", "text": "Refrigerate for at least 16 hours." },
+    { "@type": "HowToStep", "name": "Bake", "text": "Bake at 250°C for 20 minutes, then at 220°C for another 20 minutes or until the internal temperature is 95°C." }
+  ]
+}

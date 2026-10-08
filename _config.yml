@@ -20,6 +20,7 @@ sass:
   style: expanded
 
 exclude:
+  - AGENTS.md
   - "*.org"
   - "*.bib"
   - DEVELOPMENT.md

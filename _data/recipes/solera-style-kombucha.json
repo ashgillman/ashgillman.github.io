@@ -1,0 +1,18 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Recipe",
+  "name": "Solera-style kombucha",
+  "recipeIngredient": [
+    "About 920 mL fermented kombucha (two bottles)",
+    "1 litre boiling water",
+    "10 g tea",
+    "100 g sugar",
+    "1 tablespoon molasses or treacle"
+  ],
+  "recipeInstructions": [
+    { "@type": "HowToStep", "name": "Brew sweet tea", "text": "Combine the boiling water, tea, sugar, and molasses or treacle." },
+    { "@type": "HowToStep", "name": "Cool", "text": "Let the sweet tea stand until cool." },
+    { "@type": "HowToStep", "name": "Prime and bottle", "text": "For each of two 500 mL bottles, use 40 g cooled sweet tea and about 460 mL fermented kombucha." },
+    { "@type": "HowToStep", "name": "Refill bulk fermentation jar", "text": "Use the remaining sweet tea to refill the bulk fermentation jar." }
+  ]
+}
