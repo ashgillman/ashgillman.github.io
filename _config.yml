@@ -4,14 +4,14 @@ email: gillmanash@gmail.com
 description: >
   Tidbits I've learned and shared.
 url: https://ashgillman.github.io
-twitter_username: AshleyGillman
 github_username:  ashgillman
 
 footer-links:
-  github: ashgillman
   email: gillmanash@gmail.com
-  twitter: AshleyGillman
-  stackoverflow: users/3903368/gilly
+  github: ashgillman
+  google_scholar: https://scholar.google.com/citations?user=8gMgi8MAAAAJ
+  linkedin: ashley-gillman-54043782
+  orcid: 0000-0001-9130-1092
 
 # Build settings
 markdown: kramdown
