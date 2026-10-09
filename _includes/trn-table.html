@@ -24,7 +24,11 @@
                 <td class="trn-ingredient" rowspan="{{ cell.rowSpan | default: 1 }}" colspan="{{ cell.columnSpan | default: 1 }}">{{ include.recipe.recipeIngredient[ingredient_index] | escape }}</td>
               {% elsif cell.instruction != nil %}
                 {% assign instruction_index = cell.instruction %}
-                <td class="trn-operation" rowspan="{{ cell.rowSpan | default: 1 }}" colspan="{{ cell.columnSpan | default: 1 }}">{{ include.recipe.recipeInstructions[instruction_index].name | escape }}<span class="trn-detail"> — {{ include.recipe.recipeInstructions[instruction_index].text | escape }}</span></td>
+                {% assign instruction = include.recipe.recipeInstructions[instruction_index] %}
+                <td class="trn-operation" rowspan="{{ cell.rowSpan | default: 1 }}" colspan="{{ cell.columnSpan | default: 1 }}">
+                  <strong class="trn-title">{{ instruction.name | escape }}</strong>{% if instruction.timing %}<span class="trn-timing"> ({{ instruction.timing | escape }})</span>{% endif %}
+                  {% if instruction.text and instruction.text.size > 0 %}<ul>{% for detail in instruction.text %}<li>{{ detail | escape }}</li>{% endfor %}</ul>{% endif %}
+                </td>
               {% endif %}
             {% elsif row_index >= cell.row and row_index < cell_row_end and column_index >= cell.column and column_index < cell_column_end %}
               {% assign covered = true %}

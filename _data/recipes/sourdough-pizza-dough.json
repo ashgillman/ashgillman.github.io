@@ -13,12 +13,12 @@
     "15 g salt"
   ],
   "recipeInstructions": [
-    { "@type": "HowToStep", "name": "Mix poolish", "text": "On the first night, mix the poolish flour, water, sourdough starter, and honey. Leave overnight." },
-    { "@type": "HowToStep", "name": "Add remaining ingredients", "text": "The next morning, add the remaining flour, water, and salt." },
-    { "@type": "HowToStep", "name": "Stretch and fold", "text": "Stretch and fold every 30 minutes over 2 hours." },
-    { "@type": "HowToStep", "name": "Bulk ferment", "text": "Bulk ferment until the night of day 2." },
-    { "@type": "HowToStep", "name": "Divide", "text": "Divide into three 320 g dough balls." },
-    { "@type": "HowToStep", "name": "Refrigerate", "text": "Refrigerate overnight." },
-    { "@type": "HowToStep", "name": "Bake", "text": "Bake on day 3." }
+    { "@type": "HowToStep", "name": "Mix poolish", "timing": "Day 1 · overnight", "text": [] },
+    { "@type": "HowToStep", "name": "Add remaining ingredients", "timing": "Day 2", "text": [] },
+    { "@type": "HowToStep", "name": "Stretch and fold", "timing": "2 hours", "text": ["Fold every 30 minutes."] },
+    { "@type": "HowToStep", "name": "Bulk ferment", "timing": "Until the night of Day 2", "text": [] },
+    { "@type": "HowToStep", "name": "Divide", "text": ["Make three 320 g dough balls."] },
+    { "@type": "HowToStep", "name": "Refrigerate", "timing": "Overnight", "text": [] },
+    { "@type": "HowToStep", "name": "Bake", "timing": "Day 3", "text": [] }
   ]
 }

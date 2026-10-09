@@ -9,7 +9,7 @@
     { "ingredient": 0, "row": 4, "column": 0 },
     { "instruction": 0, "row": 0, "column": 1, "rowSpan": 4 },
     { "instruction": 1, "row": 0, "column": 2, "rowSpan": 4 },
-    { "instruction": 3, "row": 0, "column": 3, "rowSpan": 2 },
-    { "instruction": 2, "row": 2, "column": 3, "rowSpan": 3 }
+    { "instruction": 2, "row": 0, "column": 3, "rowSpan": 2 },
+    { "instruction": 1, "row": 2, "column": 3, "rowSpan": 3 }
   ]
 }

@@ -23,6 +23,10 @@
 }
 .trn-table .trn-ingredient { background: #fff; font-weight: 600; text-align: right; }
 .trn-table .trn-operation { background: #fff; text-align: left; }
+.trn-title { font-weight: 700; }
+.trn-operation ul { margin: .45rem 0 0; padding-left: 1.2rem; }
+.trn-operation li + li { margin-top: .2rem; }
+.trn-timing { white-space: normal; }
 .visually-hidden {
   clip: rect(0 0 0 0); clip-path: inset(50%); height: 1px; overflow: hidden;
   position: absolute; white-space: nowrap; width: 1px;

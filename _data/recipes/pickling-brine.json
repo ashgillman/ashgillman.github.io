@@ -1,7 +1,7 @@
 {
   "@context": "https://schema.org",
   "@type": "Recipe",
-  "name": "Pickling brine — 250 mL jar",
+  "name": "Pickles",
   "description": "Brine quantities for a 250 mL jar; vegetable quantity and storage temperature not yet specified.",
   "recipeYield": "250 mL jar",
   "recipeIngredient": [
@@ -14,7 +14,7 @@
     "About 1 teaspoon coriander seeds"
   ],
   "recipeInstructions": [
-    { "@type": "HowToStep", "name": "Combine", "text": "Combine the vinegar, water, sugar, salt, minced garlic, peppercorns, and coriander seeds in a 250 mL jar." },
-    { "@type": "HowToStep", "name": "Stand", "text": "Leave for one week with the lid loose." }
+    { "@type": "HowToStep", "name": "Combine", "text": ["Add to a 250 mL jar."] },
+    { "@type": "HowToStep", "name": "Stand", "text": ["Leave for one week with the lid loose."] }
   ]
 }

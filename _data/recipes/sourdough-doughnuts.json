@@ -1,0 +1,67 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Recipe",
+  "name": "Hybrid sourdough doughnuts",
+  "recipeYield": "15 doughnuts",
+  "recipeIngredient": [
+    "500 g bread flour",
+    "120 g active 100% hydration starter",
+    "180 g milk",
+    "2 eggs",
+    "60 g sugar",
+    "8 g salt",
+    "3 g instant yeast",
+    "60 g soft butter",
+    "Frying oil",
+    "Cinnamon sugar (to toss)"
+  ],
+  "recipeInstructions": [
+    {
+      "@type": "HowToStep",
+      "name": "Mix",
+      "timing": "Day 1",
+      "text": ["Mix until no dry flour remains."]
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Rest",
+      "timing": "Day 1 · 20 minutes",
+      "text": ["Cover and rest."]
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Knead",
+      "timing": "Day 1 · about 8 minutes",
+      "text": ["Knead until smooth, elastic and slightly tacky.", "Use little extra flour."]
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Bench ferment and chill",
+      "timing": "Day 1",
+      "text": ["Cover and ferment at room temperature for 45–60 minutes.", "Refrigerate overnight."]
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Shape",
+      "timing": "Day 2",
+      "text": ["Divide into 15 pieces (62–65 g each).", "Cut rings or shape into ropes and join into rings.", "Set on parchment squares and refrigerate."]
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Proof",
+      "timing": "Day 2",
+      "text": ["Remove from the fridge.", "Proof at room temperature for 2–3 hours, until puffy but not fragile. Avoid leaving out overnight."]
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Fry",
+      "timing": "Day 2",
+      "text": ["Heat oil to 175°C.", "Fry 1½–2 minutes on the first side, then about 1 minute on the second."]
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Drain and toss",
+      "text": ["Drain briefly.", "Toss warm doughnuts in cinnamon sugar."]
+    }
+  ]
+}
