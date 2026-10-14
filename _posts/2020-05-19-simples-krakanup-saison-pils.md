@@ -5,7 +5,7 @@ meta: >-
   Brew day
 author: Ashley Gillman
 layout: post
-tags: beer, brewday, saison, pils, hopback
+tags: [beer, brewday, saison, pils, hopback]
 ---
 
 |[Brewed](#brew-day):      | 09/05/2020 |

@@ -23,6 +23,13 @@ Jekyll reloads it.
 GitHub Actions runs the same `bin/build-site` command on each pull request and
 deploys the generated `_site` directory only after a push to `master`.
 
+## Brewing posts
+
+Write beer posts under `_posts/` and include `beer` in their front-matter tags, for example `tags: [beer, brewday, saison]`.
+The Brews page at `/brews/` automatically lists these posts in reverse chronological order.
+The main landing page excludes posts tagged `beer`.
+Individual post URLs and the site-wide RSS feed continue to include brewing posts.
+
 ## Recipe pages
 
 Add one Schema.org `Recipe` JSON file under `_data/recipes/` for each recipe.
