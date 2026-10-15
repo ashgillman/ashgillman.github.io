@@ -173,3 +173,55 @@ pre, code, .site-title {
 
 
 @import "svg-icons";
+
+// Prominent notebook access on workshop posts.
+.workshop-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin: 20px 0;
+    text-align: left;
+}
+
+.workshop-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 16px;
+    border: 1px solid $brand-color;
+    border-radius: 6px;
+    font-family: $base-font-family;
+    font-weight: 600;
+    line-height: 1.4;
+
+    &, &:visited {
+        color: darken($brand-color, 15%);
+    }
+
+    svg {
+        width: 24px;
+        height: 24px;
+        flex-shrink: 0;
+    }
+
+    &:hover {
+        background: $grey-color-light;
+        text-decoration: none;
+    }
+
+    &:focus-visible {
+        outline: 3px solid $text-color;
+        outline-offset: 3px;
+    }
+}
+
+.workshop-link-primary {
+    &, &:visited {
+        background: darken($brand-color, 15%);
+        color: white;
+    }
+
+    &:hover {
+        background: darken($brand-color, 25%);
+    }
+}
