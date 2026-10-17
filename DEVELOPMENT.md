@@ -41,6 +41,10 @@ Add a matching `_data/trn/<slug>.json` file for diagram geometry only. Its
 join ingredient rows beneath one operation and let parallel operations branch
 across columns. Keep each ingredient and instruction in one cell; leave gaps
 for unused diagram positions.
+Span an ingredient label across unused columns with `columnSpan` until it meets
+the operation where that ingredient is first used.
+Use `rowSpan` on that operation to join the existing mixture and the newly added
+ingredient rows, so the sequence reads from left to right.
 
 The page automatically lists every file under `_data/recipes/` with a matching
 file under `_data/trn/`; no page edit is needed when adding a recipe. Recipe
