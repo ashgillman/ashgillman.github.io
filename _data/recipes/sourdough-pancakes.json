@@ -1,0 +1,53 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Recipe",
+  "name": "Sourdough pancakes",
+  "recipeIngredient": [
+    "170 g oats",
+    "490 g soy milk",
+    "35 g cooking oil",
+    "5 sachets Equal sweetener",
+    "2 tablespoons sugar",
+    "Cinnamon, to taste",
+    "Vanilla essence, to taste",
+    "About 50 g sourdough starter",
+    "240 g plain flour",
+    "1–2 teaspoons baking soda"
+  ],
+  "recipeInstructions": [
+    {
+      "@type": "HowToStep",
+      "name": "Soak the oats",
+      "timing": "Day 1",
+      "text": ["Combine the oats and soy milk and leave to sit."]
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Mix the batter",
+      "text": ["Add the cooking oil, Equal, sugar, cinnamon, vanilla essence and sourdough starter to the soaked oats and soy milk. Combine."]
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Add the flour",
+      "text": ["Add the plain flour to the batter and mix until combined."]
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Leave overnight",
+      "timing": "Overnight",
+      "text": ["Cover and leave the batter overnight."]
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Add baking soda",
+      "timing": "Day 2",
+      "text": ["Add about 1–2 teaspoons of baking soda slowly, until you start to see a light bubbling."]
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Cook",
+      "timing": "Day 2",
+      "text": ["Cook the batter as pancakes on a hot, lightly oiled pan."]
+    }
+  ]
+}
