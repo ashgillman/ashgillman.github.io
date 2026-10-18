@@ -23,27 +23,27 @@
     {
       "@type": "PropertyValue",
       "@id": "#sugar",
-      "name": "2 teaspoons sugar"
+      "name": "2 tsp sugar"
     },
     {
       "@type": "PropertyValue",
       "@id": "#salt",
-      "name": "1 teaspoon salt"
+      "name": "1 tsp salt"
     },
     {
       "@type": "PropertyValue",
       "@id": "#garlic",
-      "name": "1 teaspoon minced garlic"
+      "name": "1 tsp garlic"
     },
     {
       "@type": "PropertyValue",
       "@id": "#peppercorns",
-      "name": "About 1 teaspoon peppercorns"
+      "name": "Peppercorns"
     },
     {
       "@type": "PropertyValue",
       "@id": "#coriander-seeds",
-      "name": "About 1 teaspoon coriander seeds"
+      "name": "Coriander seeds"
     }
   ],
   "recipeInstructions": [

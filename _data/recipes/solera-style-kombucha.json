@@ -16,12 +16,7 @@
     {
       "@type": "PropertyValue",
       "@id": "#water",
-      "name": "1 litre boiling water"
-    },
-    {
-      "@type": "PropertyValue",
-      "@id": "#tea",
-      "name": "10 g tea"
+      "name": "1 L boiling water"
     },
     {
       "@type": "PropertyValue",
@@ -30,8 +25,13 @@
     },
     {
       "@type": "PropertyValue",
+      "@id": "#tea",
+      "name": "10 g tea"
+    },
+    {
+      "@type": "PropertyValue",
       "@id": "#molasses",
-      "name": "1 tablespoon molasses or treacle"
+      "name": "1 tbsp molasses or treacle"
     }
   ],
   "recipeInstructions": [
@@ -47,10 +47,10 @@
           "@id": "#water"
         },
         {
-          "@id": "#tea"
+          "@id": "#sugar"
         },
         {
-          "@id": "#sugar"
+          "@id": "#tea"
         },
         {
           "@id": "#molasses"

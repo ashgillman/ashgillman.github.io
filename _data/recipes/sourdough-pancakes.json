@@ -31,7 +31,7 @@
     {
       "@type": "PropertyValue",
       "@id": "#sugar",
-      "name": "2 tablespoons sugar"
+      "name": "3 tbsp sugar"
     },
     {
       "@type": "PropertyValue",
@@ -56,7 +56,7 @@
     {
       "@type": "PropertyValue",
       "@id": "#baking-soda",
-      "name": "1–2 teaspoons baking soda"
+      "name": "1–2 tsp baking soda"
     }
   ],
   "recipeInstructions": [
@@ -154,7 +154,7 @@
       "@type": "HowToStep",
       "name": "Add baking soda",
       "text": [
-        "Add about 1–2 teaspoons of baking soda slowly, until you start to see a light bubbling."
+        "Add about 1–2 tsp of baking soda slowly, until you start to see a light bubbling."
       ],
       "@id": "#add-soda",
       "flow:timing": "Day 2",
