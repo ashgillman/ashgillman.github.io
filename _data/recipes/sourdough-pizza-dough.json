@@ -1,24 +1,176 @@
 {
-  "@context": "https://schema.org",
+  "@context": [
+    "https://schema.org",
+    {
+      "flow": "https://ashgillman.github.io/ns/recipe-flow#"
+    }
+  ],
   "@type": "Recipe",
   "name": "Sourdough pizza dough",
   "recipeYield": "3 dough balls of 320 g",
   "recipeIngredient": [
-    "200 g flour (poolish)",
-    "200 g water (poolish)",
-    "40 g sourdough starter",
-    "10 g honey",
-    "340 g flour (next morning)",
-    "162 g water (next morning)",
-    "15 g salt"
+    {
+      "@type": "PropertyValue",
+      "@id": "#poolish-flour",
+      "name": "200 g flour (poolish)"
+    },
+    {
+      "@type": "PropertyValue",
+      "@id": "#poolish-water",
+      "name": "200 g water (poolish)"
+    },
+    {
+      "@type": "PropertyValue",
+      "@id": "#starter",
+      "name": "40 g sourdough starter"
+    },
+    {
+      "@type": "PropertyValue",
+      "@id": "#honey",
+      "name": "10 g honey"
+    },
+    {
+      "@type": "PropertyValue",
+      "@id": "#remaining-flour",
+      "name": "340 g flour (next morning)"
+    },
+    {
+      "@type": "PropertyValue",
+      "@id": "#remaining-water",
+      "name": "162 g water (next morning)"
+    },
+    {
+      "@type": "PropertyValue",
+      "@id": "#salt",
+      "name": "15 g salt"
+    }
   ],
   "recipeInstructions": [
-    { "@type": "HowToStep", "name": "Mix poolish", "timing": "Day 1 · overnight", "text": [] },
-    { "@type": "HowToStep", "name": "Add remaining ingredients", "timing": "Day 2", "text": [] },
-    { "@type": "HowToStep", "name": "Stretch and fold", "timing": "2 hours", "text": ["Fold every 30 minutes."] },
-    { "@type": "HowToStep", "name": "Bulk ferment", "timing": "Until the night of Day 2", "text": [] },
-    { "@type": "HowToStep", "name": "Divide", "text": ["Make three 320 g dough balls."] },
-    { "@type": "HowToStep", "name": "Refrigerate", "timing": "Overnight", "text": [] },
-    { "@type": "HowToStep", "name": "Bake", "timing": "Day 3", "text": [] }
+    {
+      "@type": "HowToStep",
+      "name": "Mix poolish",
+      "text": [],
+      "@id": "#mix-poolish",
+      "flow:timing": "Day 1 · overnight",
+      "flow:inputs": [
+        {
+          "@id": "#poolish-flour"
+        },
+        {
+          "@id": "#poolish-water"
+        },
+        {
+          "@id": "#starter"
+        },
+        {
+          "@id": "#honey"
+        }
+      ],
+      "flow:output": {
+        "@id": "#poolish"
+      }
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Add remaining ingredients",
+      "text": [],
+      "@id": "#mix-dough",
+      "flow:timing": "Day 2",
+      "flow:inputs": [
+        {
+          "@id": "#poolish"
+        },
+        {
+          "@id": "#remaining-flour"
+        },
+        {
+          "@id": "#remaining-water"
+        },
+        {
+          "@id": "#salt"
+        }
+      ],
+      "flow:output": {
+        "@id": "#mixed-dough"
+      }
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Stretch and fold",
+      "text": [
+        "Fold every 30 minutes."
+      ],
+      "@id": "#fold",
+      "flow:timing": "2 hours",
+      "flow:inputs": [
+        {
+          "@id": "#mixed-dough"
+        }
+      ],
+      "flow:output": {
+        "@id": "#folded-dough"
+      }
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Bulk ferment",
+      "text": [],
+      "@id": "#bulk-ferment",
+      "flow:timing": "Until the night of Day 2",
+      "flow:inputs": [
+        {
+          "@id": "#folded-dough"
+        }
+      ],
+      "flow:output": {
+        "@id": "#fermented-dough"
+      }
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Divide",
+      "text": [
+        "Make three 320 g dough balls."
+      ],
+      "@id": "#divide",
+      "flow:inputs": [
+        {
+          "@id": "#fermented-dough"
+        }
+      ],
+      "flow:output": {
+        "@id": "#dough-balls"
+      }
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Refrigerate",
+      "text": [],
+      "@id": "#refrigerate",
+      "flow:timing": "Overnight",
+      "flow:inputs": [
+        {
+          "@id": "#dough-balls"
+        }
+      ],
+      "flow:output": {
+        "@id": "#chilled-dough-balls"
+      }
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Bake",
+      "text": [],
+      "@id": "#bake",
+      "flow:timing": "Day 3",
+      "flow:inputs": [
+        {
+          "@id": "#chilled-dough-balls"
+        }
+      ],
+      "flow:output": {
+        "@id": "#pizzas"
+      }
+    }
   ]
 }

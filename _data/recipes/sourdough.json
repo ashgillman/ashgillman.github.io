@@ -1,20 +1,144 @@
 {
-  "@context": "https://schema.org",
+  "@context": [
+    "https://schema.org",
+    {
+      "flow": "https://ashgillman.github.io/ns/recipe-flow#"
+    }
+  ],
   "@type": "Recipe",
   "name": "Sourdough regular loaf",
   "recipeIngredient": [
-    "450 g regular flour",
-    "50 g wholemeal flour",
-    "350 g water",
-    "100 g sourdough starter",
-    "20 g salt"
+    {
+      "@type": "PropertyValue",
+      "@id": "#regular-flour",
+      "name": "450 g regular flour"
+    },
+    {
+      "@type": "PropertyValue",
+      "@id": "#wholemeal-flour",
+      "name": "50 g wholemeal flour"
+    },
+    {
+      "@type": "PropertyValue",
+      "@id": "#water",
+      "name": "350 g water"
+    },
+    {
+      "@type": "PropertyValue",
+      "@id": "#starter",
+      "name": "100 g sourdough starter"
+    },
+    {
+      "@type": "PropertyValue",
+      "@id": "#salt",
+      "name": "20 g salt"
+    }
   ],
   "recipeInstructions": [
-    { "@type": "HowToStep", "name": "Mix and rest", "timing": "20 minutes", "text": ["Mix the flours, water and starter; leave to rest."] },
-    { "@type": "HowToStep", "name": "Add salt", "text": [] },
-    { "@type": "HowToStep", "name": "Stretch and fold", "timing": "First 2 hours", "text": ["Fold every 30 minutes."] },
-    { "@type": "HowToStep", "name": "Shape", "text": [] },
-    { "@type": "HowToStep", "name": "Refrigerate", "timing": "At least 16 hours", "text": [] },
-    { "@type": "HowToStep", "name": "Bake", "text": ["250°C for 20 minutes, then 220°C until the internal temperature reaches 95°C (about 20 minutes)."] }
+    {
+      "@type": "HowToStep",
+      "name": "Mix and rest",
+      "text": [
+        "Mix the flours, water and starter; leave to rest."
+      ],
+      "@id": "#mix-rest",
+      "flow:timing": "20 minutes",
+      "flow:inputs": [
+        {
+          "@id": "#regular-flour"
+        },
+        {
+          "@id": "#wholemeal-flour"
+        },
+        {
+          "@id": "#water"
+        },
+        {
+          "@id": "#starter"
+        }
+      ],
+      "flow:output": {
+        "@id": "#mixed-dough"
+      }
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Add salt",
+      "text": [],
+      "@id": "#add-salt",
+      "flow:inputs": [
+        {
+          "@id": "#mixed-dough"
+        },
+        {
+          "@id": "#salt"
+        }
+      ],
+      "flow:output": {
+        "@id": "#salted-dough"
+      }
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Stretch and fold",
+      "text": [
+        "Fold every 30 minutes."
+      ],
+      "@id": "#fold",
+      "flow:timing": "First 2 hours",
+      "flow:inputs": [
+        {
+          "@id": "#salted-dough"
+        }
+      ],
+      "flow:output": {
+        "@id": "#folded-dough"
+      }
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Shape",
+      "text": [],
+      "@id": "#shape",
+      "flow:inputs": [
+        {
+          "@id": "#folded-dough"
+        }
+      ],
+      "flow:output": {
+        "@id": "#shaped-dough"
+      }
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Refrigerate",
+      "text": [],
+      "@id": "#refrigerate",
+      "flow:timing": "At least 16 hours",
+      "flow:inputs": [
+        {
+          "@id": "#shaped-dough"
+        }
+      ],
+      "flow:output": {
+        "@id": "#chilled-dough"
+      }
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Bake",
+      "text": [
+        "250°C for 20 minutes, then 220°C until the internal temperature reaches 95°C (about 20 minutes)."
+      ],
+      "@id": "#bake",
+      "flow:inputs": [
+        {
+          "@id": "#chilled-dough"
+        }
+      ],
+      "flow:output": {
+        "@id": "#loaf"
+      }
+    }
   ]
 }

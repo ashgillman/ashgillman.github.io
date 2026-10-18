@@ -1,53 +1,191 @@
 {
-  "@context": "https://schema.org",
+  "@context": [
+    "https://schema.org",
+    {
+      "flow": "https://ashgillman.github.io/ns/recipe-flow#"
+    }
+  ],
   "@type": "Recipe",
   "name": "Sourdough pancakes",
   "recipeIngredient": [
-    "170 g oats",
-    "490 g soy milk",
-    "35 g cooking oil",
-    "5 sachets Equal sweetener",
-    "2 tablespoons sugar",
-    "Cinnamon, to taste",
-    "Vanilla essence, to taste",
-    "About 50 g sourdough starter",
-    "240 g plain flour",
-    "1–2 teaspoons baking soda"
+    {
+      "@type": "PropertyValue",
+      "@id": "#oats",
+      "name": "170 g oats"
+    },
+    {
+      "@type": "PropertyValue",
+      "@id": "#soy-milk",
+      "name": "490 g soy milk"
+    },
+    {
+      "@type": "PropertyValue",
+      "@id": "#oil",
+      "name": "35 g cooking oil"
+    },
+    {
+      "@type": "PropertyValue",
+      "@id": "#equal",
+      "name": "5 sachets Equal sweetener"
+    },
+    {
+      "@type": "PropertyValue",
+      "@id": "#sugar",
+      "name": "2 tablespoons sugar"
+    },
+    {
+      "@type": "PropertyValue",
+      "@id": "#cinnamon",
+      "name": "Cinnamon, to taste"
+    },
+    {
+      "@type": "PropertyValue",
+      "@id": "#vanilla",
+      "name": "Vanilla essence, to taste"
+    },
+    {
+      "@type": "PropertyValue",
+      "@id": "#starter",
+      "name": "About 50 g sourdough starter"
+    },
+    {
+      "@type": "PropertyValue",
+      "@id": "#plain-flour",
+      "name": "240 g plain flour"
+    },
+    {
+      "@type": "PropertyValue",
+      "@id": "#baking-soda",
+      "name": "1–2 teaspoons baking soda"
+    }
   ],
   "recipeInstructions": [
     {
       "@type": "HowToStep",
       "name": "Soak the oats",
-      "timing": "Day 1",
-      "text": ["Combine the oats and soy milk and leave to sit."]
+      "text": [
+        "Combine the oats and soy milk and leave to sit."
+      ],
+      "@id": "#soak",
+      "flow:timing": "Day 1",
+      "flow:inputs": [
+        {
+          "@id": "#oats"
+        },
+        {
+          "@id": "#soy-milk"
+        }
+      ],
+      "flow:output": {
+        "@id": "#soaked-oats"
+      }
     },
     {
       "@type": "HowToStep",
       "name": "Mix the batter",
-      "text": ["Add the cooking oil, Equal, sugar, cinnamon, vanilla essence and sourdough starter to the soaked oats and soy milk. Combine."]
+      "text": [
+        "Add the cooking oil, Equal, sugar, cinnamon, vanilla essence and sourdough starter to the soaked oats and soy milk. Combine."
+      ],
+      "@id": "#mix",
+      "flow:inputs": [
+        {
+          "@id": "#soaked-oats"
+        },
+        {
+          "@id": "#oil"
+        },
+        {
+          "@id": "#equal"
+        },
+        {
+          "@id": "#sugar"
+        },
+        {
+          "@id": "#cinnamon"
+        },
+        {
+          "@id": "#vanilla"
+        },
+        {
+          "@id": "#starter"
+        }
+      ],
+      "flow:output": {
+        "@id": "#batter"
+      }
     },
     {
       "@type": "HowToStep",
       "name": "Add the flour",
-      "text": ["Add the plain flour to the batter and mix until combined."]
+      "text": [
+        "Add the plain flour to the batter and mix until combined."
+      ],
+      "@id": "#add-flour",
+      "flow:inputs": [
+        {
+          "@id": "#batter"
+        },
+        {
+          "@id": "#plain-flour"
+        }
+      ],
+      "flow:output": {
+        "@id": "#flour-batter"
+      }
     },
     {
       "@type": "HowToStep",
       "name": "Leave overnight",
-      "timing": "Overnight",
-      "text": ["Cover and leave the batter overnight."]
+      "text": [
+        "Cover and leave the batter overnight."
+      ],
+      "@id": "#ferment",
+      "flow:timing": "Overnight",
+      "flow:inputs": [
+        {
+          "@id": "#flour-batter"
+        }
+      ],
+      "flow:output": {
+        "@id": "#overnight-batter"
+      }
     },
     {
       "@type": "HowToStep",
       "name": "Add baking soda",
-      "timing": "Day 2",
-      "text": ["Add about 1–2 teaspoons of baking soda slowly, until you start to see a light bubbling."]
+      "text": [
+        "Add about 1–2 teaspoons of baking soda slowly, until you start to see a light bubbling."
+      ],
+      "@id": "#add-soda",
+      "flow:timing": "Day 2",
+      "flow:inputs": [
+        {
+          "@id": "#overnight-batter"
+        },
+        {
+          "@id": "#baking-soda"
+        }
+      ],
+      "flow:output": {
+        "@id": "#finished-batter"
+      }
     },
     {
       "@type": "HowToStep",
       "name": "Cook",
-      "timing": "Day 2",
-      "text": ["Cook the batter as pancakes on a hot, lightly oiled pan."]
+      "text": [
+        "Cook the batter as pancakes on a hot, lightly oiled pan."
+      ],
+      "@id": "#cook",
+      "flow:timing": "Day 2",
+      "flow:inputs": [
+        {
+          "@id": "#finished-batter"
+        }
+      ],
+      "flow:output": {
+        "@id": "#pancakes"
+      }
     }
   ]
 }

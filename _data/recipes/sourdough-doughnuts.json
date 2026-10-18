@@ -1,67 +1,234 @@
 {
-  "@context": "https://schema.org",
+  "@context": [
+    "https://schema.org",
+    {
+      "flow": "https://ashgillman.github.io/ns/recipe-flow#"
+    }
+  ],
   "@type": "Recipe",
   "name": "Hybrid sourdough doughnuts",
   "recipeYield": "15 doughnuts",
   "recipeIngredient": [
-    "500 g bread flour",
-    "120 g active 100% hydration starter",
-    "180 g milk",
-    "2 eggs",
-    "60 g sugar",
-    "8 g salt",
-    "3 g instant yeast",
-    "60 g soft butter",
-    "Frying oil",
-    "Cinnamon sugar (to toss)"
+    {
+      "@type": "PropertyValue",
+      "@id": "#bread-flour",
+      "name": "500 g bread flour"
+    },
+    {
+      "@type": "PropertyValue",
+      "@id": "#starter",
+      "name": "120 g active 100% hydration starter"
+    },
+    {
+      "@type": "PropertyValue",
+      "@id": "#milk",
+      "name": "180 g milk"
+    },
+    {
+      "@type": "PropertyValue",
+      "@id": "#eggs",
+      "name": "2 eggs"
+    },
+    {
+      "@type": "PropertyValue",
+      "@id": "#sugar",
+      "name": "60 g sugar"
+    },
+    {
+      "@type": "PropertyValue",
+      "@id": "#salt",
+      "name": "8 g salt"
+    },
+    {
+      "@type": "PropertyValue",
+      "@id": "#yeast",
+      "name": "3 g instant yeast"
+    },
+    {
+      "@type": "PropertyValue",
+      "@id": "#butter",
+      "name": "60 g soft butter"
+    },
+    {
+      "@type": "PropertyValue",
+      "@id": "#frying-oil",
+      "name": "Frying oil"
+    },
+    {
+      "@type": "PropertyValue",
+      "@id": "#cinnamon-sugar",
+      "name": "Cinnamon sugar (to toss)"
+    }
   ],
   "recipeInstructions": [
     {
       "@type": "HowToStep",
       "name": "Mix",
-      "timing": "Day 1",
-      "text": ["Mix until no dry flour remains."]
+      "text": [
+        "Mix until no dry flour remains."
+      ],
+      "@id": "#mix",
+      "flow:timing": "Day 1",
+      "flow:inputs": [
+        {
+          "@id": "#bread-flour"
+        },
+        {
+          "@id": "#starter"
+        },
+        {
+          "@id": "#milk"
+        },
+        {
+          "@id": "#eggs"
+        },
+        {
+          "@id": "#sugar"
+        },
+        {
+          "@id": "#salt"
+        },
+        {
+          "@id": "#yeast"
+        },
+        {
+          "@id": "#butter"
+        }
+      ],
+      "flow:output": {
+        "@id": "#mixed-dough"
+      }
     },
     {
       "@type": "HowToStep",
       "name": "Rest",
-      "timing": "Day 1 · 20 minutes",
-      "text": ["Cover and rest."]
+      "text": [
+        "Cover and rest."
+      ],
+      "@id": "#rest",
+      "flow:timing": "Day 1 · 20 minutes",
+      "flow:inputs": [
+        {
+          "@id": "#mixed-dough"
+        }
+      ],
+      "flow:output": {
+        "@id": "#rested-dough"
+      }
     },
     {
       "@type": "HowToStep",
       "name": "Knead",
-      "timing": "Day 1 · about 8 minutes",
-      "text": ["Knead until smooth, elastic and slightly tacky.", "Use little extra flour."]
+      "text": [
+        "Knead until smooth, elastic and slightly tacky.",
+        "Use little extra flour."
+      ],
+      "@id": "#knead",
+      "flow:timing": "Day 1 · about 8 minutes",
+      "flow:inputs": [
+        {
+          "@id": "#rested-dough"
+        }
+      ],
+      "flow:output": {
+        "@id": "#kneaded-dough"
+      }
     },
     {
       "@type": "HowToStep",
       "name": "Bench ferment and chill",
-      "timing": "Day 1",
-      "text": ["Cover and ferment at room temperature for 45–60 minutes.", "Refrigerate overnight."]
+      "text": [
+        "Cover and ferment at room temperature for 45–60 minutes.",
+        "Refrigerate overnight."
+      ],
+      "@id": "#chill",
+      "flow:timing": "Day 1",
+      "flow:inputs": [
+        {
+          "@id": "#kneaded-dough"
+        }
+      ],
+      "flow:output": {
+        "@id": "#chilled-dough"
+      }
     },
     {
       "@type": "HowToStep",
       "name": "Shape",
-      "timing": "Day 2",
-      "text": ["Divide into 15 pieces (62–65 g each).", "Cut rings or shape into ropes and join into rings.", "Set on parchment squares and refrigerate."]
+      "text": [
+        "Divide into 15 pieces (62–65 g each).",
+        "Cut rings or shape into ropes and join into rings.",
+        "Set on parchment squares and refrigerate."
+      ],
+      "@id": "#shape",
+      "flow:timing": "Day 2",
+      "flow:inputs": [
+        {
+          "@id": "#chilled-dough"
+        }
+      ],
+      "flow:output": {
+        "@id": "#shaped-doughnuts"
+      }
     },
     {
       "@type": "HowToStep",
       "name": "Proof",
-      "timing": "Day 2",
-      "text": ["Remove from the fridge.", "Proof at room temperature for 2–3 hours, until puffy but not fragile. Avoid leaving out overnight."]
+      "text": [
+        "Remove from the fridge.",
+        "Proof at room temperature for 2–3 hours, until puffy but not fragile. Avoid leaving out overnight."
+      ],
+      "@id": "#proof",
+      "flow:timing": "Day 2",
+      "flow:inputs": [
+        {
+          "@id": "#shaped-doughnuts"
+        }
+      ],
+      "flow:output": {
+        "@id": "#proofed-doughnuts"
+      }
     },
     {
       "@type": "HowToStep",
       "name": "Fry",
-      "timing": "Day 2",
-      "text": ["Heat oil to 175°C.", "Fry 1½–2 minutes on the first side, then about 1 minute on the second."]
+      "text": [
+        "Heat oil to 175°C.",
+        "Fry 1½–2 minutes on the first side, then about 1 minute on the second."
+      ],
+      "@id": "#fry",
+      "flow:timing": "Day 2",
+      "flow:inputs": [
+        {
+          "@id": "#proofed-doughnuts"
+        },
+        {
+          "@id": "#frying-oil"
+        }
+      ],
+      "flow:output": {
+        "@id": "#fried-doughnuts"
+      }
     },
     {
       "@type": "HowToStep",
       "name": "Drain and toss",
-      "text": ["Drain briefly.", "Toss warm doughnuts in cinnamon sugar."]
+      "text": [
+        "Drain briefly.",
+        "Toss warm doughnuts in cinnamon sugar."
+      ],
+      "@id": "#toss",
+      "flow:inputs": [
+        {
+          "@id": "#fried-doughnuts"
+        },
+        {
+          "@id": "#cinnamon-sugar"
+        }
+      ],
+      "flow:output": {
+        "@id": "#finished-doughnuts"
+      }
     }
   ]
 }

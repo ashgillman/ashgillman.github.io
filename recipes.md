@@ -4,10 +4,9 @@ title: Recipes
 permalink: /recipes/
 ---
 <link rel="stylesheet" href="{{ '/css/recipes.css' | relative_url }}?v={{ site.time | date: '%s' }}">
-{% for pair in site.data.recipes %}
-  {% assign recipe_key = pair[0] %}
-  {% assign recipe = pair[1] %}
-  {% assign layout = site.data.trn[recipe_key] %}
+{% for entry in site.data.recipe_views %}
+  {% assign recipe = entry.recipe %}
+  {% assign layout = entry.layout %}
 <article class="recipe">
   <h2>{{ recipe.name | escape }}</h2>
   {% include trn-table.html recipe=recipe layout=layout %}
@@ -20,6 +19,6 @@ permalink: /recipes/
 
 <script type="application/ld+json">
 [
-{% for pair in site.data.recipes %}{% unless forloop.first %},{% endunless %}{{ pair[1] | jsonify }}{% endfor %}
+{% for entry in site.data.recipe_views %}{% unless forloop.first %},{% endunless %}{{ entry.schema | jsonify }}{% endfor %}
 ]
 </script>

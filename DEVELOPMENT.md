@@ -32,23 +32,21 @@ Individual post URLs and the site-wide RSS feed continue to include brewing post
 
 ## Recipe pages
 
-Add one Schema.org `Recipe` JSON file under `_data/recipes/` for each recipe.
-Keep ingredient text in `recipeIngredient` and operation names and text in
-`recipeInstructions`; this same content supplies the visible table and JSON-LD.
-Add a matching `_data/trn/<slug>.json` file for diagram geometry only. Its
-`cells` list diagram cells by zero-based `row` and `column`, with an
-`ingredient` or `instruction` index. Optional `rowSpan` and `columnSpan` values
-join ingredient rows beneath one operation and let parallel operations branch
-across columns. Keep each ingredient and instruction in one cell; leave gaps
-for unused diagram positions.
-Span an ingredient label across unused columns with `columnSpan` until it meets
-the operation where that ingredient is first used.
-Use `rowSpan` on that operation to join the existing mixture and the newly added
-ingredient rows, so the sequence reads from left to right.
+Add one Schema.org `Recipe` JSON file with the documented `flow` extension under
+`_data/recipes/` for each recipe; see `_data/recipes/README.md` for an example.
+Record ingredients, instructions and their input/output relationships, without
+rows, columns or cell spans.
+The build runs `scripts/site-generators/recipes.sh` and `scripts/recipe-flow.mjs`
+to validate the recipe graphs and generate `_data/recipe_views.json` in the
+staging directory only.
+That generated data supplies both the table geometry and standard Schema.org
+JSON-LD, without the custom flow properties.
+`_data/trn/` sidecars are no longer used.
+Run `node --test scripts/recipe-flow.test.mjs` for generator checks.
 
-The page automatically lists every file under `_data/recipes/` with a matching
-file under `_data/trn/`; no page edit is needed when adding a recipe. Recipe
-styles live in `css/recipes.css`, loaded only on that page. To preview changes,
+The page automatically lists every recipe JSON file; no page edit is needed
+when adding a recipe.
+Recipe styles live in `css/recipes.css`, loaded only on that page. To preview changes,
 stop the current `bin/serve-site` process, rebuild with `bin/build-site`, then
 restart `bin/serve-site`; the staging tree is served at
 `http://localhost:4000/recipes/`. Pass Jekyll options after the script name to

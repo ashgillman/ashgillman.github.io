@@ -1,20 +1,101 @@
 {
-  "@context": "https://schema.org",
+  "@context": [
+    "https://schema.org",
+    {
+      "flow": "https://ashgillman.github.io/ns/recipe-flow#"
+    }
+  ],
   "@type": "Recipe",
   "name": "Pickles",
   "description": "Brine quantities for a 250 mL jar; vegetable quantity and storage temperature not yet specified.",
   "recipeYield": "250 mL jar",
   "recipeIngredient": [
-    "75 mL vinegar",
-    "75 mL water",
-    "2 teaspoons sugar",
-    "1 teaspoon salt",
-    "1 teaspoon minced garlic",
-    "About 1 teaspoon peppercorns",
-    "About 1 teaspoon coriander seeds"
+    {
+      "@type": "PropertyValue",
+      "@id": "#vinegar",
+      "name": "75 mL vinegar"
+    },
+    {
+      "@type": "PropertyValue",
+      "@id": "#water",
+      "name": "75 mL water"
+    },
+    {
+      "@type": "PropertyValue",
+      "@id": "#sugar",
+      "name": "2 teaspoons sugar"
+    },
+    {
+      "@type": "PropertyValue",
+      "@id": "#salt",
+      "name": "1 teaspoon salt"
+    },
+    {
+      "@type": "PropertyValue",
+      "@id": "#garlic",
+      "name": "1 teaspoon minced garlic"
+    },
+    {
+      "@type": "PropertyValue",
+      "@id": "#peppercorns",
+      "name": "About 1 teaspoon peppercorns"
+    },
+    {
+      "@type": "PropertyValue",
+      "@id": "#coriander-seeds",
+      "name": "About 1 teaspoon coriander seeds"
+    }
   ],
   "recipeInstructions": [
-    { "@type": "HowToStep", "name": "Combine", "text": ["Add to a 250 mL jar."] },
-    { "@type": "HowToStep", "name": "Stand", "text": ["Leave for one week with the lid loose."] }
+    {
+      "@type": "HowToStep",
+      "name": "Combine",
+      "text": [
+        "Add to a 250 mL jar."
+      ],
+      "@id": "#combine",
+      "flow:inputs": [
+        {
+          "@id": "#vinegar"
+        },
+        {
+          "@id": "#water"
+        },
+        {
+          "@id": "#sugar"
+        },
+        {
+          "@id": "#salt"
+        },
+        {
+          "@id": "#garlic"
+        },
+        {
+          "@id": "#peppercorns"
+        },
+        {
+          "@id": "#coriander-seeds"
+        }
+      ],
+      "flow:output": {
+        "@id": "#brine"
+      }
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Stand",
+      "text": [
+        "Leave for one week with the lid loose."
+      ],
+      "@id": "#stand",
+      "flow:inputs": [
+        {
+          "@id": "#brine"
+        }
+      ],
+      "flow:output": {
+        "@id": "#finished-pickles"
+      }
+    }
   ]
 }
