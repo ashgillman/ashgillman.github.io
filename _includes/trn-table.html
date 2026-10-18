@@ -21,7 +21,7 @@
               {% assign found = true %}
               {% if cell.ingredient != nil %}
                 {% assign ingredient_index = cell.ingredient %}
-                <td class="trn-ingredient" rowspan="{{ cell.rowSpan | default: 1 }}" colspan="{{ cell.columnSpan | default: 1 }}">{{ include.recipe.recipeIngredient[ingredient_index] | escape }}</td>
+                <td class="trn-ingredient" rowspan="{{ cell.rowSpan | default: 1 }}" colspan="{{ cell.columnSpan | default: 1 }}"><span class="trn-ingredient-label">{{ include.recipe.recipeIngredient[ingredient_index] | escape }}</span></td>
               {% elsif cell.instruction != nil %}
                 {% assign instruction_index = cell.instruction %}
                 {% assign instruction = include.recipe.recipeInstructions[instruction_index] %}

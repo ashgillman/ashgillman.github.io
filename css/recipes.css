@@ -22,6 +22,13 @@
   vertical-align: middle;
 }
 .trn-table .trn-ingredient { background: #fff; font-weight: 600; text-align: right; }
+.trn-ingredient-label {
+  display: inline-block;
+  width: max-content;
+  max-width: 100%;
+  position: sticky;
+  right: .8rem;
+}
 .trn-table .trn-operation { background: #fff; text-align: left; }
 .trn-title { font-weight: 700; }
 .trn-operation ul { margin: .45rem 0 0; padding-left: 1.2rem; }
@@ -35,6 +42,7 @@
 @media print {
   .trn-scroll { overflow: visible; }
   .trn-table { min-width: 0; font-size: 10pt; }
+  .trn-ingredient-label { position: static; }
   .recipe { break-inside: avoid; }
   .site-header, .wrapper-footer { display: none; }
 }

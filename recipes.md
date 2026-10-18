@@ -3,7 +3,7 @@ layout: page
 title: Recipes
 permalink: /recipes/
 ---
-<link rel="stylesheet" href="{{ '/css/recipes.css' | relative_url }}">
+<link rel="stylesheet" href="{{ '/css/recipes.css' | relative_url }}?v={{ site.time | date: '%s' }}">
 {% for pair in site.data.recipes %}
   {% assign recipe_key = pair[0] %}
   {% assign recipe = pair[1] %}
