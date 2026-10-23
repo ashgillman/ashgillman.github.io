@@ -39,10 +39,10 @@
       "@type": "HowToStep",
       "name": "Mix and rest",
       "text": [
-        "Mix the flours, water and starter; leave to rest."
+        "Mix flours, water and starter; rest."
       ],
       "@id": "#mix-rest",
-      "flow:timing": "20 minutes",
+      "flow:timing": "20 min",
       "flow:inputs": [
         {
           "@id": "#regular-flour"
@@ -82,10 +82,10 @@
       "@type": "HowToStep",
       "name": "Stretch and fold",
       "text": [
-        "Fold every 30 minutes."
+        "Fold every 30 min."
       ],
       "@id": "#fold",
-      "flow:timing": "First 2 hours",
+      "flow:timing": "First 2 h",
       "flow:inputs": [
         {
           "@id": "#salted-dough"
@@ -114,7 +114,7 @@
       "name": "Refrigerate",
       "text": [],
       "@id": "#refrigerate",
-      "flow:timing": "At least 16 hours",
+      "flow:timing": "At least 16 h",
       "flow:inputs": [
         {
           "@id": "#shaped-dough"
@@ -128,7 +128,7 @@
       "@type": "HowToStep",
       "name": "Bake",
       "text": [
-        "250°C for 20 minutes, then 220°C until the internal temperature reaches 95°C (about 20 minutes)."
+        "Bake at 250°C for 20 min, then 220°C until 95°C internally (~20 min)."
       ],
       "@id": "#bake",
       "flow:inputs": [

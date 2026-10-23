@@ -85,7 +85,7 @@
       "@type": "HowToStep",
       "name": "Stand",
       "text": [
-        "Leave for one week with the lid loose."
+        "Leave 1 week with lid loose."
       ],
       "@id": "#stand",
       "flow:inputs": [

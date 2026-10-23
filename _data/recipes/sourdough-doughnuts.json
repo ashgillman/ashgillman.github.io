@@ -17,7 +17,7 @@
     {
       "@type": "PropertyValue",
       "@id": "#starter",
-      "name": "120 g active 100% hydration starter"
+      "name": "120 g sourdough starter (100% hydration)"
     },
     {
       "@type": "PropertyValue",
@@ -57,7 +57,7 @@
     {
       "@type": "PropertyValue",
       "@id": "#cinnamon-sugar",
-      "name": "Cinnamon sugar (to toss)"
+      "name": "Cinnamon sugar"
     }
   ],
   "recipeInstructions": [
@@ -106,7 +106,7 @@
         "Cover and rest."
       ],
       "@id": "#rest",
-      "flow:timing": "Day 1 · 20 minutes",
+      "flow:timing": "Day 1 · 20 min",
       "flow:inputs": [
         {
           "@id": "#mixed-dough"
@@ -124,7 +124,7 @@
         "Use little extra flour."
       ],
       "@id": "#knead",
-      "flow:timing": "Day 1 · about 8 minutes",
+      "flow:timing": "Day 1 · ~8 min",
       "flow:inputs": [
         {
           "@id": "#rested-dough"
@@ -136,9 +136,9 @@
     },
     {
       "@type": "HowToStep",
-      "name": "Bench ferment and chill",
+      "name": "Ferment and chill",
       "text": [
-        "Cover and ferment at room temperature for 45–60 minutes.",
+        "Cover; ferment at room temperature 45–60 min.",
         "Refrigerate overnight."
       ],
       "@id": "#chill",
@@ -157,8 +157,8 @@
       "name": "Shape",
       "text": [
         "Divide into 15 pieces (62–65 g each).",
-        "Cut rings or shape into ropes and join into rings.",
-        "Set on parchment squares and refrigerate."
+        "Cut rings, or join dough ropes into rings.",
+        "Place on parchment squares; refrigerate."
       ],
       "@id": "#shape",
       "flow:timing": "Day 2",
@@ -175,8 +175,9 @@
       "@type": "HowToStep",
       "name": "Proof",
       "text": [
-        "Remove from the fridge.",
-        "Proof at room temperature for 2–3 hours, until puffy but not fragile. Avoid leaving out overnight."
+        "Remove from fridge.",
+        "Proof at room temperature 2–3 h, until puffy but not fragile.",
+        "Do not leave out overnight."
       ],
       "@id": "#proof",
       "flow:timing": "Day 2",
@@ -194,7 +195,7 @@
       "name": "Fry",
       "text": [
         "Heat oil to 175°C.",
-        "Fry 1½–2 minutes on the first side, then about 1 minute on the second."
+        "Fry 1½–2 min on the first side, then ~1 min on the second."
       ],
       "@id": "#fry",
       "flow:timing": "Day 2",

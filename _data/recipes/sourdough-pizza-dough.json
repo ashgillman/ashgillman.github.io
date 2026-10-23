@@ -98,10 +98,10 @@
       "@type": "HowToStep",
       "name": "Stretch and fold",
       "text": [
-        "Fold every 30 minutes."
+        "Fold every 30 min."
       ],
       "@id": "#fold",
-      "flow:timing": "2 hours",
+      "flow:timing": "2 h",
       "flow:inputs": [
         {
           "@id": "#mixed-dough"
@@ -116,7 +116,7 @@
       "name": "Bulk ferment",
       "text": [],
       "@id": "#bulk-ferment",
-      "flow:timing": "Until the night of Day 2",
+      "flow:timing": "Until Day 2 night",
       "flow:inputs": [
         {
           "@id": "#folded-dough"
@@ -130,7 +130,7 @@
       "@type": "HowToStep",
       "name": "Divide",
       "text": [
-        "Make three 320 g dough balls."
+        "Divide into 3 × 320 g dough balls."
       ],
       "@id": "#divide",
       "flow:inputs": [

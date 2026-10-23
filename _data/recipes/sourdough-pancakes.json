@@ -21,12 +21,12 @@
     {
       "@type": "PropertyValue",
       "@id": "#oil",
-      "name": "35 g cooking oil"
+      "name": "35 g oil"
     },
     {
       "@type": "PropertyValue",
       "@id": "#equal",
-      "name": "5 sachets Equal sweetener"
+      "name": "7 sachets Equal"
     },
     {
       "@type": "PropertyValue",
@@ -36,17 +36,17 @@
     {
       "@type": "PropertyValue",
       "@id": "#cinnamon",
-      "name": "Cinnamon, to taste"
+      "name": "Cinnamon"
     },
     {
       "@type": "PropertyValue",
       "@id": "#vanilla",
-      "name": "Vanilla essence, to taste"
+      "name": "Vanilla essence"
     },
     {
       "@type": "PropertyValue",
       "@id": "#starter",
-      "name": "About 50 g sourdough starter"
+      "name": "~50 g sourdough starter"
     },
     {
       "@type": "PropertyValue",
@@ -62,9 +62,9 @@
   "recipeInstructions": [
     {
       "@type": "HowToStep",
-      "name": "Soak the oats",
+      "name": "Soak oats",
       "text": [
-        "Combine the oats and soy milk and leave to sit."
+        "Combine oats and soy milk; let sit."
       ],
       "@id": "#soak",
       "flow:timing": "Day 1",
@@ -82,9 +82,9 @@
     },
     {
       "@type": "HowToStep",
-      "name": "Mix the batter",
+      "name": "Mix batter",
       "text": [
-        "Add the cooking oil, Equal, sugar, cinnamon, vanilla essence and sourdough starter to the soaked oats and soy milk. Combine."
+        "Mix oil, Equal, sugar, cinnamon, vanilla and starter into the soaked oats."
       ],
       "@id": "#mix",
       "flow:inputs": [
@@ -116,9 +116,9 @@
     },
     {
       "@type": "HowToStep",
-      "name": "Add the flour",
+      "name": "Add flour",
       "text": [
-        "Add the plain flour to the batter and mix until combined."
+        "Mix in plain flour."
       ],
       "@id": "#add-flour",
       "flow:inputs": [
@@ -135,9 +135,9 @@
     },
     {
       "@type": "HowToStep",
-      "name": "Leave overnight",
+      "name": "Rest",
       "text": [
-        "Cover and leave the batter overnight."
+        "Cover and leave overnight."
       ],
       "@id": "#ferment",
       "flow:timing": "Overnight",
@@ -154,7 +154,7 @@
       "@type": "HowToStep",
       "name": "Add baking soda",
       "text": [
-        "Add about 1–2 tsp of baking soda slowly, until you start to see a light bubbling."
+        "Add ~1–2 tsp baking soda slowly, until lightly bubbling."
       ],
       "@id": "#add-soda",
       "flow:timing": "Day 2",
@@ -174,7 +174,7 @@
       "@type": "HowToStep",
       "name": "Cook",
       "text": [
-        "Cook the batter as pancakes on a hot, lightly oiled pan."
+        "Cook pancakes in a hot, lightly oiled pan."
       ],
       "@id": "#cook",
       "flow:timing": "Day 2",
