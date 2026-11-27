@@ -5,6 +5,20 @@ project_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 build_root="$(mktemp -d "$project_root/.site-build.XXXXXX")"
 
 "$project_root/bin/build-site" "$build_root"
+
+mount_resource() {
+  local route="$1" output_dir="$2"
+  [[ -n "$output_dir" ]] || return 0
+  if [[ ! -f "$output_dir/index.html" ]]; then
+    printf 'Missing built resource at %s/index.html\n' "$output_dir" >&2
+    return 1
+  fi
+  rsync -a "$output_dir/" "$build_root/source/$route/"
+}
+
+mount_resource physicists-paper "${PHYSICISTS_PAPER_PREVIEW_DIR:-}"
+mount_resource TEAP-Topic-2.1 "${TEAP_PREVIEW_DIR:-}"
+
 jekyll serve \
   --source "$build_root/source" \
   --destination "$build_root/_site" \

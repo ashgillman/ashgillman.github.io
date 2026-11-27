@@ -4,17 +4,24 @@
 
     <a class="site-title" href="{{ site.baseurl }}/">{{ site.title }}</a>
 
-    <nav class="site-nav">
-      <a href="#" class="menu-icon">
-        <svg viewBox="0 0 18 15">
+    <nav class="site-nav" aria-label="Main navigation">
+      <button type="button" class="menu-icon" aria-label="Main menu" aria-controls="site-nav-links" aria-expanded="false">
+        <svg viewBox="0 0 18 15" aria-hidden="true">
           <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
           <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
           <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
         </svg>
-      </a>
+      </button>
 
-      <div class="trigger">
+      <div class="trigger" id="site-nav-links">
         <a class="page-link" href="{{ '/about/' | prepend: site.baseurl }}">About</a>
+        <details class="resource-menu">
+          <summary class="page-link">Resources</summary>
+          <ul class="resource-links">
+            <li><a href="{{ '/physicists-paper/' | relative_url }}">Physicists’ Paper</a></li>
+            <li><a href="{{ '/TEAP-Topic-2.1/' | relative_url }}">TEAP Topic 2.1</a></li>
+          </ul>
+        </details>
         <a class="page-link" href="{{ '/recipes/' | prepend: site.baseurl }}">Recipes</a>
         <a class="page-link" href="{{ '/brews/' | relative_url }}">Brews</a>
       </div>
@@ -23,3 +30,44 @@
   </div>
 
 </header>
+
+<script>
+  (() => {
+    const nav = document.querySelector('.site-nav');
+    const menu = nav.querySelector('.menu-icon');
+    const resources = nav.querySelector('.resource-menu');
+
+    function closeMenu() {
+      menu.setAttribute('aria-expanded', 'false');
+      resources.open = false;
+    }
+
+    menu.addEventListener('click', () => {
+      if (menu.getAttribute('aria-expanded') === 'true') {
+        closeMenu();
+      } else {
+        menu.setAttribute('aria-expanded', 'true');
+      }
+    });
+
+    document.addEventListener('click', (event) => {
+      if (!nav.contains(event.target)) {
+        closeMenu();
+      } else if (!resources.contains(event.target)) {
+        resources.open = false;
+      }
+    });
+
+    nav.addEventListener('keydown', (event) => {
+      if (event.key !== 'Escape') return;
+
+      if (resources.open) {
+        resources.open = false;
+        resources.querySelector('summary').focus();
+      } else if (menu.getAttribute('aria-expanded') === 'true' && menu.offsetWidth) {
+        closeMenu();
+        menu.focus();
+      }
+    });
+  })();
+</script>

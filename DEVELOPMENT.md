@@ -20,6 +20,18 @@ or reuses an existing directory. `bin/serve-site` starts a local preview at
 an Org file, stop it and run the command again so the post is exported before
 Jekyll reloads it.
 
+The Resources links stay on the current host.
+To include the separate projects in a local preview, run `npm run build` in Physicists’ Paper and `nix develop -c scripts/build-site.sh /path/to/teap-build` in TEAP Topic 2.1.
+Point the preview at the built output of each project you want to include:
+
+```sh
+PHYSICISTS_PAPER_PREVIEW_DIR=/path/to/physicists-paper/dist \
+TEAP_PREVIEW_DIR=/path/to/teap-build/site \
+  nix develop -c bin/serve-site
+```
+
+Restart the preview after rebuilding a resource to copy the latest output into the staging tree.
+
 GitHub Actions runs the same `bin/build-site` command on each pull request and
 deploys the generated `_site` directory only after a push to `master`.
 
